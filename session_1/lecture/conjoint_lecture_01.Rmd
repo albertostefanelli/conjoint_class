@@ -3,11 +3,12 @@ title: |
     | Intro to Conjoint Experiments
     | Session 1 
 author: Alberto Stefanelli
-date: "`r Sys.Date()`"
+#date: "`r Sys.Date()`"
 fontsize: 10pt 
 bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
 link-citations: yes
 linkcolor: blue
+knit: (function(inputFile, encoding) {rmarkdown::render(inputFile, encoding = encoding, output_dir = "html") })
 output: 
   beamer_presentation:
     theme: "CambridgeUS" #" PaloAlto"
@@ -40,11 +41,11 @@ header-includes:
     - Analysing
     - Learning by doing (in R, in Qualtrics...)
 
-## Sessions {.allowframebreaks} 
+## Sessions
 
 1. Experimental design and causality
     - Causal Inference
-    - CJ Experiments
+    - CJ Experiments (if time)
 2. The basics of conjoint experiments 
     - Terminology
     - Designing CJ 
@@ -62,7 +63,6 @@ header-includes:
     - Power Analysis 
     - Conjoint Mixture Model
     
-
 ## About me: Alberto 
 
 - FWO PhD Fellow at KU Leuven, Belgium
@@ -85,21 +85,21 @@ header-includes:
 - Research interests?
 - Previous experience with experimental designs?
 - Previous experience with R?
+- Previous experience with Qualtrics?
 - Why are you taking this workshop?
 
 
 ## Materials
 
 - Lecture's PDFs
-- Lab Session (from Session 2)
-- Solutions (from Session 2)
+- Labs
+- Exercises
+- Solutions 
 
 Where to find the material:
 
-1. On my GitHub 
-2. On Moodle 
-    
-    
+- On my [GitHub/conjoint_class](https://albertostefanelli.github.io/conjoint_class/)
+
 ## Reading list {.allowframebreaks} 
 
 **Recommended:**
@@ -115,11 +115,8 @@ Where to find the material:
 
 ## Before Starting
 
-- Make sure the conjoint design program works
-- Make sure to register on 000webhost.com 
-- Make sure R works (for tomorrow)
-- Make sure to have access to the Qualtrics account (for tomorrow)
-- **Make sure to ask questions**    
+- Make sure to have access to the Qualtrics account
+- **If something is unclear, ask : )**    
 
 ## Causal Inference (1)
 

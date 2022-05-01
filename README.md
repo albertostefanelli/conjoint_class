@@ -2,40 +2,50 @@
 
 The repo contains the material for *Introduction to Conjoint Experiments* at KUL, University of Innsbruck, and the [ECPR Method School](https://ecpr.eu/Events/Event/PanelDetails/9125). 
 
+## Timetable 
+
+Session|Day|Time|Link 
+--|-----|--------|----
+1|03/05|9-12 CET|
+2|10/05|9-12 CET|
+3|17/05|9-12 CET|
+4|20/05|9-12 CET|
+5|24/05|9-12 CET|
+
 
 ## Material
 
-- [Session 1 - Lecture (PDF)](https://albertostefanelli.github.io/SEM_labs/KUL/labs/html_lab/SEM_lab_1.html)
-- [Session 1 - Exercises](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_students/SEM_ex_1_students.html)
-- [Session 1 - Solutions](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_solutions/SEM_ex_1_solutions.html)
+- [Session 1 - Lecture (PDF)](https://albertostefanelli.github.io/conjoint_class/session_1/lecture/html/conjoint_lecture_01.pdf)
+- [Session 1 - Lab](https://albertostefanelli.github.io/conjoint_class/session_1/lab/html/conjoint_lab_1.html)
+- [Session 1 - Exercise](https://albertostefanelli.github.io/conjoint_class/session_1/exercise/html/conjoint_exercise_1.html)
+- [Session 1 - Solution](https://albertostefanelli.github.io/conjoint_class/session_1/solutions/html/conjoint_solutions_1.html)
 
 ---
 
-- [Session 2 - Lecture (PDF)](https://albertostefanelli.github.io/SEM_labs/KUL/labs/html_lab/SEM_lab_2.html)
-- [Session 2 - Exercises](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_students/SEM_ex_2_students.html)
-- [Session 2 - Solutions](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_solutions/SEM_ex_2_solutions.html)
+- [Session 2 - Lecture (PDF)]()
+- [Session 2 - Lab]()
+- [Session 2 - Exercise]()
+- [Session 2 - Solution]()
 
 ---
 
-- [Session 3 - Lecture (PDF)](https://albertostefanelli.github.io/SEM_labs/KUL/labs/html_lab/SEM_lab_3.html)
-- [Session 3 - Exercises](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_students/SEM_ex_3_students.html)
-- [Session 3 - Solutions](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_solutions/SEM_ex_3_solutions.html)
+- [Session 3 - Lecture (PDF)]()
+- [Session 3 - Lab]()
+- [Session 3 - Exercise]()
+- [Session 3 - Solution]()
 
 ---
 
-- [Session 4 - Lecture (PDF)](https://albertostefanelli.github.io/SEM_labs/KUL/labs/html_lab/SEM_lab_4.html)
-- [Session 4 - Exercises](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_students/SEM_ex_4_students.html)
-- [Session 4 - Solutions](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_solutions/SEM_ex_4_solutions.html)
+- [Session 4 - Lecture (PDF)]()
+- [Session 4 - Lab]()
+- [Session 4 - Exercise]()
+- [Session 4 - Solution]()
 
 ---
 
 
-- [Session 5 - Lecture (PDF)](https://albertostefanelli.github.io/SEM_labs/KUL/labs/html_lab/SEM_lab_4.html)
-- [Session 5 - Exercises](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_students/SEM_ex_4_students.html)
-- [Session 5 - Solutions](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_solutions/SEM_ex_4_solutions.html)
+- [Session 5 - Lecture (PDF)]()
+- [Session 5 - Lab]()
+- [Session 5 - Exercises]()
+- [Session 5 - Solutions]()
 
----
-
-- [Session 6 - Lecture (PDF)](https://albertostefanelli.github.io/SEM_labs/KUL/labs/html_lab/SEM_lab_4.html)
-- [Session 6 - Exercises](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_students/SEM_ex_4_students.html)
-- [Session 6 - Solutions](https://albertostefanelli.github.io/SEM_labs/KUL/exercises/html_solutions/SEM_ex_4_solutions.html)

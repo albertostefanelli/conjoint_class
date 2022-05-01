@@ -1,6 +1,7 @@
 ---
-title:  Intro to Conjoint Experiments | LAB - Session 1
+title:  Intro to Conjoint Experiments | Lab - 1
 author: Alberto Stefanelli
+knit: (function(inputFile, encoding) {rmarkdown::render(inputFile, encoding = encoding, output_dir = "html") })
 output:
   rmdformats::readthedown:
     self_contained: true
@@ -110,15 +111,14 @@ Below some notes on the installation and setup of R and relevant packages on you
 - Install the latest version of RStudio (https://www.rstudio.com/products/RStudio/). RStudio is the editor, i.e. you’ll write code in RStudio which is subsequently sent to and run within R.
 - Install the latest versions of various packages that we need. You can also update your packages by running “update.packages(ask = FALSE)” in the R commandline.
 
-
 # What we are going to cover 
 
-1. Data Management 
+1. Load data 
   1. From Qualtrics 
   2. From other sources
 3. Get the data ready for the analysis 
   1. Validity checks
-  2. From Wide to Long
+  2. From wide to long format
 
 # Dataset used 
 
@@ -143,6 +143,7 @@ Codebook:
 # ### Data import ###
 # install.packages("readr")     # read datasets
 # install.packages("qualtRics") # read qualtrics datasets
+# install.packages("here")      # absolute path management
 # ### Data manipulation ###
 # install.packages("dplyr")     # pipes and data manipulation
 # ### Visualization ###
@@ -159,6 +160,7 @@ Codebook:
 ### Data import ###
 library("readr")     
 library("qualtRics") 
+library("here")
 ### Data manipulation ###
 library("dplyr")     
 ### Visualization ###
@@ -182,7 +184,7 @@ library("factorEx")
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
 
-df_base <- qualtRics::read_survey("data/experimental_political_science_2018.csv", # name of our data file
+df_base <- qualtRics::read_survey(here("data","experimental_political_science_2019.csv") , # name of our data file
     legacy=FALSE,     # new or old version of Qualtrics 
     strip_html=TRUE   # remove the html tag
 )
@@ -190,15 +192,34 @@ df_base <- qualtRics::read_survey("data/experimental_political_science_2018.csv"
 head(df_base)
 
 ```
+If you first need to download the data from the GitHub repository
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+githubURL <- "https://github.com/albertostefanelli/conjoint_class/raw/master/data/experimental_political_science_2019.csv"
+
+download.file(githubURL, 
+    destfile = here("data","experimental_political_science_2019.csv"))
+
+```
 
 The *F-\*-\** are our conjoint features meaning the experimental manipulations. We need to makes sense of them and be **extra** careful to handle them correctly.
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
-
 df_base |> dplyr::select(dplyr::starts_with("F-")) 
 
 ```
 
+Let's drive deeper and try to figure out wich one are the attributes of the expreriment
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+df_base |> dplyr::select("F-1-1") |> table() 
+
+```
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+df_base |> dplyr::select("F-1-1-1") |> table() 
+
+```
 
 # Checks and Data Manipulation
 
