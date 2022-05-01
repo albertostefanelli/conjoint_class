@@ -1,0 +1,281 @@
+---
+title:  Intro to Conjoint Experiments | LAB - Session 1
+author: Alberto Stefanelli
+output:
+  rmdformats::readthedown:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    highlight: tango
+    use_bookdown: true
+    fig_width: 12
+    fig_height: 8
+  #html_document:
+    #theme: rmdformats
+    # df_print: paged
+    # toc: true
+    # number_sections: true
+    # toc_float:
+    #   collapsed: false
+    #   smooth_scroll: false
+---
+<style type="text/css">
+#content {
+    max-width: 1500px !important;
+/*    !margin-left: 300px !important;
+*/
+}
+#table-of-contents {
+    width: 300px !important;
+}
+
+#postamble {
+  font-size: 10px;
+}
+
+pre{
+  background-color: #FFFFFF;
+    font-size: 12px;
+}
+pre:not([class]) {
+  background-color: #D8D8D8;
+    color: black;
+}
+
+</style>
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(tidy=FALSE, 
+  fig.show = 'hold', 
+  fig.align = "center", 
+  warning = FALSE, 
+  message = FALSE, 
+  comment = '')
+options(width = 300, scipen = 9999)
+
+# last dev version is needed for rmdformats.
+# fixed these two
+# more info https://github.com/juba/rmdformats/issues/92 
+# more info https://github.com/juba/rmdformats/issues/93
+# devtools::install_github("juba/rmdformats")
+
+```
+
+# Lab sessions: why and how?
+
+1. Apply theoretical knowledge
+2. Increase understanding by interacting with data 
+4. Learn to use some packages in R
+5. How:
+    - Relatively unstructured
+    - Go at your own pace, try to do the exercises yourself (do yourself a favour and do not just copy paste and run the solutions)
+    - “There is never time to do it right, but there is always time to do it over”
+    
+## Software used: **R**
+    - This is not an R course!
+    - We will learn some R as we go along
+    - I will use RStudio
+    - Many packages or libraries exist to do specific analyses
+
+# Setting up R 
+
+## Why R 
+
+- Free and open source (think of science in developing countries)
+- Good online-documentation (much better than some commercial softwere such as Mplus)
+- Lively community of users (forums etc.)
+- Visualization capabilities (ggplot ...)
+- Cooperates with other programs and programming language (e.g. Python)
+- Popularity (See popularity statistics on books, blogs, forums)
+- RStudio as powerful integrated development environment (IDE) for R
+- Evolves into a scientific work suite optimizing workflow (replication, reproducability etc.)
+- Institutions/people (Gary King, Andrew Gelman etc.)
+
+## Where to learn R 
+
+- If you haven’t used R so far it’s necessary that you learn some basics in R. 
+- Data Camp (free trial but it is commercial) 
+- Try R: A short interactive intro to the language can be found here: http://tryr.codeschool.com/
+- Swirl: Learn R interactively within R itself: http://swirlstats.com/
+
+## Install R on your machine 
+
+Below some notes on the installation and setup of R and relevant packages on your own computer:
+
+- Install Rtools for Windows machines from CRAN (https://cran.r-project.org/bin/windows/Rtools/). 
+- If you are using OS X, you will need to to install XCode, available for free from the App Store. This will install a compiler (if you don’t have a compiler installed) which will be needed when installing packages from GitHub that require compilation from C++ source code.
+- [If you are using OS X, you can use Homebrew to install R.(https://mac.install.guide/homebrew/index.html)]
+- Install the latest version of R from CRAN (https://cran.r-project.org/).
+- Install the latest version of RStudio (https://www.rstudio.com/products/RStudio/). RStudio is the editor, i.e. you’ll write code in RStudio which is subsequently sent to and run within R.
+- Install the latest versions of various packages that we need. You can also update your packages by running “update.packages(ask = FALSE)” in the R commandline.
+
+
+# What we are going to cover 
+
+1. Data Management 
+  1. From Qualtrics 
+  2. From other sources
+3. Get the data ready for the analysis 
+  1. Validity checks
+  2. From Wide to Long
+
+# Dataset used 
+
+The data set used throughout is the CEU Experimental Political Science dataset on Jan 2019. We will restrict the analysis to some specific variables. Each line in the data set represents a respondent recruited through Qualtrics from a representative panel of the US population. 
+
+Codebook:
+
+1. *Q578 Q579 Q580*: Choice CJ Task 
+2. *F-\*-\**: Conjoint features 
+3. *Q78*: Employment status
+4. *Q77*: Race 
+5. *Q76*: Education 
+6. *Q75*: Gender 
+7. *Q74*: Age 
+8. *Q581*: Religiosity
+  
+# Environment preparation 
+
+
+```{r, echo=T, message=FALSE, warning=FALSE,cache=F}
+
+# ### Data import ###
+# install.packages("readr")     # read datasets
+# install.packages("qualtRics") # read qualtrics datasets
+# ### Data manipulation ###
+# install.packages("dplyr")     # pipes and data manipulation
+# ### Visualization ###
+# install.packages("ggplot2")    # graphing capabilities
+# ### Estimation ###
+# install.packages("cjoint")    # base amce package
+# install.packages("cregg")     # amce and mm 
+# install.packages("factorEx")  # amce with non-uniform distribution
+
+## Custom build functions 
+# library(devtools)
+# install_github("albertostefanelli/cjoint") # fixes some problem with cjoint
+
+### Data import ###
+library("readr")     
+library("qualtRics") 
+### Data manipulation ###
+library("dplyr")     
+### Visualization ###
+library("ggplot2")    
+### Estimation ###
+library("cjoint")   
+library("cregg")     
+library("factorEx")  
+
+
+
+```
+
+
+# Load the data: Qualtrics
+
+- Let's take a look to how to deal with the Qualtrics format  
+  - Qualtrics include HTML tags that are use for diagnostics 
+  - We need to get rid of them 
+  - We are going to use the **qualtRics** package for removing the tags
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+df_base <- qualtRics::read_survey("data/experimental_political_science_2018.csv", # name of our data file
+    legacy=FALSE,     # new or old version of Qualtrics 
+    strip_html=TRUE   # remove the html tag
+)
+
+head(df_base)
+
+```
+
+The *F-\*-\** are our conjoint features meaning the experimental manipulations. We need to makes sense of them and be **extra** careful to handle them correctly.
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+df_base |> dplyr::select(dplyr::starts_with("F-")) 
+
+```
+
+
+# Checks and Data Manipulation
+
+## Validity Checks 
+
+- We are going to try to detect abnormal patterns in the survey duration 
+  - Exclude respondents who did not completed the survey or were too fast in completing it
+  - Exclude observations that took too long to complete the survey
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+# duration of the survey in seconds
+df_base$"Duration (in seconds)" <- as.numeric(df_base$"Duration (in seconds)") 
+# let's transform it in minutes 
+df_base$duration_mins <-  df_base$"Duration (in seconds)"/60
+# plot the density 
+ggplot(df_base, aes(x=duration_mins)) + 
+  geom_density()
+
+```
+
+1. The survey has been tested and it was estimated to take between 8 and 15 mins to be completed 
+1. Q: What can you see from the graph above?
+2. We are going to exclude outliers 
+    1. Less than 4 mins 
+    2. More than 3 standard deviation above the mean
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+# calculate the % of respondents that completed the survey in less than 4 minutes
+(sum(df_base$duration_mins < 4)/nrow(df_base)*100)
+# select the observations that completed the survey in more than 4 minutes 
+lower_bound <- df_base$duration_mins > 4
+# subset the observation keeping only the observation that completed the survey in more than 4 minutes
+df_greater_base <- df_base[lower_bound,]
+# to get the upper bound we resort on another approach 
+# scale a z-scores
+df_greater_base$scaled_duration_mins <- scale(df_greater_base$duration_mins)
+# calculate the % of respondents that are 3 sd or more from the mean  
+(sum(df_greater_base$scaled_duration_mins > 3)/nrow(df_greater_base)*100)
+# upper bound 
+upper_bound <- df_greater_base$scaled_duration_mins < 3
+# subset the observation keeping only the observation that completed the survey in no more than 3 sd from the mean
+df_greater_base <- df_greater_base[upper_bound,]
+
+```
+
+## Removing NA on the DV 
+
+- Calculate how many respondents did not answer the CJ questions
+
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+(sum(is.na(df_greater_base$Q578))/nrow(df_greater_base)*100)
+(sum(is.na(df_greater_base$Q579))/nrow(df_greater_base)*100)
+(sum(is.na(df_greater_base$Q580))/nrow(df_greater_base)*100)
+```
+
+- The similarity in the % suggests that a specific subet of respondets did not complete the survey
+- This is good news but let's check if this is the case
+- Let investigate which respondents did not answer the CJ questions
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+df_greater_base[is.na(df_greater_base$Q578),"ResponseId"]
+df_greater_base[is.na(df_greater_base$Q579),"ResponseId"]
+df_greater_base[is.na(df_greater_base$Q580),"ResponseId"]
+```
+
+- It seems that these unique respondents did not perform any of the CJ tasks 
+  - We can safely remove them from our sample
+  - Let's now exclude the missing
+  - NB: If you got more than 5% of missing might be that something have gone wrong and you need further investigations
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+df_greater_base_wo_NA <- df_greater_base[!is.na(df_greater_base$Q578),]
+df_greater_base_wo_NA <- df_greater_base_wo_NA[!is.na(df_greater_base_wo_NA$Q579),]
+df_greater_base_wo_NA <- df_greater_base_wo_NA[!is.na(df_greater_base_wo_NA$Q580),]
+
+```
+
+
