@@ -2,6 +2,11 @@
 
 The repo contains the material for *Introduction to Conjoint Experiments* at KUL, University of Innsbruck, and the [ECPR Method School](https://ecpr.eu/Events/Event/PanelDetails/9125). 
 
+## Contacts
+
+By [Email](mailto:alberto.stefanelli@kuleuven.be")
+
+
 ## Timetable 
 
 Session|Day|Time|Link 
