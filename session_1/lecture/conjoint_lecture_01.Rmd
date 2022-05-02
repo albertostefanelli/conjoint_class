@@ -45,24 +45,29 @@ header-includes:
 
 1. Experimental design and causality
     - Causal Inference
-    - CJ Experiments (if time)
+    - Intro to CJ (if time)
 2. The basics of conjoint experiments 
     - Terminology
     - Designing CJ 
-    - Conjointsdt (Py)
+    - Conjointsdt (Py3) and design
+    - Different types of design  (if time)
 3. Deploying, Collecting, Analysis
+    - Different types of design 
+    - Web survey methodology
     - Qualtrics implementations
-    - Collection
-    - AMCEs  
-3. Analysing CJ Data
+    - Data Collection guidelines
+    - AMCEs (if time) 
+3. Analysing CJ data
     - AMCE 
     - Robustness checks
+    - Marginal means (if time)
 5. More advanced topics and conclusions
-    - Restricted Randomization
-    - Non-uniform Distributions
+    - Marginal means 
+    - Modelling restricted randomization
+    - Modelling non-uniform Distributions
     - Power Analysis 
     - Conjoint Mixture Model
-    
+
 ## About me: Alberto 
 
 - FWO PhD Fellow at KU Leuven, Belgium
@@ -233,7 +238,7 @@ knitr::include_graphics("images/po_tree.png")
 ## Potential outcomes framework (2)
 
 1. Causality tied to an intervention applied to unit at particular point in time (Imbens and Rubin 2015, 4)
-2. Units can not receive both treatment and control (i.e., all values of treatment variable). This is called the"fundamental problem of causal inference" meaning that we only ever observe one of the two outcomes.
+2. Units can not receive both treatment and control (i.e., all values of treatment variable). This is called the "fundamental problem of causal inference" meaning that we only ever observe one of the two outcomes.
 3. Estimation requires filling in/replacing the missing counterfactual
 4. Solution? The average difference in the pair of potential outcomes averaged over the entire population of interest (at a particular moment in time)
 
@@ -281,11 +286,9 @@ knitr::include_graphics("images/pool_break.jpg")
 2. Weather -> Outcome of 1960 and 2000 presidential elections
 3. Weather -> voter turnout -> republican vote 
 
-
 - Q: Describe the process for a single person as concretely as possible (think in counterfactual terms)
 - Q: Why is there a difference between Republicans and Democrats?
 - Q: Are there intervening variables?
-
 
 ## Causal Analysis: Manipulation (1)
 
@@ -309,19 +312,22 @@ knitr::include_graphics("images/pool_break.jpg")
 1. **"No causation WITHOUT manipulation"**
     1. "Causes are only those things that could, in principle, be treatments in experiment" [@holland_statistics_1986, p.954]
     2. "Causes are experiences that units undergo and not attributes that they possess" [@holland_statistics_1986, p.954]
-  
 
 ## Causal inference: Summary
 
 1. In broader terms, causality is a connection of phenomena that connects one element (the cause) with another elements (effect/outcome/response)
-    - it is a **process**. The 1st element of this process is responsible for 2nd and the 2nd  dependent on the 1st.
+    - it is a **process**. The 1st element of this process is responsible for 2nd and the 2nd dependent on the 1st.
     - causality is temporally bound. The cause(s) must precede the effect and **all lie in its past.**
-2. Terminology (many terms that refers to same phenomena)
+2. The "fundamental problem of causal inference"
+    - We only ever observe one of the two outcomes.
+    - We need to relay on assumptions to estimate the causal effect 
+3. **No causation without manipulation**. 
+    - Avoid to elevate to the status of 'cause' attributes that cannot be, in principle, manipulated (e.g., race and ethnicity, for a discussion see @vanderweele_causal_2014)
+2. Terminology (many terms that refer to same phenomena)
     - causality = causation = cause and effect = causal mechanism
     - treatment = cause = treatment and control groups = pre-treatment post-treatment
-    - outcomes/response = Effect
-3. Even when using semi-experimental techniques, **No causation without manipulation**. 
+    - outcomes/response = effect
 
 
-## References 
+## References {.allowframebreaks} 
 

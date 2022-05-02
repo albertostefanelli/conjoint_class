@@ -1643,10 +1643,11 @@ src: url(data:application/font-sfnt;base64,AAEAAAARAQAABAAQR0RFRgs+Cz8AAjwQAAAAQ
       <li><a href="#dataset-used"><span class="toc-section-number">4</span> Dataset used</a></li>
       <li><a href="#environment-preparation"><span class="toc-section-number">5</span> Environment preparation</a></li>
       <li><a href="#load-the-data-qualtrics"><span class="toc-section-number">6</span> Load the data: Qualtrics</a></li>
-      <li><a href="#checks-and-data-manipulation"><span class="toc-section-number">7</span> Checks and Data Manipulation</a>
+      <li><a href="#understanding-the-data"><span class="toc-section-number">7</span> Understanding the data</a></li>
+      <li><a href="#checks-and-data-manipulation"><span class="toc-section-number">8</span> Checks and data manipulation</a>
       <ul>
-      <li><a href="#validity-checks"><span class="toc-section-number">7.1</span> Validity Checks</a></li>
-      <li><a href="#removing-na-on-the-dv"><span class="toc-section-number">7.2</span> Removing NA on the DV</a></li>
+      <li><a href="#validity-checks"><span class="toc-section-number">8.1</span> Validity Checks</a></li>
+      <li><a href="#removing-na-on-the-dv"><span class="toc-section-number">8.2</span> Removing NA on the DV</a></li>
       </ul></li>
       </ul>
     </div>
@@ -1746,14 +1747,22 @@ pre:not([class]) {
 </div>
 <div id="what-we-are-going-to-cover" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> What we are going to cover</h1>
-<ol style="list-style-type: decimal">
-<li>Load data</li>
+<ul>
+<li>Load data
+<ul>
 <li>From Qualtrics</li>
-<li>From other sources</li>
-<li>Get the data ready for the analysis</li>
+</ul></li>
+<li>Data exploration
+<ul>
+<li>Attributes</li>
+<li>Levels</li>
+</ul></li>
+<li>Checks and data manipulation
+<ul>
 <li>Validity checks</li>
-<li>From wide to long format</li>
-</ol>
+<li>Removing NAs</li>
+</ul></li>
+</ul>
 </div>
 <div id="dataset-used" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Dataset used</h1>
@@ -1833,6 +1842,9 @@ pre:not([class]) {
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(githubURL, </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">destfile =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;experimental_political_science_2019.csv&quot;</span>))</span></code></pre></div>
+</div>
+<div id="understanding-the-data" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Understanding the data</h1>
 <p>The <em>F-*-*</em> are our conjoint features meaning the experimental manipulations. We need to makes sense of them and be <strong>extra</strong> careful to handle them correctly.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_base <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;F-&quot;</span>)) </span></code></pre></div>
 <pre><code># A tibble: 222 × 27
@@ -1863,10 +1875,10 @@ Past Political Experience         Penal proceedings           Policy Proposal
               Welcome immigrants and organise human corridor 
                                                           29 </code></pre>
 </div>
-<div id="checks-and-data-manipulation" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Checks and Data Manipulation</h1>
-<div id="validity-checks" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Validity Checks</h2>
+<div id="checks-and-data-manipulation" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Checks and data manipulation</h1>
+<div id="validity-checks" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Validity Checks</h2>
 <ul>
 <li>We are going to try to detect abnormal patterns in the survey duration
 <ul>
@@ -1909,8 +1921,8 @@ Past Political Experience         Penal proceedings           Policy Proposal
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the observation keeping only the observation that completed the survey in no more than 3 sd from the mean</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>df_greater_base <span class="ot">&lt;-</span> df_greater_base[upper_bound,]</span></code></pre></div>
 </div>
-<div id="removing-na-on-the-dv" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Removing NA on the DV</h2>
+<div id="removing-na-on-the-dv" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Removing NA on the DV</h2>
 <ul>
 <li>Calculate how many respondents did not answer the CJ questions</li>
 </ul>

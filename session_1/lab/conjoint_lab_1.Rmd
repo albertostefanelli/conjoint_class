@@ -113,12 +113,14 @@ Below some notes on the installation and setup of R and relevant packages on you
 
 # What we are going to cover 
 
-1. Load data 
-  1. From Qualtrics 
-  2. From other sources
-3. Get the data ready for the analysis 
-  1. Validity checks
-  2. From wide to long format
+- Load data 
+  - From Qualtrics 
+- Data exploration
+  - Attributes
+  - Levels
+- Checks and data manipulation 
+  - Validity checks
+  - Removing NAs
 
 # Dataset used 
 
@@ -202,6 +204,8 @@ download.file(githubURL,
 
 ```
 
+# Understanding the data
+
 The *F-\*-\** are our conjoint features meaning the experimental manipulations. We need to makes sense of them and be **extra** careful to handle them correctly.
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
@@ -221,7 +225,7 @@ df_base |> dplyr::select("F-1-1-1") |> table()
 
 ```
 
-# Checks and Data Manipulation
+# Checks and data manipulation
 
 ## Validity Checks 
 

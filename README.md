@@ -11,11 +11,11 @@ The repo contains the material for *Introduction to Conjoint Experiments* at KUL
 
 Session|Day|Time|Link 
 --|-----|--------|----
-1|03/05|9-12 CET|
-2|10/05|9-12 CET|
-3|17/05|9-12 CET|
-4|20/05|9-12 CET|
-5|24/05|9-12 CET|
+1|03/05|9-12 CET| [Link](https://zoom.us/j/94485203495)
+2|10/05|9-12 CET| [Link](https://zoom.us/j/92304787992)
+3|17/05|9-12 CET| [Link](https://zoom.us/j/93099656731)
+4|20/05|9-12 CET| [Link](https://zoom.us/j/95388720057)
+5|24/05|9-12 CET| [Link](https://zoom.us/j/98216824013)
 
 
 ## Material
