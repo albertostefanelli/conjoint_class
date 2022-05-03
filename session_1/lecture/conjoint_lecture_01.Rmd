@@ -282,7 +282,9 @@ knitr::include_graphics("images/pool_break.jpg")
 
 ## Causal analysis: Exercise 
 
-1. "Republic should pray for rain" [@gomez_republicans_2007]
+<!-- 2. "We examine the effect of weather on voter turnout in 14 U.S. presidential elections. Using GIS interpolations, we employ meteorological data drawn from over 22,000 U.S. weather stations to provide election day estimates of rain and snow for each U.S. county. We find that, when compared to normal conditions, rain significantly reduces voter participation by a rate of just less than 1% per inch, while an inch of snowfall decreases turnout by almost .5%. Poor weather is also shown to benefit the Republican party’s vote share. Indeed, the weather may have contributed to two Electoral College outcomes, the 1960 and 2000 presidential elections." -->
+
+1. "Republicans should pray for rain" [@gomez_republicans_2007]
 2. Weather -> Outcome of 1960 and 2000 presidential elections
 
 - Q: Describe the process for a single person as concretely as possible (think in counterfactual terms)
