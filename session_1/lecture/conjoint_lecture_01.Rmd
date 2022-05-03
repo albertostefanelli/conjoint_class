@@ -73,6 +73,8 @@ header-includes:
 - FWO PhD Fellow at KU Leuven, Belgium
 - Previously…
     - MA at Central European University 
+- Next…
+    - Visiting NYU/Yale for the next year 
 - My research:
     - Radial Beliefs
     - Polarization
