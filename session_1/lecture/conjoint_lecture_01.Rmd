@@ -41,7 +41,7 @@ header-includes:
     - Analysing
     - Learning by doing (in R, in Qualtrics...)
 
-## Sessions
+## Sessions {.allowframebreaks} 
 
 1. Experimental design and causality
     - Causal Inference
@@ -53,7 +53,7 @@ header-includes:
     - Different types of design  (if time)
 3. Deploying, Collecting, Analysis
     - Different types of design 
-    - Web survey methodology
+    - (Web) survey methodology
     - Qualtrics implementations
     - Data Collection guidelines
     - AMCEs (if time) 
@@ -86,7 +86,7 @@ header-includes:
 ## Your turn 
 
 - Name?
-- Affiliation?
+- Affiliation/Position?
 - Research interests?
 - Previous experience with experimental designs?
 - Previous experience with R?
@@ -120,7 +120,7 @@ Where to find the material:
 
 ## Before Starting
 
-- Make sure to have access to the Qualtrics account
+- Make sure to have R and R Studio installed
 - **If something is unclear, ask : )**    
 
 ## Causal Inference (1)
@@ -280,11 +280,10 @@ knitr::include_graphics("images/pool_break.jpg")
     - the more fuzzy the theory (causal chain).
     - the more likely something else, unrelated happened in between.
 
-## Causal analysis: Exercise (2)
+## Causal analysis: Exercise 
 
 1. "Republic should pray for rain" [@gomez_republicans_2007]
 2. Weather -> Outcome of 1960 and 2000 presidential elections
-3. Weather -> voter turnout -> republican vote 
 
 - Q: Describe the process for a single person as concretely as possible (think in counterfactual terms)
 - Q: Why is there a difference between Republicans and Democrats?
@@ -327,6 +326,13 @@ knitr::include_graphics("images/pool_break.jpg")
     - causality = causation = cause and effect = causal mechanism
     - treatment = cause = treatment and control groups = pre-treatment post-treatment
     - outcomes/response = effect
+    
+## Next session 
+
+- Conjoint attributes, levels, choice-sets
+- Different CJ designs 
+- Design our own CJ 
+- Make sure to download and try out [ConjointSDT](https://github.com/astrezhnev/conjointsdt)
 
 
 ## References {.allowframebreaks} 

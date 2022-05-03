@@ -213,7 +213,7 @@ df_base |> dplyr::select(dplyr::starts_with("F-"))
 
 ```
 
-Let's drive deeper and try to figure out wich one are the attributes of the expreriment
+Let's drive deeper and try to figure out which ones are the attributes (i.e. experimental characteristics/manupulation) of the experiment
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
 df_base |> dplyr::select("F-1-1") |> table() 
@@ -273,14 +273,13 @@ df_greater_base <- df_greater_base[upper_bound,]
 
 - Calculate how many respondents did not answer the CJ questions
 
-
 ```{r, echo=T, message=FALSE, warning=FALSE}
 (sum(is.na(df_greater_base$Q578))/nrow(df_greater_base)*100)
 (sum(is.na(df_greater_base$Q579))/nrow(df_greater_base)*100)
 (sum(is.na(df_greater_base$Q580))/nrow(df_greater_base)*100)
 ```
 
-- The similarity in the % suggests that a specific subet of respondets did not complete the survey
+- The similarity in the % suggests that a specific subset of the respondents did not complete the survey
 - This is good news but let's check if this is the case
 - Let investigate which respondents did not answer the CJ questions
 
