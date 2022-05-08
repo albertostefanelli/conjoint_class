@@ -72,24 +72,24 @@ Must be:
 
 1. Interesting RQ to a broader public 
 2. You should produce something that has empirical value (although not necessary academic)
-3. It should be in English so that we can collect responses from /r/samplesize 
+3. It should be in English and focus on the US so that we can collect responses from /r/samplesize 
 
-Guidelines: 
+**Guidelines:**
 
 1. What is my RQ (and hypotheses) ? 
     - Literature is relevant
-    - Use previous knowledge and avoid 'shooing in the dark'
+    - Use previous knowledge and avoid 'shooting in the dark'
     - However, it can be exploratory 
-2. Alternative design: 
-    - Select the alternatives
+2. Basic design choices: 
+    - Select the attributes
     - Select the levels 
-3. Choice-set design: 
-    - Uniform or non-Uniform distribution?
-    - Restrictions on combination of certain attributes/levels (please include!)
+    - Framing/priming [we will implement this on Qualtrics]
+3. Other design choices: 
+    - Uniform or non-uniform distribution?
+    - Restrictions on combination of certain attributes/levels (please include if necessary)
     - Attribute order constrains?
-    - How many profiles per choice-sets? (let's stick to two)
+    - How many profiles per choice-sets? (let's stick to two unless specific needs)
     - How many comparisons to include (sample size)?
-3. Context design [we will implement this on Qualtrics]: 
-    - Framing/priming...
+
 
 
