@@ -43,10 +43,9 @@ header-includes:
     
 ## Materials
 
-- Lecture's PDFs
-- Labs
-- Exercises
-- Solutions 
+- Lecture's PDF
+- Lab
+- Exercise
 
 Where to find the material:
 
@@ -60,7 +59,7 @@ Where to find the material:
     2. E.g., why do voters choose one party, candidate, or policy over another? 
 3. It deals with options that simultaneously vary across two or more attributes (**multi-dimensionality**)
 4. As such, involves trade-offs (e.g., Male Republican VS Female Democrat)
-    1. The possibility that option A (Donald Trump) is better than option B (Hilary Clinton) on attribute Gender (Male) while B is better than A on attribute PID (Republican). 
+    1. The possibility that option A (Donald Trump) is better than option B (Hilary Clinton) on attribute Gender (Male) while B is better than A on attribute PID (Democrat). 
 
 ## How a CJ looks like?
 
@@ -76,7 +75,7 @@ knitr::include_graphics("images/conjoint_teele.png")
 
 1. Respondent’s preferences are measured without putting them in a broader context
     1. Answers to survey questions can fluctuate considerably depending on how the questions are asked [@kahneman_judgment_1982].
-    2. E.g. a voter may evaluate a particular policy position differently depending on the other policies with which it is bundled in the proposed party platform.
+    2. E.g. a voter may evaluate a particular policy position differently depending on the other policies bundled in a given party platform.
 2. Separation of priority ranking and preference intensity. In actual decisions, these two steps are inseparably connected in respondents’ minds. 
     1. E.g., voting is both preference towards a party/candidate and intensity of such preference
 3. Causal identification and causal ordering is difficult (or almost impossible)
@@ -88,23 +87,44 @@ They go beyond the simple cause-and-effect relationship between a single binary 
 
 1. Evaluate the relative explanatory power of different theories, moving beyond tests of a single hypothesis
     1. Analysis of more complex causal questions
-    2. E.g., is ideology or party identification 
+    2. E.g., is ideology or party identification that drive vote choice ?
     3. Relatively cheap and fast to implement 
 2. Display high(er) levels of validity 
     1. External validity: CJs effectively approximate real-world outcomes [@hainmueller_validating_2015; @auerbach_how_2018]
     2. Internal Validity: CJs enhance realism relative to the direct elicitation of preferences on a single dimension 
-    2. Measurement quality: respondents are found to be consistent even for quite complex tasks @
-3. Reduce social desirability biases such as vote for female political candidates [e.g., @teele_ties_2018] and opposition to construct a low-income housing project in respondent’s neighbourhood [e.g., @hankinson_when_2018].
-4. Good prediction device that can provide insights into practical problems such as policy design and implementation 
+    2. Measurement quality: respondents are found to be consistent even for quite complex tasks [e.g., @bansak_beyond_2019]
+3. Reduce social desirability biases such as vote for female (vs male) political candidates [e.g., @teele_ties_2018] or opposition to social housing in respondent’s neighbourhood [e.g., @hankinson_when_2018].
+4. Good prediction device that can provide insights into practical problems such as policy design and implementation.
 
 
 # Different CJ designs  
 
-## Rating (scales) 
+## Rating (scales) (1)
+
+::: columns
+
+:::: column
 
 1. It usually involves only one profile at the time
 2. As such, no trade-off between attributes
 3. Similar to vignette studies 
+    
+::::
+
+:::: column
+
+\centering
+
+```{r ,echo=FALSE, out.width="100%",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/cj_rating.jpg")
+
+```
+
+::::
+
+:::
+
+## Rating (scales) (2)
 
 1. PRO: easy to execute, implement, and model 
 2. CON: no trade-offs as it often occurs in real choice settings 
@@ -113,11 +133,33 @@ They go beyond the simple cause-and-effect relationship between a single binary 
     1. what liking a candidate actually means?
     2. does liking a candidate would imply that people would actually vote for that candidate? 
 
-## Ranking  
+
+## Ranking (1)
+
+::: columns
+
+:::: column
 
 1. It involves more than one profile at the time
 2. As such, trade-offs are easier to see
-3. Clear differentiation between most-preferred and least-preferred profiles 
+3. Clear differentiation between most-preferred and least-preferred profiles if low number of choices
+    
+::::
+
+:::: column
+
+\centering
+
+```{r ,echo=FALSE, out.width="100%",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/cj_ranking.png")
+
+```
+
+::::
+
+:::
+
+## Ranking (2)
 
 1. PRO: easy to execute, implement, and model 
 2. CON: causal interpretation might be difficult due to mid ranks 
@@ -125,7 +167,7 @@ They go beyond the simple cause-and-effect relationship between a single binary 
     2. Does the ranking a candidate first would imply that people would actually vote for that candidate? 
 3. CON: often increase measurement error since ranking is not an easy task [@boyle_comparison_2001]
 
-## Choice (1/2)
+## Choice Based (1)
 
 2. “The most widely used flavour of conjoint analysis” [@sawtooth_software_sawtooth_2008]
 1. Revealed Preference (RP): real life choices 
@@ -136,7 +178,18 @@ They go beyond the simple cause-and-effect relationship between a single binary 
     - Can be used to assess the choice decision in an hypothetical or future scenario (relevant for policy implementation)
     - However, what people say in surveys can diverge from what they would do in actual decisions
 
-## Choice Based Conjoint (2/2)
+
+## Choice (2)
+
+\centering
+
+```{r ,echo=FALSE, out.width="100%",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/conjoint_teele.png")
+
+```
+
+
+## Choice Based (3)
 
 1. PRO: High(er) external validity 
     1. Trade-off between 2 or 3 profiles is more natural and close to real-life choice scenarios 
@@ -157,9 +210,7 @@ They go beyond the simple cause-and-effect relationship between a single binary 
   1. E.g., rating with choice based
   2. E.g., ranking conjoint with an adaptive design 
 
-# Terminology
-
-## Basic terminology in Choice Based Conjoint (1/2)
+## Terminology Choice-based CJ (1)
 
 1. Alternatives
     1. The two (or more) profiles that a respondent will have to choose from (e.g., Candidate A VS Candidate B)
@@ -171,7 +222,7 @@ They go beyond the simple cause-and-effect relationship between a single binary 
 4. Choice-sets: a combination of two or more alternatives (e.g., only progressive candidates VS only conservative candidates)
     1. Relevant if we want to analyse a subset of the profiles (e.g., only female candidates) 
 
-## Basic terminology in Choice Based Conjoint (2/2)
+## Terminology in Choice-based CJ (2)
 
 ```{r ,echo=FALSE, out.width="100%",fig.cap="",fig.show='hold',fig.align='centre'}
 knitr::include_graphics("images/conjoint_teele_explanation_attributes.png")
@@ -190,9 +241,9 @@ Q: What the research is controlling (and manipulating) and what not?
 - Design is the most relevant elements of any experiment approach and the greater barrier in answering your research question 
 - It allow us to understand the decision rules used to select a profile instead of another 
 
-## Three type of design in a CJ
+## Design charateristics in a CJ
 
-1. **Attributes Design**
+1. **Feature Design**
     1. Attributes
     2. Levels 
 2. **Choice-Set Design**
@@ -201,7 +252,7 @@ Q: What the research is controlling (and manipulating) and what not?
     1. Priming, framing .... 
     2. E.g. information acceleration processes, elaboration tasks, information sources
 
-## Attributes Design: attributes 
+## Feature Design: attributes 
 
 1. Identify and define the **attributes**   
     1. Which attributes should be included in order to answer my RQ?
@@ -210,9 +261,10 @@ Q: What the research is controlling (and manipulating) and what not?
     3. Reduce the attributes
         1. Less then 10 attributes is considered acceptable 
     4. Avoid double-barrel attributes 
-        1. E.g., "Expertise" of a candidate 
+        1. E.g., "Expertise" of a candidate
+        2. Q: can you think of another example?
 
-## Attributes Design: levels
+## Feature Design: levels
 
 1. Identify and define the **levels**   
     1. Which levels are suitable for the decision task?
@@ -234,7 +286,7 @@ Q: What the research is controlling (and manipulating) and what not?
     1. **Masking** or inter-attributes correlation [@verlegh_range_2002]
         1. Perceived association between an attribute included in the design and an omitted one
         1. E.g. Including policy positions but excluding PID 
-    2. **Satisficing** [@bansak_beyond_2018]
+    2. **Satisficing** [@bansak_beyond_2019]
         1. Disregard substantive informations due to high cognitive complexity. 
         2. E.g., inferring from PID policy positions and attributes 
     3. Unrealistic trade-off(s) between attributes
@@ -281,7 +333,7 @@ Q: What the research is controlling (and manipulating) and what not?
     - Choice (most used)
 4. Terminology
     - Attributes: characteristics of the profile
-    - Levels: characteristics of the different alternatives
+    - Levels: characteristics of the different attributes
 5. Garbage in Garbage out
     - Clarity in the attributes/levels
     - Design Complexity
