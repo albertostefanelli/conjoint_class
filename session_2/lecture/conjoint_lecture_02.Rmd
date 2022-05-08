@@ -51,6 +51,11 @@ Where to find the material:
 
 - On my [GitHub/conjoint_class](https://albertostefanelli.github.io/conjoint_class/)
 
+## Before starting
+
+- Make sure to [ConjointSDT](https://github.com/astrezhnev/conjointsdt) is installed and working. 
+- **If you have questions, shoot : )**    
+
 ## What is a conjoint experiment 
 
 1. **Substantively:** An instrument to understand peoples' choices
