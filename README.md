@@ -27,9 +27,9 @@ Session|Day|Time|Link
 
 ---
 
-- [Session 2 - Lecture (PDF)]()
-- [Session 2 - Lab]()
-- [Session 2 - Exercise]()
+- [Session 2 - Lecture (PDF)](https://albertostefanelli.github.io/conjoint_class/session_2/lecture/html/conjoint_lecture_02.pdf)
+- [Session 2 - Lab](https://albertostefanelli.github.io/conjoint_class/session_2/lab/html/conjoint_lab_2.html)
+- [Session 2 - Exercise](https://albertostefanelli.github.io/conjoint_class/session_2/exercise/html/conjoint_exercise_2.html)
 - [Session 2 - Solution]()
 
 ---
