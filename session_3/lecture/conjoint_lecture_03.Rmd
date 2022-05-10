@@ -41,18 +41,6 @@ header-includes:
 3. **No causation without manipulation**. 
     - Avoid to elevate to the status of 'cause' attributes that cannot be, in principle, manipulated
     
-    
-## Outline Session 2
-
-1. Intro to CJs
-    - Advantages of CJs
-    - Types of CJs
-    - Design 
-2. Lab session 
-    - Solution Ex 1. 
-    - ConjointSDT 
-    - Exercise 
-
 ## Materials
 
 - Lecture's PDF
@@ -184,7 +172,7 @@ knitr::include_graphics("images/cj_ranking.png")
     2. Does the ranking a candidate first would imply that people would actually vote for that candidate? 
 3. CON: often increase measurement error since ranking is not an easy task [@boyle_comparison_2001]
 
-## Choice-based (1)
+## Choice Based (1)
 
 2. “The most widely used flavour of conjoint analysis” [@sawtooth_software_sawtooth_2008]
 1. Revealed Preference (RP): real life choices 
@@ -196,7 +184,7 @@ knitr::include_graphics("images/cj_ranking.png")
     - However, what people say in surveys can diverge from what they would do in actual decisions
 
 
-## Choice-based (2)
+## Choice (2)
 
 \centering
 
@@ -205,34 +193,8 @@ knitr::include_graphics("images/conjoint_teele.png")
 
 ```
 
-## Respondent's decision making in choice-based CJs (1)
 
-1. Decision strategy selection within a compensatory framework 
-2. Probability of selecting a profile formed in two complementary ways [@jenke_using_2020]
-    - Within-attribute comparisons (i.e. attribute by attribute)
-    - Within-profile decision-making (i.e. profile by profile)
-3. Assumption of utility maximising, omniscient (and tireless respondent) does not hold [@meisner_eye-tracking_2010]
-
-\centering
-
-```{r ,echo=FALSE, out.width="90%",fig.show='hold',fig.align='centre'}
-knitr::include_graphics("images/within_between.png")
-
-```
-
-## Respondent's decision making in choice-based CJs (2)
-
-Example of eye tracking experiment with conjoint data [see @meisner_eye-tracking_2010]
-
-\centering
-
-```{r ,echo=FALSE, out.width="60%",fig.show='hold',fig.align='centre'}
-knitr::include_graphics("images/eye_traking.png")
-
-```
-
-
-## Choice-based (4)
+## Choice Based (3)
 
 1. PRO: High(er) external validity 
     1. Trade-off between 2 or 3 profiles is more natural and close to real-life choice scenarios 
@@ -253,7 +215,7 @@ knitr::include_graphics("images/eye_traking.png")
   1. E.g., rating with choice based
   2. E.g., ranking conjoint with an adaptive design 
 
-## Terminology (1)
+## Terminology Choice-based CJ (1)
 
 1. Alternatives
     1. The two (or more) profiles that a respondent will have to choose from (e.g., Candidate A VS Candidate B)
@@ -265,7 +227,7 @@ knitr::include_graphics("images/eye_traking.png")
 4. Choice-sets: a combination of two or more alternatives (e.g., only progressive candidates VS only conservative candidates)
     1. Relevant if we want to analyse a subset of the profiles (e.g., only female candidates) 
 
-## Terminology (2)
+## Terminology in Choice-based CJ (2)
 
 ```{r ,echo=FALSE, out.width="100%",fig.cap="",fig.show='hold',fig.align='centre'}
 knitr::include_graphics("images/conjoint_teele_explanation_attributes.png")
@@ -281,7 +243,7 @@ Q: What the research is controlling (and manipulating) and what not?
 - Why is it called design? 
     1. Manipulation of the treatment conditions occurs **by design** 
     2. That is, the researcher controls the specific treatment conditions
-- Design is the most relevant elements of any experiment approach and the greater barrier in answering your research question(s) 
+- Design is the most relevant elements of any experiment approach and the greater barrier in answering your research question 
 - It allow us to understand the decision rules used to select a profile instead of another 
 
 ## Design charateristics in a CJ
@@ -300,9 +262,9 @@ Q: What the research is controlling (and manipulating) and what not?
 1. Identify and define the **attributes**   
     1. Which attributes should be included in order to answer my RQ?
     2. Define a universal but finite list of attributes that are theoretically relevant
-        1. Usually 10-15 attributes 
+        1. Usually 10-15 attributes
     3. Reduce the attributes
-        1. Less then 10 attributes is considered acceptable [@bansak_beyond_2019]
+        1. Less then 10 attributes is considered acceptable 
     4. Avoid double-barrel attributes 
         1. E.g., "Expertise" of a candidate
         2. Q: can you think of another example?
@@ -315,7 +277,7 @@ Q: What the research is controlling (and manipulating) and what not?
     3. Select theoretically relevant start- and end-points for each attributes
         1. Q: What is a sensible range for the age of a candidate?
     2. Define a finite list of levels that have discriminant power.
-        1. From 2 to maximum 8 [@bansak_beyond_2019]
+        1. From 2 to maximum 8  
         1. Q: What age levels should we include for a candidate?
         1. Q: Does a year difference make any difference in accuracy? 
     3. If the design is too big and you assume linearity, use only start- and end-point designs 
@@ -348,7 +310,7 @@ Q: What the research is controlling (and manipulating) and what not?
     2. Paired Profiles (2) 
     4. Multi Profiles (up to 4)
 2. Number of conjoint choice **Tasks** per respondent 
-    1. From 2 to no more than 20 
+    1. From 2 to no more than 20
 3. **Outcome** measures 
     1. Discreet Choice (better for trade-offs)
     2. Individual rating (better for detecting extreme response style)
