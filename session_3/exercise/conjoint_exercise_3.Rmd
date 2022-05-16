@@ -1,0 +1,95 @@
+---
+title:  Intro to Conjoint Experiments | Exercise - 3
+author: Alberto Stefanelli
+knit: (function(inputFile, encoding) {rmarkdown::render(inputFile, encoding = encoding, output_dir = "html") })
+output:
+  rmdformats::readthedown:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    highlight: tango
+    use_bookdown: true
+    fig_width: 12
+    fig_height: 8
+  #html_document:
+    #theme: rmdformats
+    # df_print: paged
+    # toc: true
+    # number_sections: true
+    # toc_float:
+    #   collapsed: false
+    #   smooth_scroll: false
+---
+<style type="text/css">
+#content {
+    max-width: 1500px !important;
+/*    !margin-left: 300px !important;
+*/
+}
+#table-of-contents {
+    width: 300px !important;
+}
+
+#postamble {
+  font-size: 10px;
+}
+
+pre{
+  background-color: #FFFFFF;
+    font-size: 12px;
+}
+pre:not([class]) {
+  background-color: #D8D8D8;
+    color: black;
+}
+
+</style>
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(tidy=FALSE, 
+  fig.show = 'hold', 
+  fig.align = "center", 
+  warning = FALSE, 
+  message = FALSE, 
+  comment = '')
+options(width = 300, scipen = 9999)
+
+# last dev version is needed for rmdformats.
+# fixed these two
+# more info https://github.com/juba/rmdformats/issues/92 
+# more info https://github.com/juba/rmdformats/issues/93
+# devtools::install_github("juba/rmdformats")
+
+```
+
+  
+# Deploy on Qualtrics
+
+You will be divided in groups and asked to deploy an experiment on Qualtrics. Use the design that you developed using conjointsdt in the last lab 
+
+**Guidelines:**
+
+1. Divide survey in blocks 
+2. Add consent form and "end of the survey"
+3. Depending on your design:
+    - Add Framing/priming based on context design 
+    - Consider adding more than 2 attention checks 
+4. Add the JS for the randomization 
+5. Add the embedded data for storing the CJ randomization
+6. Modify the "survey flow" such that the JS/Randomization work 
+6. Pretest the survey
+7. Get a working link for the distribution of the survey 
+
+
+# Example 
+
+You can use this .sdt from the survey that i show you in the lab as a working example
+
+Create new Project -> Survey  -> Import OR Create a blank Project
+
+.SDT 
+
+
+
+

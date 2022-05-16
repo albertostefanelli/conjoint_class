@@ -1,7 +1,7 @@
 ---
 title: |
     | Intro to Conjoint Experiments
-    | Session 2
+    | Session 3
 author: Alberto Stefanelli
 #date: "`r Sys.Date()`"
 fontsize: 10pt 
@@ -27,20 +27,37 @@ header-includes:
   - \usepackage{dcolumn}
   #- \DeclareUnicodeCharacter{301}{-}
   - \widowpenalties 1 150
+  - \usepackage{booktabs} 
+  - \usepackage{longtable} 
+  - \usepackage{array}          
+  - \usepackage{multirow}   
+  - \usepackage{wrapfig}    
+  - \usepackage{float}
+  - \usepackage{colortbl}    
+  - \usepackage{pdflscape}
+  - \usepackage{tabu}
+  - \usepackage{threeparttable} 
+  - \usepackage{threeparttablex}
+  - \usepackage[normalem]{ulem}
+  - \usepackage{makecell}
   - \newcommand{\CI}{\mathrel{\perp\mspace{-10mu}\perp}}
 ---
 
-## Session 1: Recap 
+## Session 2: Recap 
 
-1. In broader terms, causality is a connection of phenomena that connects one element (the cause) with another elements (effect/outcome/response)
-    - it is a **process**. The 1st element of this process is responsible for 2nd and the 2nd dependent on the 1st.
-    - causality is temporally bound. The cause(s) must precede the effect and **all lie in its past.**
-2. The "fundamental problem of causal inference"
-    - We only ever observe one of the two outcomes.
-    - We need to relay on assumptions to estimate the causal effect 
-3. **No causation without manipulation**. 
-    - Avoid to elevate to the status of 'cause' attributes that cannot be, in principle, manipulated
-    
+1. Different CJ designs
+    - Rating 
+    - Ranking 
+    - Choice (most used)
+2. Terminology
+    - Attributes: characteristics of the profile
+    - Levels: characteristics of the different attributes
+3. Garbage in, garbage out
+    - Clarity in the attributes/levels
+    - Design Complexity
+    - Fatigue
+    - Cognitive Burden
+
 ## Materials
 
 - Lecture's PDF
@@ -53,297 +70,291 @@ Where to find the material:
 
 ## Before starting
 
-- Make sure to [ConjointSDT](https://github.com/astrezhnev/conjointsdt) is installed and working. 
+- Make sure you have access to the [Qualtrics](https://www.qualtrics.com) account.
 - **If you have questions, shoot : )**    
 
-## What is a conjoint experiment 
 
-1. **Substantively:** An instrument to understand peoples' choices
-2. **Technically:**  A (factorial) survey experiment designed to measure (underlying) preferences
-    1. Whether showing one attribute as opposed to another would change the respondent’s choice
-    2. E.g., why do voters choose one party, candidate, or policy over another? 
-3. It deals with options that simultaneously vary across two or more attributes (**multi-dimensionality**)
-4. As such, involves trade-offs (e.g., Male Republican VS Female Democrat)
-    1. The possibility that option A (Donald Trump) is better than option B (Hilary Clinton) on attribute Gender (Male) while B is better than A on attribute PID (Democrat). 
+# Profiles construction 
 
-## How a CJ looks like?
+1. Full Factorial 
+    1. All possible combinations of levels
+2. Fully randomized design 
+    1. **Fully randomized uniform design**
+        1. Equal probability of all levels in a given attribute
+        2. E.g., Female 33%, Male 33%, Non-Binary 33%
+    2. **Randomized weighted design**
+        1. Unequal probability of certain levels in a given attribute 
+        2. Marginal distribution of levels departs from uniform distribution 
+        3. E.g. Female 50% and Male 49%, Non-Binary 1%
+    3. **Restricted Randomization (or nested design)**
+        1. Certain combinations or attributes are not allowed to happen
+        1. E.g., Doctor without academic degree 
+2. Orthogonal and fractional factorials 
+3. and many more (!!)
+    - Block Designs
+    - Optimal Designs    
+
+## Full Factorial Design (1)
+
+1. Full Factorial 
+    1. Preferable design
+    1. Shows every attributes level with every other attribute level 
+    2. All the combination are included in the design 
+    3. It grows geometrically with each attribute
+    4. Potentially we would like to assign respondents (n=30) to each combination
+
+2. Example 
+    1. Age= 30s, 40s, 50s
+    2. Education= Elementary School, High School, Academic Degree
+    3. Years in Congress= More than 5, between 5 and 10, more than 10
+    4. Q: How many combinations? 
+    5. Q: What would be a reasonable sample size?
+
+## Full Factorial Design (2)
+
+```{r ,echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, out.width='30%'}
+library(dplyr)
+library(kableExtra)
+
+
+full_factorial <- expand.grid(Age = c("30s", "40s", "50s"),
+    Education = c("Elementary", "High School", "Academic"),
+    Job = c("High Skilled", "Medium Skilled", "Low Skilled"))
+
+full_factorial$Combinations <- 1:nrow(full_factorial)
+
+kbl(full_factorial,
+    "latex", booktabs=FALSE, escape=F, linesep = "") %>%
+    kable_styling(font_size = 5)
+
+
+
+```
+
+## Full Factorial Design (3) 
+
+1. In fact, we have many more combinations
+2. Q: Why is it the case?
+3. We can calculate all the combination using the formula 
+4. L is the number of levels, M the number of alternatives, and A the number of attributes
+
+$$
+\begin{aligned}
+Combinations&=L^{M^{A}}
+            &=3^{2^{3}}
+            &=729
+\end{aligned}
+$$
+
+5. The number of alternative is thus 729
+6. If we assign approximately 20 respondents per each combination 
+7. $729*20= 14000$
+
+# Randomized design  
+
+1. Developed by @hainmueller_causal_2014 relaying upon the potential outcome framework 
+2. **Logic:** sampling each level independently such that the attributes are orthogonal 
+3. That is, it samples n number of rows for the full factorial
+
+## Randomized weighted design (1)
+
+1. Level sampling performed in the same way as the fully randomized design 
+2. **However**, we can control the probability of a given level to appear in the CJ table
+3. That is, we specify a marginal distribution for certain levels 
+5. The marginal distribution should correspond to the one found in the target population
+6. Some levels appears more, some appears less 
+7. This increase the **external validity** of the CJ experiment
+8. Q: Why is this the case?
 
 ```{r ,echo=FALSE, out.width="90%",fig.cap="",fig.show='hold',fig.align='centre'}
-knitr::include_graphics("images/conjoint_teele.png")
+library(ggplot2)
+Age_30 <- rep(30,30)
+Age_40 <- rep(40,30)
+Age_50 <- rep(50,30)
+Age_30_m <- rep(30,5)
+Age_40_m <- rep(40,25)
+Age_50_m <- rep(50,60)
+age_uniform <- array(rbind(Age_30,Age_40,Age_50))
+age_marginal <- array(c(Age_30_m,Age_40_m,Age_50_m))
+
+age_u<- data.frame(age=age_uniform,indicator="Uniform")
+age_m<- data.frame(age=age_marginal,indicator="Log-Linear")
+
+age_combined <- rbind(age_u,age_m)
+
+
 
 ```
 
-1. Q: What the causal process involves?
-2. Q: What are we manipulating in this example? (**No Causation without manipulation.**)
+## Randomized weighted design (2)
 
-## Limitations of traditional observational studies
+```{r ,echo=FALSE, warning=FALSE, message=FALSE, out.width="70%",fig.cap="",fig.show='hold',fig.align='centre'}
 
-1. Respondent’s preferences are measured without putting them in a broader context
-    1. Answers to survey questions can fluctuate considerably depending on how the questions are asked [@kahneman_judgment_1982].
-    2. E.g. a voter may evaluate a particular policy position differently depending on the other policies bundled in a given party platform.
-2. Separation of priority ranking and preference intensity. In actual decisions, these two steps are inseparably connected in respondents’ minds. 
-    1. E.g., voting is both preference towards a party/candidate and intensity of such preference
-3. Causal identification and causal ordering is difficult (or almost impossible)
-    1. Q: Does ideological proximity cause vote choice or is the other way around? 
-
-## Why CJ are relevant for causal analysis?
-
-They go beyond the simple cause-and-effect relationship between a single binary treatment and an outcome variable. 
-
-1. Evaluate the relative explanatory power of different theories, moving beyond tests of a single hypothesis
-    1. Analysis of more complex causal questions
-    2. E.g., is ideology or party identification that drive vote choice ?
-    3. Relatively cheap and fast to implement 
-2. Display high(er) levels of validity 
-    1. External validity: CJs effectively approximate real-world outcomes [@hainmueller_validating_2015; @auerbach_how_2018]
-    2. Internal Validity: CJs enhance realism relative to the direct elicitation of preferences on a single dimension 
-    2. Measurement quality: respondents are found to be consistent even for quite complex tasks [e.g., @bansak_beyond_2019]
-3. Reduce social desirability biases such as vote for female (vs male) political candidates [e.g., @teele_ties_2018] or opposition to social housing in respondent’s neighbourhood [e.g., @hankinson_when_2018].
-4. Good prediction device that can provide insights into practical problems such as policy design and implementation.
+ggplot(age_combined, aes(age),) + geom_histogram(bins=10) + theme_minimal() + facet_grid(. ~ indicator)
 
 
-# Different CJ designs  
+```
 
-## Rating (scales) (1)
+## Restricted Randomization (or nested design) (1)
 
-::: columns
+1. Sampling performed in the same way as the fully randomized design 
+2. **BUT** we impose limitation on the combination of certain attributes within a profile. 
+3. Technically, we set the conditional probability of the co-occurrence of two attributes/levels equal to zero
+4. Meaning, we deny that two (or more) unlikely or contrasting combination of attributes/levels from appearing together
+5. This improves the **internal validity** of our CJ experiment 
+6. Q: Why is this the case?
 
-:::: column
+## Assumptions (fully randomized designs) 
 
-1. It usually involves only one profile at the time
-2. As such, no trade-off between attributes
-3. Similar to vignette studies 
-    
-::::
+1. Stability and no-carry over (aka SUTVA)
+    - Respondents DO NOT use the information from previous questions and/or tasks in evaluation the profiles 
+    - If two profiles in two subsequent tasks have identical attributes, the respondents would choose the same profile. 
+2. No profile-order effects: 
+    - The ordering of profiles within a choice task does not affect responses 
+    - Meaning that it is possible to pool information across profiles when estimating causal quantities of interest
+3. Randomization of the profiles 
+    - The potential choice can never be systematically related to what profiles they will actually see in the experiment. 
+    - Individual choices are statistically independent of the shown profiles 
 
-:::: column
+# Designing a questionnaire
+
+## Asking Effective Questions
+
+- Easiest language possible yet appropriate usage of the langue (e.g., "Hookers on the streets are a threat to public safety")
+- To the point (no creative writing)
+- No double negatives (e.g., "Did you not use drugs in the past week?")
+- No double-barrel question.s (e.g., "Do you support the legalization of street drugs and their taxation?")
+- Watch out for cultural specific words or phrases (e.g., "hustler")
+- Respondents have knowledge about the question's topic (e.g. "Italy has good policies regarding sex work?")
+- Respondents have experience with whatever events, behaviours, or feelings you are asking them to report (i.e. feelings of nostalgia)
+- Considering adding a filter question if necessary
+
+## Response options
+
+1. Multi-choice options (e.g. Current relationship status: Married, Widowed, Divorced, Separated...)
+2. Ordinal items 
+    - Distance between each point on the scale is not necessarily consistent (i.e., equidistant) 
+    - e.g., Multiple times a week, Twice a day, Once every day, Every other day, Less than once per week
+3. Likert-Type Response 
+
+## Response options: Likert-Type Response
+
+1. Use ascending order of Likert response options (i.e. from SD to SA) [@friedman_biasing_1993; @hartley_four_2010]
+2. When using indices, use bidirectional response scales (half SD to SA, and half SA to SD) [@barnette_effects_2000]
+3. Include a mid-point (i.e. Neither agree nor disagree) [@nadler_stuck_2015]
+    - *DO NOT* treat the mid-point as NA
+4. Include both "I don't know" and "Not applicable" (especially for social desirable questions) [@chyung_evidence-based_2017]
+5. No formatting (italic or bold) of response scales [@hartley_four_2010]
+6. When questions are similar, use a matrix to presenting multiple questions
+
+## Example of a Matrix-grid 
 
 \centering
 
-```{r ,echo=FALSE, out.width="100%",fig.show='hold',fig.align='centre'}
-knitr::include_graphics("images/cj_rating.jpg")
+```{r ,echo=FALSE, out.width="70%",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/matrix.png")
 
 ```
 
-::::
+## Placement and randomization 
 
-:::
+- Start with couple easy questions to allow the respondent to get familiar with the survey platform (e.g., age, gender)
+- Organize the different questions in blocks (intro, demographics, moderators, experiment 1...N, conclusion)
+- Randomize the order of the question within each block
+- If a matrix is used, randomize the order of the questions within the matrix
+- Place moderators ALWAYS before any experimental treatment 
+- Demographic can be asked at the end of the survey
 
-## Rating (scales) (2)
+## Good practice 
 
-1. PRO: easy to execute, implement, and model 
-2. CON: no trade-offs as it often occurs in real choice settings 
-3. CON: often no clear differentiation between profiles 
-4. CON: interpretation might be difficult in certain situation
-    1. what liking a candidate actually means?
-    2. does liking a candidate would imply that people would actually vote for that candidate? 
+- Motivate respondents 
+    - Explain the purpose of the survey
+    - Give back to the respondents:
+        - Incentives
+        - Relevant info on the topic
+    - Establish trust 
+- Informed consent 
+    - Always mention the PI
+    - Explain how the data will be used 
+    - Respondent should be 18+ (unless specific RQ)
+    - Respondents can withdraw at **any** time 
 
+## Fielding a survey
 
-## Ranking (1)
+1. Imagine how the participants would feel responding to the questions.
+2. Get feedback, especially from people who resemble those in the researcher’s sample.
+3. Consider performing cognitive interviews.
+4. ALWAYS pre-test your instrument and survey 
 
-::: columns
+# Online Data Collection
 
-:::: column
+## Advantages
 
-1. It involves more than one profile at the time
-2. As such, trade-offs are easier to see
-3. Clear differentiation between most-preferred and least-preferred profiles if low number of choices
+1. Relatively cheap
+    - Face-to-face paper-and-pencil: ~120 euro
+    - On-line probability panel: ~40 euro
+2. Relatively fast 
+3. Very flexible 
+2. Far more control over experimental design
+
+## Disavantages 
+
+1. Higher “sampling error”: some people are more difficult to reach than others.
+2. Higher “non-response bias”: some groups of people to be less likely to agree to be interviewed than others.
+3. Lower data quality [@kennedy_shape_2020]
+    - Participants aren’t who they say they are (e.g. complete studies they wouldn’t be eligible for) 
+    - Participants are more inattentive  
+    - "Server farmers" who complete studies multiple times
+    - Low effort responding (it can lead to spurious correlations, @zorowitz_inattentive_2021)
+ 
+## Solutions (1)
+
+1. Choose an appropriate platform 
+    - If you can, use an high quality data collector (e.g., YouGov) and hold them accountable. 
+    - If you cannot, @eyal_data_2021 compared (among other platforms) Prolific, Qulatrics, MTurk, and CloudResearch. 
+    - With platform filters, CloudResearch (MTurk toolkit) and Prolific performed equitably. 
+2. Put server farmer checks 
+    - Use an IP address detector [@waggoner_detecting_2019]
+    - Language proficiency test [@gadiraju_understanding_2015]
+    - Cultural checks 
+    - Detailed open-text responses 
+
+## Solutions (2)
+
+3. Low effort respondents 
+    - Instructional [@oppenheimer_instructional_2009] or nonsensical [@paolacci_running_2010] attention checks
+    - Use multiple attention checks: 2 attentions every 5 minutes [@agley_quality_2022]
+    - Comprehension checks [for a good example see, @gordon_keeping_2019]
+    - Bots checks [@agley_quality_2022]
+    - Inspect response times (remember the first lab?)
+4. Incentives 
+    - Pay as well as you can and consider doing a lottery [@larose_completion_2014; @cobanoglu_effect_2003]
+    - Make your studies as interesting as possible  
+    - Be kind and respectful in participant interactions 
+5. Transparency [@munafo_manifesto_2017]
+    - Register the experimental design 
+    - Register the quality controls
+    - Register the exclusions based on these controls
+    - Register the analytical approach
     
-::::
+## Session 3: Recap 
 
-:::: column
+1. Different CJ Randomization
+    - Fully randomized uniform design
+    - Randomized weighted design
+    - Restricted Randomization (or nested design)
+2. Assumptions
+    - SUTVA
+    - No profile-order effects
+    - Randomization of the profiles 
+3. Designing a survey 
+    - Designing good questions
+    - Response options and placement
+    - Motivate respondents 
+    - Get feedback and pre-test 
+4. On-line Data Collection
+    - Advantages/Disadvantages
+    - Solutions (attention checks, IP checks, incentives)
 
-\centering
-
-```{r ,echo=FALSE, out.width="100%",fig.show='hold',fig.align='centre'}
-knitr::include_graphics("images/cj_ranking.png")
-
-```
-
-::::
-
-:::
-
-## Ranking (2)
-
-1. PRO: easy to execute, implement, and model 
-2. CON: causal interpretation might be difficult due to mid ranks 
-    1. What is the difference between the 6th and the 5th candidate in a 15 candidates rank conjoint
-    2. Does the ranking a candidate first would imply that people would actually vote for that candidate? 
-3. CON: often increase measurement error since ranking is not an easy task [@boyle_comparison_2001]
-
-## Choice Based (1)
-
-2. “The most widely used flavour of conjoint analysis” [@sawtooth_software_sawtooth_2008]
-1. Revealed Preference (RP): real life choices 
-    - Clear validity advantages [@diamond_contingent_1994]
-    - E.g., which insurance plan peoples have chosen after having compared several different offers
-2. **Stated Preference (SP):** experimental setting where we ask respondents **what would they do** instead of observing what they have done
-    - E.g., what type of insurance plan people **would choose** after having compared several different offers
-    - Can be used to assess the choice decision in an hypothetical or future scenario (relevant for policy implementation)
-    - However, what people say in surveys can diverge from what they would do in actual decisions
-
-
-## Choice (2)
-
-\centering
-
-```{r ,echo=FALSE, out.width="100%",fig.show='hold',fig.align='centre'}
-knitr::include_graphics("images/conjoint_teele.png")
-
-```
-
-
-## Choice Based (3)
-
-1. PRO: High(er) external validity 
-    1. Trade-off between 2 or 3 profiles is more natural and close to real-life choice scenarios 
-2. PRO: Quite easy modelling approaches 
-3. PRO: Context manipulations are easy to implement 
-    1. E.g., priming respondents with certain informations 
-2. CON: Careful experimental design 
-3. CON: Can be difficult to set up 
-
-## Other designs
-
-1. Point allocation 
-2. Adaptive Conjoint 
-    1. Adaptive choice-sets based on respondent's characteristics, preferences or attitudes
-    2. E.g., in the choice of transport mode, the choice set of an individual without driving license and/or car should not include the alternative "car" 
-    3. More complex adaptive designs that involve algorithms to cluster individuals based on their underlying preferences 
-2. Combination of previous design 
-  1. E.g., rating with choice based
-  2. E.g., ranking conjoint with an adaptive design 
-
-## Terminology Choice-based CJ (1)
-
-1. Alternatives
-    1. The two (or more) profiles that a respondent will have to choose from (e.g., Candidate A VS Candidate B)
-2. Attributes 
-    1. Independent variables, explanatory variables, treatments, features 
-    1. Characteristics of the different alternatives (e.g, age, gender of the proposed candidates)
-3. Levels (of the attributes)
-    1. The discrete values that an attribute can take(e.g., Age: 20, 30, 40, 50) 
-4. Choice-sets: a combination of two or more alternatives (e.g., only progressive candidates VS only conservative candidates)
-    1. Relevant if we want to analyse a subset of the profiles (e.g., only female candidates) 
-
-## Terminology in Choice-based CJ (2)
-
-```{r ,echo=FALSE, out.width="100%",fig.cap="",fig.show='hold',fig.align='centre'}
-knitr::include_graphics("images/conjoint_teele_explanation_attributes.png")
-
-```
-
-Q: What the research is controlling (and manipulating) and what not?
-
-# The challenge of experimental design
-
-## Why a challenge?
-
-- Why is it called design? 
-    1. Manipulation of the treatment conditions occurs **by design** 
-    2. That is, the researcher controls the specific treatment conditions
-- Design is the most relevant elements of any experiment approach and the greater barrier in answering your research question 
-- It allow us to understand the decision rules used to select a profile instead of another 
-
-## Design charateristics in a CJ
-
-1. **Feature Design**
-    1. Attributes
-    2. Levels 
-2. **Choice-Set Design**
-    1. Conjoint profiles
-3. **Information/Context Design**
-    1. Priming, framing .... 
-    2. E.g. information acceleration processes, elaboration tasks, information sources
-
-## Feature Design: attributes 
-
-1. Identify and define the **attributes**   
-    1. Which attributes should be included in order to answer my RQ?
-    2. Define a universal but finite list of attributes that are theoretically relevant
-        1. Usually 10-15 attributes
-    3. Reduce the attributes
-        1. Less then 10 attributes is considered acceptable 
-    4. Avoid double-barrel attributes 
-        1. E.g., "Expertise" of a candidate
-        2. Q: can you think of another example?
-
-## Feature Design: levels
-
-1. Identify and define the **levels**   
-    1. Which levels are suitable for the decision task?
-    2. Are the levels ordinal, nominal or continuous?
-    3. Select theoretically relevant start- and end-points for each attributes
-        1. Q: What is a sensible range for the age of a candidate?
-    2. Define a finite list of levels that have discriminant power.
-        1. From 2 to maximum 8  
-        1. Q: What age levels should we include for a candidate?
-        1. Q: Does a year difference make any difference in accuracy? 
-    3. If the design is too big and you assume linearity, use only start- and end-point designs 
-        1. e.g., Instead of ordinal age use "Young" and "Old"
-    4. Avoid attributes ambiguity 
-        1. E.g., "High level of integrity" of a candidate VS "Never committed for corruption"  
-
-## Attributes Design: Garbage in Garbage out {.allowframebreaks} 
-
-1. Internal Validity: **garbage in, garbage out"**
-    1. **Masking** or inter-attributes correlation [@verlegh_range_2002]
-        1. Perceived association between an attribute included in the design and an omitted one
-        1. E.g. Including policy positions but excluding PID 
-    2. **Satisficing** [@bansak_beyond_2019]
-        1. Disregard substantive informations due to high cognitive complexity. 
-        2. E.g., inferring from PID policy positions and attributes 
-    3. Unrealistic trade-off(s) between attributes
-        1. A doctor (Attribute: Profession) without an academic degree (Attribute: Education)
-    4. **“Range effect”** [@verlegh_range_2002]
-        1. Using specific level combinations could lead to implicit associations 
-        2. E.g., a white Democratic candidate of age 78 from Vermont
-2. External Validity: **“Number-of-levels effect”**
-        1. Too many levels could make the interpretation difficult 
-        2. Statistical power might be insufficient 
-
-## Choice-Set Design: Profiles, Tasks, Outcome
-
-1. Number of Alternative **Profiles**
-    1. Single Profiles (1)
-    2. Paired Profiles (2) 
-    4. Multi Profiles (up to 4)
-2. Number of conjoint choice **Tasks** per respondent 
-    1. From 2 to no more than 20
-3. **Outcome** measures 
-    1. Discreet Choice (better for trade-offs)
-    2. Individual rating (better for detecting extreme response style)
-4. **Randomization**
-    1. Position of the attributes in our CJ 
-    
-## Choice-Set Design: Sample size and complexity 
-
-1. Sample size = Number of choices per individual (tasks) X Number of participant in the study (N) X Number of profiles
-    - Trade off between statistical power and fatigue 
-2. Design Complexity = Number of Attributes X Number of Attributes' Levels X Number of Profiles 
-    - It is a trade-off between cognitive burden and experimental conditions
-3. Data quality = Power (Sample size) - Design Complexity - Cognitive Burden
-
-## Conjoint Design: Summary
-
-1. Conjoint experiments are experimental design to measure (underlying) preferences
-    - Whether a respondents prefer one attribute as opposed to another when choosing a profile 
-2. Advantages
-    - Analysis of more complex causal questions
-    - Good external and internal validity 
-3. Different designs
-    - Rating 
-    - Ranking 
-    - Choice (most used)
-4. Terminology
-    - Attributes: characteristics of the profile
-    - Levels: characteristics of the different attributes
-5. Garbage in Garbage out
-    - Clarity in the attributes/levels
-    - Design Complexity
-    - Fatigue
-    - Cognitive Burden
-    
 ## References {.allowframebreaks} 
 
