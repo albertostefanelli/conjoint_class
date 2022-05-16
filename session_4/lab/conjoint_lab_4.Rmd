@@ -376,6 +376,8 @@ plot(cregg::cj(df_long_format, selected ~
 
 ## Respondent's fatigue 
 
+Let's now take a look at the effect of task on selecting a profile. We might expect that people got tired with the progression of the experiment and as such, we would see an effect of task numbering on their response behaviour. Again, we want the coefficients to overlap to have no significant different between tasks.
+
 - We should not be able to detect any effect of the row position on our DV
 - Let's test Age
 - You should do it for all the attribute
@@ -397,9 +399,6 @@ theme(text = element_text(size=21))
 
 ```
 
-- We should not be able to detect any effect of the task number of our DV
-- Let's test Language
-- You should do it for all the attribute
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
 

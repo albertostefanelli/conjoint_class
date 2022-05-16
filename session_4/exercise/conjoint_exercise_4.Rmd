@@ -102,7 +102,7 @@ library("factorEx")
 
 # Data
 
-1. From the paper "The Ties that Double Bind"
+1. From the paper "The Ties that Double Bind" [@teele_ties_2018]
 2. We are going to use the Legislators and Voters sample
 3. The authors want to test different type of gender biases
     - Among Legislators
@@ -123,12 +123,12 @@ Spouse's Occupation | Doctor, Farmer, Unmarried
     - Respondent's gender="female_respondent"  
     - Respondent's PID= "democrat_respondent", "republican_respondent"                       
     - Candidate's gender= "orig_cand_female"          
-    - PCandidate's olitical Experience= "orig_0ys", "orig_1ys", "orig_3ys", "orig_8ys"
-    - Candidate's Number of Children= "orig_0ch",  "orig_1ch",  "orig_3ch"  
-    - Candidate's Political Post= "orig_may", "orig_leg"                
-    - Candidate's Occupation= "orig_law", "orig_teach"                                     
-    - Candidate's Spouse's Occupation= "orig_UN_sp", "orig_FM_sp", "orig_MD_sp"                   
-    - Candidate's Candidate's Age= "orig_29", "orig_45", orig_65"          
+    - Candidate's political Experience= "orig_0ys", "orig_1ys", "orig_3ys", "orig_8ys"
+    - Candidate's number of Children= "orig_0ch",  "orig_1ch",  "orig_3ch"  
+    - Candidate's political Post= "orig_may", "orig_leg"                
+    - Candidate's occupation= "orig_law", "orig_teach"                                     
+    - Candidate's spouse's Occupation= "orig_UN_sp", "orig_FM_sp", "orig_MD_sp"                   
+    - Candidate's candidate's Age= "orig_29", "orig_45", orig_65"          
 
 
 # Task 
@@ -141,12 +141,12 @@ Spouse's Occupation | Doctor, Farmer, Unmarried
 3. [OPTIONAL] Estimate the AMCE in the voter sample 
     - Are there any differences?
 4. Plot the results from the 
+5. Test for respondent's fatigue 
 
 
 ```{r, echo=T, message=FALSE, warning=FALSE,eval=TRUE}
 # load the data 
-teele_data <- readr::read_csv(sprintf("https://drive.google.com/uc?export=download&id=1ZFbtJ6_kCy4-JH6p9McikXvS1YfOgvcl"
-                                      
-))
+teele_data <- readr::read_csv("https://github.com/albertostefanelli/conjoint_class/raw/master/data/teele.csv")
+
 ```
 
