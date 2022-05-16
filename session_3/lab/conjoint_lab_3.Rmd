@@ -439,6 +439,79 @@ knitr::include_graphics("images/embedded_2.png")
 
 ```
 
+# Attention check
+
+## Instructional Manipulation Checks (IMCs)
+
+
+1. They should check whether a participant has paid attention to the question, not so much to the instructions above it
+2. Participants must be explicitly instructed to complete a task in a certain way (e.g. 'click 'Strongly disagree' for this question')
+3. No room for misinterpretation (e.g. 'Bird is a clothing brand. Do you agree?')
+4. They must be easy to read (i.e., should not use small font, or have reduced visibility)
+
+## A good example of an IMC 
+
+
+
+```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/IMC good.JPG")
+
+
+```
+
+## A bad example of an IMC
+
+
+```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/IMC bad.JPG")
+
+
+```
+
+# Nonsensical Items
+
+1. Use a scale response
+2. No prior knowledge
+3. Participants should not be given a 'neutral' response option (i.e., no middle scale value)
+4. Correct responses should either be extreme agreement or extreme disagreement, however any response indicating disagreement or agreement should be accepted
+5. Participants who answer in the opposite manner to the objectively correct answer have failed
+
+## A good example of a nonsensical item
+
+
+```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/NS good.JPG")
+
+
+```
+
+
+## A bad example of a nonsensical item
+
+```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/NS bad.JPG")
+
+
+```
+
+# Comprehension checks 
+
+1. Participants must be free to re-read the key information at the time the comprehension check is presented
+2. These checks cannot involve free-text responses
+3. Comprehension checks must be given at the start of the study
+4. If a participant fails a comprehension check twice then they should be excluded
+
+## A good example of a nonsensical item
+
+From @gordon_keeping_2019
+
+
+```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/CC good.JPG")
+
+
+```
+
 
 # Fraud Detection
 

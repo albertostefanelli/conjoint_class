@@ -57,6 +57,26 @@ header-includes:
     - Design Complexity
     - Fatigue
     - Cognitive Burden
+    
+    
+## Session 3: Outline 
+
+1. Different CJ Randomization
+    - Fully randomized uniform design
+    - Randomized weighted design
+    - Restricted Randomization (or nested design)
+2. Assumptions
+    - SUTVA
+    - No profile-order effects
+    - Randomization of the profiles 
+3. Designing a survey 
+    - Designing good questions
+    - Response options and placement
+    - Motivate respondents 
+    - Get feedback and pre-test 
+4. On-line Data Collection
+    - Advantages/Disadvantages
+    - Solutions (attention checks, IP checks, incentives)
 
 ## Materials
 
