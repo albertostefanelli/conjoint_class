@@ -34,9 +34,9 @@ Session|Day|Time|Link
 
 ---
 
-- [Session 3 - Lecture (PDF)]()
-- [Session 3 - Lab]()
-- [Session 3 - Exercise]()
+- [Session 3 - Lecture (PDF)](https://albertostefanelli.github.io/conjoint_class/session_3/lecture/html/conjoint_lecture_03.pdf)
+- [Session 3 - Lab](https://albertostefanelli.github.io/conjoint_class/session_3/lab/html/conjoint_lab_3.html)
+- [Session 3 - Exercise](https://albertostefanelli.github.io/conjoint_class/session_3/exercise/html/conjoint_exercise_3.html)
 - [Session 3 - Solution]()
 
 ---
