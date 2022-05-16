@@ -84,12 +84,11 @@ You will be divided in groups and asked to deploy an experiment on Qualtrics. Us
 
 # Example 
 
-You can use this .sdt from the survey that i show you in the lab as a working example
+You can use this .QSF from the survey that i show you in the lab as a working example
 
 Create new Project -> Survey  -> Import OR Create a blank Project
 
-.SDT 
-
+[CJ_class.qsf](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/albertostefanelli/conjoint_class/blob/master/session_3/lab/qualtrics_survey/CJ_class.qsf)
 
 
 
