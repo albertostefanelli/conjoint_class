@@ -104,7 +104,7 @@ knitr::include_graphics("images/question.png")
 ```
 
 
-# CJ Blocks: HTML Table 
+# CJ Block: HTML Table 
 
 1. Open the .html generated using Conjointdt file using a text editor 
     1. textEdit on Mac
@@ -112,7 +112,7 @@ knitr::include_graphics("images/question.png")
     3. Sublime
 2. Modify according to your needs
 
-## CJ Blocks: Qualtrics 
+## CJ Block: Qualtrics 
 
 2. On Qualtrics: Create a new multiple choice question
 3. On the text area select "HTML View"
@@ -421,11 +421,11 @@ Qualtrics.SurveyEngine.addOnUnload(function()
 # Add Embedded content
 
 1. This is needed to store the results of your randomization.
-    - If you forget to do this, everything will still seem fine in Qualtrics but you *won’t be able to analyse the data*.
+    - If you forget to do this, everything will still seem fine in Qualtrics but you **won’t be able to analyse the data**.
 2. Click the ”survey flow” link in the upper-left corner of your Qualtrics screen.
 3. Add a new embedded data element to it by clicking "add below" or "add a new element here".
 4. Click and drag this element so that it is placed near the beginning of your survey. 
-    - It must be above the question block that includes your randomization JavaScript. 
+    - It **must be above** the question block that includes your randomization JavaScript. 
     - I usually put these at the very top of my survey flow.
 5. Enter the same names from the conjoint tables
     - Leave the values blank.
@@ -443,15 +443,12 @@ knitr::include_graphics("images/embedded_2.png")
 
 ## Instructional Manipulation Checks (IMCs)
 
-
 1. They should check whether a participant has paid attention to the question, not so much to the instructions above it
 2. Participants must be explicitly instructed to complete a task in a certain way (e.g. 'click 'Strongly disagree' for this question')
 3. No room for misinterpretation (e.g. 'Bird is a clothing brand. Do you agree?')
 4. They must be easy to read (i.e., should not use small font, or have reduced visibility)
 
 ## A good example of an IMC 
-
-
 
 ```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'}
 knitr::include_graphics("images/IMC good.JPG")
@@ -471,7 +468,7 @@ knitr::include_graphics("images/IMC bad.JPG")
 # Nonsensical Items
 
 1. Use a scale response
-2. No prior knowledge
+2. No prior knowledge should be required
 3. Participants should not be given a 'neutral' response option (i.e., no middle scale value)
 4. Correct responses should either be extreme agreement or extreme disagreement, however any response indicating disagreement or agreement should be accepted
 5. Participants who answer in the opposite manner to the objectively correct answer have failed
@@ -498,7 +495,7 @@ knitr::include_graphics("images/NS bad.JPG")
 
 1. Participants must be free to re-read the key information at the time the comprehension check is presented
 2. These checks cannot involve free-text responses
-3. Comprehension checks must be given at the start of the study
+3. Comprehension checks should be given at the start of the study/experiment
 4. If a participant fails a comprehension check twice then they should be excluded
 
 ## A good example of a nonsensical item

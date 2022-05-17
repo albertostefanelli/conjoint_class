@@ -70,7 +70,7 @@ You will be divided in groups and asked to deploy an experiment on Qualtrics. Us
 
 **Guidelines:**
 
-1. Divide survey in blocks 
+1. Divide survey in blocks and randomize the order of the questions within each block
 2. Add consent form and "end of the survey"
 3. Depending on your design:
     - Add Framing/priming based on context design 
@@ -84,7 +84,7 @@ You will be divided in groups and asked to deploy an experiment on Qualtrics. Us
 
 # Example 
 
-You can use this .QSF from the survey that i show you in the lab as a working example
+You can use this .QSF from the survey that I show you in the lab as a working example
 
 Create new Project -> Survey  -> Import OR Create a blank Project
 

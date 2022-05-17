@@ -65,7 +65,7 @@ header-includes:
     - Fully randomized uniform design
     - Randomized weighted design
     - Restricted Randomization (or nested design)
-2. Assumptions
+2. Assumptions 
     - SUTVA
     - No profile-order effects
     - Randomization of the profiles 
@@ -73,7 +73,7 @@ header-includes:
     - Designing good questions
     - Response options and placement
     - Motivate respondents 
-    - Get feedback and pre-test 
+    - Get feedbacks and pre-test 
 4. On-line Data Collection
     - Advantages/Disadvantages
     - Solutions (attention checks, IP checks, incentives)
@@ -97,18 +97,18 @@ Where to find the material:
 # Profiles construction 
 
 1. Full Factorial 
-    1. All possible combinations of levels
+    - all possible combinations of levels
 2. Fully randomized design 
     1. **Fully randomized uniform design**
-        1. Equal probability of all levels in a given attribute
-        2. E.g., Female 33%, Male 33%, Non-Binary 33%
+        - Equal probability of all levels in a given attribute
+        - E.g., Female 33%, Male 33%, Non-Binary 33%
     2. **Randomized weighted design**
-        1. Unequal probability of certain levels in a given attribute 
-        2. Marginal distribution of levels departs from uniform distribution 
-        3. E.g. Female 50% and Male 49%, Non-Binary 1%
+        - Unequal probability of certain levels in a given attribute 
+        - Marginal distribution of levels departs from uniform distribution 
+        - E.g. Female 50% and Male 49%, Non-Binary 1%
     3. **Restricted Randomization (or nested design)**
-        1. Certain combinations or attributes are not allowed to happen
-        1. E.g., Doctor without academic degree 
+        - Certain combinations or attributes are not allowed to happen
+        - E.g., Doctor without academic degree 
 2. Orthogonal and fractional factorials 
 3. and many more (!!)
     - Block Designs
@@ -165,14 +165,13 @@ Combinations&=L^{M^{A}}
             &=729
 \end{aligned}
 $$
-
 5. The number of alternative is thus 729
-6. If we assign approximately 20 respondents per each combination 
-7. $729*20= 14000$
+6. If we assign approximately 30 respondents per each combination 
+7. $729*30= 21870$
 
 # Randomized design  
 
-1. Developed by @hainmueller_causal_2014 relaying upon the potential outcome framework 
+1. Proposed by @hainmueller_causal_2014 relaying upon the potential outcome framework 
 2. **Logic:** sampling each level independently such that the attributes are orthogonal 
 3. That is, it samples n number of rows for the full factorial
 
@@ -215,26 +214,26 @@ ggplot(age_combined, aes(age),) + geom_histogram(bins=10) + theme_minimal() + fa
 
 ```
 
-## Restricted Randomization (or nested design) (1)
+## Restricted Randomization (or nested design)
 
 1. Sampling performed in the same way as the fully randomized design 
-2. **BUT** we impose limitation on the combination of certain attributes within a profile. 
+2. **BUT** we impose limitations on the combination of certain attributes within a profile. 
 3. Technically, we set the conditional probability of the co-occurrence of two attributes/levels equal to zero
-4. Meaning, we deny that two (or more) unlikely or contrasting combination of attributes/levels from appearing together
+4. Meaning, we deny that unlikely or contrasting combinations apprear together
 5. This improves the **internal validity** of our CJ experiment 
 6. Q: Why is this the case?
 
 ## Assumptions (fully randomized designs) 
 
 1. Stability and no-carry over (aka SUTVA)
-    - Respondents DO NOT use the information from previous questions and/or tasks in evaluation the profiles 
+    - Respondents DO NOT use the information from previous questions and/or tasks in evaluation the profiles.
     - If two profiles in two subsequent tasks have identical attributes, the respondents would choose the same profile. 
 2. No profile-order effects: 
-    - The ordering of profiles within a choice task does not affect responses 
-    - Meaning that it is possible to pool information across profiles when estimating causal quantities of interest
+    - The ordering of profiles within a choice task does not affect responses. 
+    - Meaning that it is possible to pool information across profiles when estimating causal quantities of interest.
 3. Randomization of the profiles 
-    - The potential choice can never be systematically related to what profiles they will actually see in the experiment. 
-    - Individual choices are statistically independent of the shown profiles 
+    - The potential choice can never be systematically related to a specific profile they respondents actually see in the experiment. 
+    - Individual choices are statistically independent of the shown profiles.
 
 # Designing a questionnaire
 
@@ -261,11 +260,11 @@ ggplot(age_combined, aes(age),) + geom_histogram(bins=10) + theme_minimal() + fa
 
 1. Use ascending order of Likert response options (i.e. from SD to SA) [@friedman_biasing_1993; @hartley_four_2010]
 2. When using indices, use bidirectional response scales (half SD to SA, and half SA to SD) [@barnette_effects_2000]
-3. Include a mid-point (i.e. Neither agree nor disagree) [@nadler_stuck_2015]
+3. Include a mid-point (e.g., Neither agree nor disagree) [@nadler_stuck_2015]
     - *DO NOT* treat the mid-point as NA
 4. Include both "I don't know" and "Not applicable" (especially for social desirable questions) [@chyung_evidence-based_2017]
 5. No formatting (italic or bold) of response scales [@hartley_four_2010]
-6. When questions are similar, use a matrix to presenting multiple questions
+6. When questions are similar, use a matrix for presenting multiple questions
 
 ## Example of a Matrix-grid 
 
@@ -278,14 +277,14 @@ knitr::include_graphics("images/matrix.png")
 
 ## Placement and randomization 
 
-- Start with couple easy questions to allow the respondent to get familiar with the survey platform (e.g., age, gender)
-- Organize the different questions in blocks (intro, demographics, moderators, experiment 1...N, conclusion)
-- Randomize the order of the question within each block
-- If a matrix is used, randomize the order of the questions within the matrix
-- Place moderators ALWAYS before any experimental treatment 
-- Demographic can be asked at the end of the survey
+- Start with couple easy questions to allow the respondent to get familiar with the survey platform (e.g., age, gender).
+- Organize the different questions in blocks (intro, demographics, moderators, experiment 1...N, conclusion).
+- Randomize the order of the question within each block.
+- If a matrix is used, randomize the order of the questions within the matrix.
+- Place moderators ALWAYS before any experimental treatment.
+- Demographic can be asked at the end of the survey.
 
-## Good practice 
+## Good practices
 
 - Motivate respondents 
     - Explain the purpose of the survey
@@ -297,25 +296,25 @@ knitr::include_graphics("images/matrix.png")
     - Always mention the PI
     - Explain how the data will be used 
     - Respondent should be 18+ (unless specific RQ)
-    - Respondents can withdraw at **any** time 
+    - Respondents can withdraw at **any** time
 
 ## Fielding a survey
 
 1. Imagine how the participants would feel responding to the questions.
 2. Get feedback, especially from people who resemble those in the researcher’s sample.
 3. Consider performing cognitive interviews.
-4. ALWAYS pre-test your instrument and survey 
+4. ALWAYS pre-test your instrument and survey.
 
 # Online Data Collection
 
 ## Advantages
 
 1. Relatively cheap
-    - Face-to-face paper-and-pencil: ~120 euro
+    - Face-to-face paper-and-pencil: ~160 euro
     - On-line probability panel: ~40 euro
-2. Relatively fast 
-3. Very flexible 
-2. Far more control over experimental design
+2. Relatively fast.
+3. Very flexible.
+2. Far more control over experimental design.
 
 ## Disavantages 
 
@@ -336,14 +335,14 @@ knitr::include_graphics("images/matrix.png")
 2. Put server farmer checks 
     - Use an IP address detector [@waggoner_detecting_2019]
     - Language proficiency test [@gadiraju_understanding_2015]
-    - Cultural checks 
-    - Detailed open-text responses 
+    - Cultural checks
+    - Detailed open-text responses
 
 ## Solutions (2)
 
 3. Low effort respondents 
     - Instructional [@oppenheimer_instructional_2009] or nonsensical [@paolacci_running_2010] attention checks
-    - Use multiple attention checks: 2 attentions every 5 minutes [@agley_quality_2022]
+    - Use multiple attention checks: 2 every 5 minutes [@agley_quality_2022]
     - Comprehension checks [for a good example see, @gordon_keeping_2019]
     - Bots checks [@agley_quality_2022]
     - Inspect response times (remember the first lab?)
@@ -352,7 +351,7 @@ knitr::include_graphics("images/matrix.png")
     - Make your studies as interesting as possible  
     - Be kind and respectful in participant interactions 
 5. Transparency [@munafo_manifesto_2017]
-    - Register the experimental design 
+    - Register the experimental design and incentives
     - Register the quality controls
     - Register the exclusions based on these controls
     - Register the analytical approach
