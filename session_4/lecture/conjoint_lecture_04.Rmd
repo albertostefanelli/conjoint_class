@@ -1,7 +1,7 @@
 ---
 title: |
     | Intro to Conjoint Experiments
-    | Session 3
+    | Session 4
 author: Alberto Stefanelli
 #date: "`r Sys.Date()`"
 fontsize: 10pt 
@@ -61,12 +61,25 @@ header-includes:
 4. On-line Data Collection
     - Advantages/Disadvantages
     - Solutions (attention checks, IP checks, incentives)
+    
+    
+## Session 4: Outline  
+
+1. AMCE 
+    - Effect decomposition
+    - Advantages
+    - Calculation
+    - Interpretation 
+2. Marginal Means
+    - Purpose and interpretation 
+    - Relation with the AMCE 
 
 ## Materials
 
 - Lecture's PDF
 - Lab
 - Exercise
+- Solutions
 
 Where to find the material:
 
@@ -78,7 +91,7 @@ Where to find the material:
 - **If you have questions, shoot : )**    
 
 
-# Analysing a CJ experiment
+# Analysing a CJ data
 
 ## In General
 
@@ -90,12 +103,11 @@ Where to find the material:
 
 1. Binomial distributions (2 profiles with discrete choice)
     1. Nested Logit
-    2. Mixed Logit Model 
-    3. **Average Marginal Component Effect AMCE** @hainmueller_causal_2014
+    3. **Average Marginal Component Effect AMCE** [@hainmueller_causal_2014]
     4. Marginal Means
 2. Gaussian distribution (1 or 2 profiles with ratings)
-    1. Nested OLS 
-    2. **Average Marginal Component Effect AMCE** @hainmueller_causal_2014
+    1. Nested OLS
+    2. **Average Marginal Component Effect AMCE** [@hainmueller_causal_2014]
     3. Marginal Means
 3. Multinomial distribution (more than 2 profiles)
     1. Nested multinomial logit
@@ -103,16 +115,22 @@ Where to find the material:
 
 # Effect decomposition using the AMCE 
 
-1. Used in most applications of conjoint survey experiments
+1. Used in most applications of conjoint survey experiments that follow @hainmueller_causal_2014
 2. **Formally:** The effect of a particular attribute value of interest against another value of the same attribute while holding equal the joint distribution of the other attributes
 3. **Layman terms:** A measure of the overall effect of an attribute after taking into account the possible effects of the other attributes by averaging over effect variations caused by them
 4. **E.g.,** The average causal effect of being a female candidate as opposed to a male candidate on the respondents’ candidate ratings when they are also given information about the candidates’ age, race/ethnicity. 
 
+# Advantages of the AMCE
+
+1. Fully non parametric (in most of its applications)
+2. Does not require a particular behavioural model for respondents’ decision-making processes 
+3. Respondents might be maximizing utility, be boundedly rational, they might use weighted adding, lexicographic, or satisficing decision strategies and the AMCE is still valid
+
 ## How does this work ?
 
-1. Simple Mean difference
-    1. Calculate the average rating (or probability to be chosen) of all female candidates
-    2. Calculate the average rating (or probability to be chosen) of all male candidates 
+1. Simple Mean difference 
+    1. Calculate the average rating (or probability to be chosen) for all the profile that have the same value on that particular level (e.g., all female candidates)
+    2. Calculate the average rating (or probability to be chosen) for all the profile that have the same value on that particular level (e.g., all male candidates)
     3. Take the difference between the two averages 
 2. AMCE averages over both the sign and the magnitude of the individual-level causal effects
 3. All the attributes but the one of interest are treated as pre-treatment covariates and averaged over 
@@ -129,14 +147,14 @@ Where to find the material:
     1. Gender: Female, Male 
     2. Party: Republican, Democrat 
 2. Every possible pairwise comparison
-3. Votes candidate would obtain in a head to head competition
+3. Votes a candidate would obtain in a head to head competition
 
 ## Calculations AMCE for Male Candidates
 
 1. Count how many times a candidate would have won in a head to head competition
 2. Per each competition, compare how male candidates perform against female 
 3. Calculate the fraction of vote for male VS female candidates 
-3. Sum over all possible opponents
+3. Sum over all possible opponents (i.e. tasks)
 4. Normalize by (# of profiles - 1) X (# of features -1) X # of values of gender 
 
 ## A numerical Example: Table  
@@ -171,7 +189,7 @@ kable(df, "latex", booktabs=FALSE, escape=T,linesep="") %>%
 
 ```
 
-## Calculation table (2)
+## Calculation table (1)
 
 ```{r ,echo=FALSE, out.width="80%",fig.cap="Conjointsdt Attributes and Levels",fig.show='hold',fig.align='centre'}
 
@@ -187,7 +205,7 @@ kable(df, "latex", booktabs=FALSE, escape=T,linesep="") %>%
 
 ```
 
-## Calculation table (1)
+## Calculation table (2)
 
 ```{r ,echo=FALSE, message=FALSE,out.width="80%",fig.cap="",fig.show='hold',fig.align='centre'}
 
@@ -231,7 +249,7 @@ $$
 
 ## Calculation AMCE (2)
 
-Let's now calculate use the normalization constant to calculate the AMCE obtained from the sum over all possible opponents 
+Let's now use plug in the normalization constant into the AMCE formula  obtained from the sum over all possible opponents 
 
 $$
 \begin{aligned}
@@ -257,7 +275,7 @@ $$
 ## What the AMCE is NOT 
 
 1. **NOT** a general measure of preference of certain attributes
-    - **NOT** interpretable as the majority of the respondents prefer a profile with feature A versus candidate with feature B 
+    - **NOT** interpretable as the majority of the respondents prefer a profile with feature A versus candidate with feature B
     - **NOT** interpretable as that respondents prefers candidate with feature A versus candidate with feature B 
     - **NOT** definable on the collapsed joint distribution (cross tab) of the preferences. It is defined on a collection of all two-way comparisons. 
 2. **NOT** that candidates with feature A beat candidates with feature B in most elections
@@ -265,23 +283,22 @@ $$
     1. A large majority of the respondents can have a preference for female candidates but the AMCE is positive for male candidates 
     2. Q: Why?
 
+## Clustering structure 
+
+1. In the above example, each respondent perform 6 pairwise comparisons 
+2. So we have more observations than respondents  
+3. Q: What are the units of analysis in a CJ? 
 
 ## Clustering structure 
 
 1. In the above example, each respondent perform 6 pairwise comparisons 
 2. So we have more observations than respondents  
-3. Q: What are the units of observation in CJ analysis? 
-
-## Clustering structure 
-
-1. In the above example, each respondent perform 6 pairwise comparisons 
-2. So we have more observations than respondents  
-3. Q: What are the units of observation in CJ analysis?  
+3. Q: What are the units of analysis in a CJ?  
 4. A: The units of analysis are the CJ tasks **NOT** the respondents  
 5. Recall that: 
     1. DV: Choice Profile A VS Profile B  
     2. IV: Profile Attributes 
-6. In order to correctly estimate the Standard Error we need to take into account the clustered nature of the data 
+6. In order to correctly estimate the standard errors we need to take into account the clustered nature of the data 
 
 ## Clustering structure: Conjoint Data 
 
@@ -297,13 +314,42 @@ knitr::include_graphics("images/conjoint_multilevel.png")
     1. OLS: Meaning residual variance is constant across observations 
     2. CJ: Due to the nested structure, the variance can vary between individuals.
     3. OLS for CJ: P-values for hypothesis tests and confidence intervals do not perform as they should
-    3. Sandwich: Take into account the variance heterogeneity
-2. Choice Models 
+    3. Sandwich estimator: Take into account the variance heterogeneity
+2. Choice Models with nested structure
 2. Multilevel models 
     1. Level 1: CJ tasks 
     2. Level 2: Individuals
 3. Bootstrapping 
 
+## Marginal Means (1)
+
+1. Most published research use AMCEs for descriptive purposes
+    - i.e., to map variation in formability toward a multidimensional object across its various features.
+    - e.g., "support for Evangelical Protestants is also 0.04 percentage points lower (SE = 0.02) than the baseline"  [@hainmueller_causal_2014, p.19]
+3. AMCEs are relative, not absolute, statements about preferences
+4. Use of AMCEs when performing sub-group analysis is problematic (vedi next lecture)
+5. **Take home message**: use AMCEs when you are interested in description rather than casual inference. 
+
+## Marginal Means (2)
+
+1. MMs: describe the level of favorability toward profiles that have a particular feature level, marginalizing across all other features.
+2. IN forced-choice design with two alternatives, marginal means have a direct interpretation as probabilities
+    - MM=0 indicates respondents select profiles with that feature level with probability $Pr(Y = 1|X = x) = 0$
+    - MM=1 indicates respondents select profiles with that feature level with probability $(P r(Y = 1|X = x) = 1$
+3. With rating scale outcomes MM vary depending on the used scale 
+4. For fully randomized designs, the AMCE is equal to the MM
+    - e.g. $AMCE=0.09$ (9-percentage point) = $MM_1= .46 - MM_2= 0.54$
+
+## Session 4: Recap   
+
+1. AMCE 
+    - Effect decomposition
+    - Advantages
+    - Calculation
+    - Interpretation 
+2. Marginal Means
+    - Purpose and interpretation 
+    - Relation with the AMCE 
 
 
 ## References {.allowframebreaks} 

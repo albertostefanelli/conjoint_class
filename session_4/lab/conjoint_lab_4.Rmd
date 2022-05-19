@@ -2,6 +2,7 @@
 title:  Intro to Conjoint Experiments | Lab - 4
 author: Alberto Stefanelli
 knit: (function(inputFile, encoding) {rmarkdown::render(inputFile, encoding = encoding, output_dir = "html") })
+bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
 output:
   rmdformats::readthedown:
     self_contained: true
@@ -373,7 +374,6 @@ plot(cregg::cj(df_long_format, selected ~
 
 ```
 
-
 ## Respondent's fatigue 
 
 Let's now take a look at the effect of task on selecting a profile. We might expect that people got tired with the progression of the experiment and as such, we would see an effect of task numbering on their response behaviour. Again, we want the coefficients to overlap to have no significant different between tasks.
@@ -399,7 +399,6 @@ theme(text = element_text(size=21))
 
 ```
 
-
 ```{r, echo=T, message=FALSE, warning=FALSE}
 
 df_long_format$Past.Political.Experience.rowpos <-  as.factor(df_long_format$Past.Political.Experience.rowpos)
@@ -416,3 +415,5 @@ plot(cregg::cj(df_long_format, selected ~
 theme(text = element_text(size=21))
 
 ```
+
+# References {.allowframebreaks} 

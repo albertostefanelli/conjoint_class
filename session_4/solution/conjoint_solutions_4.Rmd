@@ -1,6 +1,7 @@
 ---
 title:  Intro to Conjoint Experiments | Solutions - 4
 author: Alberto Stefanelli
+bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
 output:
   rmdformats::readthedown:
     self_contained: true
@@ -159,7 +160,6 @@ Let's first postulate some hypotheses
 
 Let's estimate the AMCE for using the Teele Data. 
 
-
 ```{r, echo=T, message=FALSE, warning=FALSE,eval=TRUE}
 # subset only legislators
 data_teele_legislator <- subset(teele_data, sample == "usa leg")
@@ -205,15 +205,13 @@ summary(lm_leg)
 
 ```
 
-The coefficients are close to equivalence but the SE are off. The reason lies in the fact that with a simple OLS model we are not taking into account the clustering structure of the data (tasks nested into individuals)
+The coefficients are close to equivalence but the SE are off. The reason lies in the fact that with a simple OLS model we are not taking into account the clustering structure of the data (tasks nested into individuals). 
 
 # Estimate the AMCE in the voter sample and test for differecnes
 
 Let's turn to H2 and see if there is any difference between legislators and voters. 
 
 ```{r, echo=T, message=FALSE, warning=FALSE,eval=TRUE}
-
-
 # all the same apart from the fact that in the first line we are selecting the voter sample  
 data_teele_voters <- subset(teele_data, sample == "usa voter")
 data_teele_voters <- subset(data_teele_voters, replication == 0)
@@ -240,7 +238,7 @@ There seems to be differences. In the voter sample our estimate is still negativ
 
 ```{r, echo=T, message=FALSE, warning=FALSE,eval=TRUE}
 
-# let's test difference in AGE 45 VS AGE 29
+# let's test difference in AGE 45 VS AGE 29 with a semplified delta method
 d<-amce_leg$estimates$cage["AMCE",][1] - amce_voters$estimates$cage["AMCE",][1]
 var_leg<-amce_leg$estimates$cage["Std. Error",][1]^2 
 var_voter<-amce_voters$estimates$cage["Std. Error",][1]^2 
@@ -264,10 +262,9 @@ plot(amce_leg) +  scale_colour_grey(start = 0, end = .5) +
 
 ```
 
-
 # Fatigue  
 
-Let's now take a look at the effect of task on selecting a profile. We might expect that people got tired with the progression of the experiment and as such, we would see an effect of task numbering on their response behaviour. Again, we want the coefficients to overlap to have no significant different between tasks. 
+Let's now take a look at the effect of task on selecting a profile. We might expect that people got tired with the progression of the experiment and as such, we would see an effect of task progression on their response behaviour. Again, we want the coefficients to overlap to have no significant different between tasks. 
 
 ```{r, echo=T, message=FALSE, warning=FALSE,eval=TRUE}
 data_teele_legislator$contest <- as.factor(data_teele_legislator$contest)
@@ -292,4 +289,7 @@ plot(fit_fatigue,
   group = "contest", vline = 0.5) + 
   theme(text = element_text(size=21))
 ```
+Most of the MM overlap and we do not observe a clear pattern from the table. This means that respondents have not changed the way they make choices throughout the experiment. We can say that the respondent's fatigue is likely to be limited in the context of this experiment. 
+
+# References {.allowframebreaks} 
 

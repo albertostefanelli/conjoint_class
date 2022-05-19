@@ -1,6 +1,7 @@
 ---
 title:  Intro to Conjoint Experiments | Exercise - 4
 author: Alberto Stefanelli
+bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
 output:
   rmdformats::readthedown:
     self_contained: true
@@ -136,11 +137,12 @@ Spouse's Occupation | Doctor, Farmer, Unmarried
 1. Postulate Hypothesises/Expectation
 1. Estimate the AMCE for the candidates' traits
     - See if your Hypothesises/Expectation hold 
+    - Interpret the AMCE
 2. Re-estimate the AMCE using a simple OLS 
     - What happened?
 3. [OPTIONAL] Estimate the AMCE in the voter sample 
     - Are there any differences?
-4. Plot the results from the 
+4. Plot the results
 5. Test for respondent's fatigue 
 
 
@@ -150,3 +152,4 @@ teele_data <- readr::read_csv("https://github.com/albertostefanelli/conjoint_cla
 
 ```
 
+# References {.allowframebreaks} 
