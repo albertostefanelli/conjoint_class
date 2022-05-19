@@ -41,13 +41,12 @@ Session|Day|Time|Link
 
 ---
 
-- [Session 4 - Lecture (PDF)]()
-- [Session 4 - Lab]()
-- [Session 4 - Exercise]()
-- [Session 4 - Solution]()
+- [Session 4 - Lecture (PDF)](https://albertostefanelli.github.io/conjoint_class/session_4/lecture/html/conjoint_lecture_04.pdf)
+- [Session 4 - Lab](https://albertostefanelli.github.io/conjoint_class/session_4/lab/html/conjoint_lab_4.html)
+- [Session 4 - Exercise](https://albertostefanelli.github.io/conjoint_class/session_4/exercise/html/conjoint_exercise_4.html)
+- [Session 4 - Solution](https://albertostefanelli.github.io/conjoint_class/session_4/solutions/html/conjoint_solutions_4.html)
 
 ---
-
 
 - [Session 5 - Lecture (PDF)]()
 - [Session 5 - Lab]()
