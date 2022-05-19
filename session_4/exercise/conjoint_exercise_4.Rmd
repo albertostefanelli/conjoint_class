@@ -1,6 +1,7 @@
 ---
 title:  Intro to Conjoint Experiments | Exercise - 4
 author: Alberto Stefanelli
+knit: (function(inputFile, encoding) {rmarkdown::render(inputFile, encoding = encoding, output_dir = "html") })
 bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
 output:
   rmdformats::readthedown:

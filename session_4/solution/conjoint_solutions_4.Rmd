@@ -2,6 +2,7 @@
 title:  Intro to Conjoint Experiments | Solutions - 4
 author: Alberto Stefanelli
 bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
+knit: (function(inputFile, encoding) {rmarkdown::render(inputFile, encoding = encoding, output_dir = "html") })
 output:
   rmdformats::readthedown:
     self_contained: true
