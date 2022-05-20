@@ -87,13 +87,10 @@ Where to find the material:
 
 ## Before starting
 
-- Make sure you install R and R Studio.
+- Make sure to install R and R Studio.
 - **If you have questions, shoot : )**    
 
-
-# Analysing a CJ data
-
-## In General
+## In general
 
 1. Conjoint analysis belongs to the part-worth model family 
 2. The aim is NOT to estimate the Average Treatment Effect (ATE)
@@ -103,28 +100,35 @@ Where to find the material:
 
 1. Binomial distributions (2 profiles with discrete choice)
     1. Nested Logit
-    3. **Average Marginal Component Effect AMCE** [@hainmueller_causal_2014]
+    3. **Average Marginal Component Effect (AMCE)** [@hainmueller_causal_2014]
     4. Marginal Means
 2. Gaussian distribution (1 or 2 profiles with ratings)
     1. Nested OLS
-    2. **Average Marginal Component Effect AMCE** [@hainmueller_causal_2014]
+    2. **Average Marginal Component Effect (AMCE)** [@hainmueller_causal_2014]
     3. Marginal Means
 3. Multinomial distribution (more than 2 profiles)
     1. Nested multinomial logit
     2. Mixed multinomial Logit Model 
 
-# Effect decomposition using the AMCE 
+## Effect decomposition using the AMCE 
 
 1. Used in most applications of conjoint survey experiments that follow @hainmueller_causal_2014
 2. **Formally:** The effect of a particular attribute value of interest against another value of the same attribute while holding equal the joint distribution of the other attributes
 3. **Layman terms:** A measure of the overall effect of an attribute after taking into account the possible effects of the other attributes by averaging over effect variations caused by them
 4. **E.g.,** The average causal effect of being a female candidate as opposed to a male candidate on the respondents’ candidate ratings when they are also given information about the candidates’ age, race/ethnicity. 
 
-# Advantages of the AMCE
+## Advantages of the AMCE
 
 1. Fully non parametric (in most of its applications)
 2. Does not require a particular behavioural model for respondents’ decision-making processes 
 3. Respondents might be maximizing utility, be boundedly rational, they might use weighted adding, lexicographic, or satisficing decision strategies and the AMCE is still valid
+
+## Boundedly rational ?
+
+```{r ,echo=FALSE, out.width="80%",fig.cap="",fig.show='hold',fig.align='centre'}
+knitr::include_graphics("images/bounded_rational.png")
+
+```
 
 ## How does this work ?
 
@@ -302,7 +306,7 @@ $$
 
 ## Clustering structure: Conjoint Data 
 
-```{r ,echo=FALSE, out.width="80%",fig.cap="Conjointsdt Attributes and Levels",fig.show='hold',fig.align='centre'}
+```{r ,echo=FALSE, out.width="80%",fig.cap="",fig.show='hold',fig.align='centre'}
 knitr::include_graphics("images/conjoint_multilevel.png")
 
 ```

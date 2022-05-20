@@ -141,6 +141,8 @@ Spouse's Occupation | Doctor, Farmer, Unmarried
     - Interpret the AMCE
 2. Re-estimate the AMCE using a simple OLS 
     - What happened?
+2. Re-estimate the AMCE using a logit model 
+    - What happened to the coefficients? How can we interpret them? 
 3. [OPTIONAL] Estimate the AMCE in the voter sample 
     - Are there any differences?
 4. Plot the results
