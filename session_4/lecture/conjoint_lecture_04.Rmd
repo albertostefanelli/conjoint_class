@@ -268,7 +268,7 @@ $$
 ## What the AMCE really is
 
 1. **Interpretation:** The average effect of varying one attributes of a profile on the probability that that profile will be chosen by a respondent
-2. **Interpretation:** Shifting a candidate's gender from Male to Female increase the favourability (or likelihood of choosing a candidate) by X percentage points  
+2. **e.g.,** Shifting a candidate's gender from Male to Female increase the favourability (or likelihood of choosing a candidate) by X percentage points  
 2. The range of value depends on the number of level of a feature and the probability of co-occurrence of the same attribute levels (Female Candidate VS Female Candidate)
     1. With 5 levels $(1/5)-1=0.8$ and thus the bound is -0.8 to 0.8
     2. Q: What about gender: Female and Male? 
