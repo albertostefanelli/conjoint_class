@@ -762,6 +762,10 @@ ggpubr::ggarrange(vis1 +
 
 
 ```
+
 - Using CFMM with two classes, we successfully identify the existing subgroups. 
-- Standard errors capture the effect provided by Kirkland and Coppock (2018), **without** the need to incldue respondent’s party.
+- Standard errors capture the effect provided by Kirkland and Coppock (2018), **without** the need to include respondent’s party.
+
+# References {.allowframebreaks} 
+
 
