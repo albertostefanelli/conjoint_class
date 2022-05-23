@@ -83,7 +83,7 @@ options(width = 300, scipen = 9999)
 
 ## Dataset used 
 
-1. 2018 CEU Experimental Political Science dataset
+1. 2019 CEU Experimental Political Science dataset
   1. Q578 Q579 Q580: Choice CJ Task 
   2. F-\*-\*: Conjoint features 
   3. Q78: Employment status
@@ -93,11 +93,7 @@ options(width = 300, scipen = 9999)
   7. Q74: Age 
   8. Q581: Religiosity
 
-2. The Hidden American Immigration Consensus @hainmueller_causal_2014 
-  1. Conditional AMCEs 
-  2. Subgroups differences
-  
-    
+
 # Environment preparation 
 
 
