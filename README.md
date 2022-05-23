@@ -7,7 +7,7 @@ The repo contains the material for *Introduction to Conjoint Experiments* at KUL
 - By [Email](mailto:alberto.stefanelli@kuleuven.be)
 - [Twitter @sergsagara](https://twitter.com/sergsagara)
 
-## Timetable 
+## Timetable (Innsbruck)
 
 Session|Day|Time|Link 
 --|-----|--------|----
@@ -48,8 +48,8 @@ Session|Day|Time|Link
 
 ---
 
-- [Session 5 - Lecture (PDF)]()
-- [Session 5 - Lab]()
-- [Session 5 - Exercises]()
-- [Session 5 - Solutions]()
+- [Session 5 - Lecture (PDF)](https://albertostefanelli.github.io/conjoint_class/session_5/lecture/html/conjoint_lecture_05.pdf)
+- [Session 5 - Lab](https://albertostefanelli.github.io/conjoint_class/session_5/lab/html/conjoint_lab_5.html)
+- [Session 5 - Exercise](https://albertostefanelli.github.io/conjoint_class/session_5/exercise/html/conjoint_exercise_5.html)
+- [Session 5 - Solution](https://albertostefanelli.github.io/conjoint_class/session_5/solutions/html/conjoint_solutions_5.html)
 

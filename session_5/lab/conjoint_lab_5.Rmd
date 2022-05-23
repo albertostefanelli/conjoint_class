@@ -1,0 +1,767 @@
+---
+title:  Intro to Conjoint Experiments | Lab - 5
+author: Alberto Stefanelli
+knit: (function(inputFile, encoding) {rmarkdown::render(inputFile, encoding = encoding, output_dir = "html") })
+bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
+output:
+  rmdformats::readthedown:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    highlight: tango
+    use_bookdown: true
+    fig_width: 12
+    fig_height: 8
+  #html_document:
+    #theme: rmdformats
+    # df_print: paged
+    # toc: true
+    # number_sections: true
+    # toc_float:
+    #   collapsed: false
+    #   smooth_scroll: false
+---
+<style type="text/css">
+#content {
+    max-width: 1500px !important;
+/*    !margin-left: 300px !important;
+*/
+}
+#table-of-contents {
+    width: 300px !important;
+}
+
+#postamble {
+  font-size: 10px;
+}
+
+pre{
+  background-color: #FFFFFF;
+    font-size: 12px;
+}
+pre:not([class]) {
+  background-color: #D8D8D8;
+    color: black;
+}
+
+</style>
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(tidy=FALSE, 
+  fig.show = 'hold', 
+  fig.align = "center", 
+  warning = FALSE, 
+  message = FALSE, 
+  comment = '')
+options(width = 300, scipen = 9999)
+
+# last dev version is needed for rmdformats.
+# fixed these two
+# more info https://github.com/juba/rmdformats/issues/92 
+# more info https://github.com/juba/rmdformats/issues/93
+# devtools::install_github("juba/rmdformats")
+
+```
+
+
+1. Interactive models
+    - Between Attributes 
+    - Subgroups Analysis
+2. Other Designs
+    - Design-based approaches 
+    - Model-based approaches 
+3. Mixture models 
+    - Treatment heterogeneity 
+    
+
+# Dataset used 
+
+1. 2019 CEU Experimental Political Science dataset
+    - Q578 Q579 Q580: Choice CJ Task 
+    - F-\*-\*: Conjoint features 
+    - ResponseId: id 
+    - Q78: Employment status
+    - Q77: Race 
+    - Q76: Education 
+    - Q75: Gender 
+    - Q74: Age 
+    - Q581: Religiosity
+2. Immigration experiment from @hainmueller_causal_2014
+3. Partisan labels experiment from @kirkland_candidate_2018
+
+
+# Environment preparation
+
+```{r, echo=T, message=FALSE, warning=FALSE,cache=F}
+
+# ### Data import ###
+# install.packages("readr")      # read datasets
+# install.packages("qualtRics")  # read qualtrics datasets
+# ### Data manipulation ###
+# install.packages("dplyr")      # pipes and data manipulation
+# install.packages("stringr")     # text manipulation
+# ### Visualization ###
+# install.packages("ggplot2")    # graphing capabilities
+# install.packages("ggimage")    # integrating images in ggplot
+# ### Estimation ###
+# install.packages("cjoint")     # base amce package
+# install.packages("cregg")      # amce and mm 
+# install.packages("factorEx")   # amce with non-uniform distribution
+# install.packages("flexmix")    # mixture models 
+
+## Custom build functions 
+# library(devtools)
+# devtools::install_github("albertostefanelli/cjoint") # fixes some problem with cjoint
+
+### Data import ###
+library("readr")     
+library("qualtRics") 
+### Data manipulation ###
+library("dplyr")     
+library("stringr")     
+### Visualization ###
+library("ggplot2")    
+library("ggimage")
+### Estimation ###
+library("cjoint")   
+library("cregg")     
+library("factorEx") 
+library("flexmix")
+
+
+
+```
+
+
+# Load the data: Non-Qualtrics data 
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+df_base <- readr::read_csv("https://github.com/albertostefanelli/conjoint_class/raw/master/data/experimental_political_science_2019_cleaned.csv")
+
+head(df_base)
+
+```
+
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+# tranform to numeric
+df_base$Q578 <- as.numeric(as.factor(df_base$Q578))
+df_base$Q579 <- as.numeric(as.factor(df_base$Q579))
+df_base$Q580 <- as.numeric(as.factor(df_base$Q580))
+
+df_long_format <- read.df.qualtRics(df_base, 
+  # the DV for our conjoint tasks (df_base 1 and Candidate 2)
+  responses=c("Q578","Q579","Q580"), 
+  #covariates=c("Q76"),
+  respondentID = "ResponseId"
+  )
+
+
+```
+
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+# transform to numeric
+df_base$Q578 <- as.numeric(as.factor(df_base$Q578))
+df_base$Q579 <- as.numeric(as.factor(df_base$Q579))
+df_base$Q580 <- as.numeric(as.factor(df_base$Q580))
+
+df_long_format <- read.df.qualtRics(df_base, 
+  # the DV for our conjoint tasks (df_base 1 and Candidate 2)
+  responses=c("Q578","Q579","Q580"), 
+  #covariates=c("Q76"),
+  respondentID = "ResponseId"
+  )
+
+
+```
+
+# Interaction between attributes (ACIE)
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+fit_1 <- cjoint::amce(selected ~ 
+  Past.Political.Experience + 
+  Penal.proceedings + 
+  Policy.Proposal +
+  Penal.proceedings * Past.Political.Experience,
+  data=df_long_format,
+  cluster=TRUE, 
+  respondent.id="ResponseId"
+)
+
+summary(fit_1)
+
+
+```
+
+## ACIE: Least liked profile 
+
+- Sometimes it is interesting to assess the combination of attributes that are the least liked by the respondents 
+- This is might be relevant in some context (e.g. new policy)
+- To achieve this, we are going to fit a full saturated model 
+  - Meaning, we fit a model with all the highest interactions possible
+  - In this case, we fit a model with all the 3rd order interactions
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+fit_2 <- cjoint::amce(selected ~ 
+  Past.Political.Experience*Penal.proceedings*Policy.Proposal,
+  data=df_long_format,
+  cluster=TRUE, 
+  respondent.id="ResponseId"
+)
+
+summary(fit_2)
+
+
+```
+
+- In this case, the last liked profile is the a high experience candidate that has been convicted and want to expel all the migrants and shut down the border
+- The interpretation needs to be causal so we need to flip the previous statement and focus on the attributes
+- Q: How can the "least liked" profile be **casually** interpreted?
+
+# Subgroup analysis 
+
+- **Expectation:** minority respondents display group interest such as they will be more in favour of accepting migrants 
+- Prepare the data
+  1. Transform race into factor 
+  2. Use a reference category Caucasian
+  3. Wide to Long 
+  4. Omit NAs 
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+df_base$Q77 <- factor(df_base$Q77)
+df_base$Q77 <- relevel(df_base$Q77, "Caucasian")
+
+df_long_format <- read.df.qualtRics(df_base, 
+  responses=c("Q578","Q579","Q580"), 
+  covariates=c("Q77"),
+  respondentID = "ResponseId"
+  )
+
+# interaction works ONLY with compete observations
+df_long_format <- na.omit(df_long_format)
+
+
+```
+
+## AMCE
+
+- Run the AMCE with the interaction between each Attribute and the race of the respondent 
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+fit_3 <-cregg::cj(df_long_format, selected ~ 
+  Past.Political.Experience + 
+  Penal.proceedings + 
+  Policy.Proposal +
+  Penal.proceedings, 
+  by = ~Q77,
+  id = ~ResponseId,
+  estimate = "amce")
+
+
+```
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+fit_3_diff <-cregg::cj(df_long_format, selected ~ 
+  Past.Political.Experience + 
+  Penal.proceedings + 
+  Policy.Proposal +
+  Penal.proceedings, 
+  by = ~Q77,
+  id = ~ResponseId,
+  estimate = "amce_diff")
+
+
+```
+
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+plot(rbind(fit_3, fit_3_diff)) + ggplot2::facet_wrap(~BY)
+
+
+```
+
+
+- Some minority groups seem to display preference that support my hypothesis
+- There is reference heterogeneity between respondents 
+
+## Marginal Means
+
+But again, this plot showcases differences in conjoint effect sizes (AMCEs) not descriptive differences in underlying preferences. A plot of the differences in MMs might be clearer:
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+fit_4 <-cregg::cj(df_long_format, selected ~ 
+  Past.Political.Experience + 
+  Penal.proceedings + 
+  Policy.Proposal +
+  Penal.proceedings, 
+  by = ~Q77,
+  id = ~ResponseId,
+  estimate = "mm")
+
+fit_4_diff <-cregg::cj(df_long_format, selected ~ 
+  Past.Political.Experience + 
+  Penal.proceedings + 
+  Policy.Proposal +
+  Penal.proceedings, 
+  by = ~Q77,
+  id = ~ResponseId,
+  estimate = "mm_diff")
+
+
+plot(rbind(fit_4, fit_4_diff)) + ggplot2::facet_wrap(~BY, ncol = 3L)
+
+```
+
+And while the inferential differences may be small, the risk of using differences in conditional AMCEs versus differences in MMs is that both the size and even the direction of subgroup differences can be misleading when presented as differences in AMCEs:
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+fit_3_diff$Estimate <- "AMCE"
+fit_4_diff$Estimate <- "MM"
+
+plot(rbind(fit_3_diff, fit_4_diff)) + ggplot2::facet_wrap(~Estimate + BY, ncol = 4L)
+
+```
+
+
+## F-Test 
+
+- We are going to perform an F-Test (also called Omnibus test) to formally assess if there is no interactive effect between Attributes and Education 
+- We compared a model with interaction and one without interaction to assess whether preferences significantly vary across different groups. 
+  - If the significance test is <0.05, the data suggest that there is a significance difference between groups 
+  - If the significance test is >0.05, the data suggest that the two groups show no difference when one of the attribute is changed. 
+
+1. 3 Steps 
+    - Estimate the base line model without interactions 
+    - Estimate the interaction model 
+    - Perform a F-Test between the baseline model and the interaction model
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+cregg::cj_anova(df_long_format, selected ~ 
+  Past.Political.Experience + 
+  Penal.proceedings + 
+  Policy.Proposal +
+  Penal.proceedings, 
+  by = ~Q77,
+  id = ~ResponseId)
+
+```
+
+
+# Design-based approaches: constrains and non-uniform marginal distribution 
+
+- Immigration experiment from @hainmueller_causal_2014
+  - Load the data
+  - Specify the design with the makeDesign() function
+  - Run AMCE for unconstrained design
+  - Run AMCE for constrained design
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+data("immigrationconjoint")
+data("immigrationdesign")
+
+## You can also load a design from a .dat file from the Conjoint SDT
+#immigrationdesign <- makeDesign(type="file", filename="immigrant.dat")
+
+fit_unconstrained <- cjoint::amce(Chosen_Immigrant ~  Gender + Education + `Language Skills`  +
+                    `Country of Origin` + Job + `Job Experience` + `Job Plans`  +
+                    `Reason for Application` + `Prior Entry`,
+                data=immigrationconjoint,
+                cluster=TRUE, 
+                respondent.id="CaseID",
+                design="uniform"
+                )
+
+
+fit_constrained <- cjoint::amce(Chosen_Immigrant ~  Gender + Education + `Language Skills`  +
+                    `Country of Origin` + Job + `Job Experience` + `Job Plans`  +
+                    `Reason for Application` + `Prior Entry`,
+                data=immigrationconjoint,
+                cluster=TRUE, 
+                respondent.id="CaseID",
+                design=immigrationdesign
+                )
+
+# let's check the estimate for "Computer Programmer"
+amce_unconstrained <- summary(fit_unconstrained)$amce$Estimate[23]
+amce_constrained <- summary(fit_constrained)$amce$Estimate[23]
+
+cbind(amce_unconstrained,amce_constrained, round((amce_unconstrained-amce_constrained)*100,2))
+
+
+```
+
+# Model-based approaches: constrains and non-uniform marginal distribution 
+
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+fit_1 <- cjoint::amce(selected ~ 
+  Past.Political.Experience + 
+  Penal.proceedings + 
+  Policy.Proposal +
+  Penal.proceedings * Past.Political.Experience,
+  data=df_long_format,
+  cluster=TRUE, 
+  respondent.id="ResponseId"
+)
+
+summary(fit_1)
+
+
+# this function calculate the frequencies of our constrained design 
+freq_cj <- cregg::cj_freqs(df_long_format,
+  selected ~ 
+  Past.Political.Experience + 
+  Penal.proceedings + 
+  Policy.Proposal +
+  Penal.proceedings,
+  id = ~ResponseId
+  )
+
+
+# this function transform the frequencies into proportion to be included in the _pAMCE() function
+
+function_marginal_distribution <- function(freq_cregg=freq_cregg){
+
+data <- freq_cregg %>% 
+  group_by(feature) %>% 
+  mutate(prop=estimate/sum(estimate))
+
+marginal_f <- c()
+for (f in unique(data$feature)){
+  marginal_l <- c()
+  subset_freq_cj_props <- data %>% subset(feature==f) 
+  subset_freq_cj_props$level <- factor(subset_freq_cj_props$level)
+  
+  for (l in subset_freq_cj_props$level){
+    subset_freq_cj_props_filtered <- subset_freq_cj_props %>% filter(level==l)
+    marginal_l[l] <- subset_freq_cj_props_filtered$prop
+  }
+  marginal_f[[f]] <- marginal_l
+}
+return(marginal_f)
+}
+
+# call the function 
+non_uniform_distribution  <- function_marginal_distribution(freq_cregg=freq_cj)
+
+non_uniform_distribution$Past.Political.Experience <- c("None" = 0.01, 
+                                                        "Approximately 10 years" =  0.69, 
+                                                        "Approximately 20 years" = 0.3)
+
+
+non_uniform_distribution$Penal.proceedings <- c("No proceedings" = 0.9, 
+                                                        "The candidate has been convicted of corruption" =  0.05, 
+                                                        "The candidate is under investigation for corruption" = 0.05)
+
+# should sum to 1  
+sum(non_uniform_distribution$Past.Political.Experience)
+
+```
+  
+- Integrate the proportion in the design_pAMCE from the package factorEx 
+- Improving the External Validity of Conjoint Analysis: The Essential Role of Profile Distribution [@de_la_cuesta_improving_2022]
+- model_pAMCE() arguments  
+  - formula: same as before  
+  - df: same as before
+  - id: same as before 
+  - target_dist: the non_uniform_distribution from function_marginal_distribution()
+  - target_type: marginal (but also join and partial)
+  
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+model_marginal <- factorEx::model_pAMCE(
+  formula = selected ~ 
+  Past.Political.Experience + 
+  Penal.proceedings + 
+  Policy.Proposal +
+  Penal.proceedings,
+  reg = FALSE,
+  data = df_long_format,
+  cluster_id = df_long_format$ResponseId,
+  target_dist = non_uniform_distribution, 
+  target_type = "marginal",
+  boot= 500, 
+  numCores = 4, 
+)
+
+summary(model_marginal)
+
+adjusted_marginal <- model_marginal$AMCE$Past.Political.Experience %>% filter(type=="target_1")  %>% dplyr::select(estimate)
+unadjusted_marginal <- model_marginal$AMCE$Past.Political.Experience %>% filter(type=="sample")  %>% dplyr::select(estimate)
+
+cbind(adjusted_marginal, unadjusted_marginal, (adjusted_marginal-unadjusted_marginal)*100)
+
+
+
+```
+  
+# Conjoint Mixture Model 
+
+- We are going to use the @kirkland_candidate_2018 conjoint experiment on partisan labels
+- The authors use CJ to asses the impact of partisan labels in non-partisan elections 
+- Before getting into mixture modelling we need to load and prepare the data for the analysis 
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+df_base <- readr::read_csv("https://github.com/albertostefanelli/conjoint_class/raw/master/data/Kirkland_Coppock_mturk_replication.csv")
+
+df_base <- df_base  %>% 
+       mutate_at(vars(Political,Job,Party,Gender,Age,Race), as.factor) %>% 
+       filter(Party != "non-partisan") %>% 
+       mutate_at(vars(Party), droplevels)
+
+
+# Get same reference categories as Kirkland & Coppock (2018)
+df_base$Political <- relevel(df_base$Political, ref = "None")
+df_base$Job <- relevel(df_base$Job, ref = "Educator")
+df_base$Party <- relevel(df_base$Party, ref = "Independent")
+df_base$Gender <- relevel(df_base$Gender, ref = "Female")
+df_base$Age <- relevel(df_base$Age, ref = "35")
+df_base$Race <- relevel(df_base$Race, ref = "White")
+
+```
+
+- We are going to git a pooled model disregarding, for the moment, any group differences
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+# model formula 
+frml <- win ~ Party + Political + Job + Race + Age + Gender
+
+# Pooled Model
+fit_1 <- amce(df_base,
+              frml,
+              id = ~ resp_mturkid)
+
+
+# let's extract the coefficents to plot only the effect of the attribute party
+m0pool <- fit_1 %>%
+  filter(feature == "Party") %>%
+  mutate(model = "Pooled") %>%
+  dplyr::select(model, level, estimate, std.error, lower, upper)
+
+# Pooled Visualisation
+vis1 <- ggplot(m0pool, aes(x = level, y = estimate)) +
+  geom_point() +
+  geom_segment(aes(x = level, xend = level,
+                   y = lower, yend = upper)) +
+  theme_bw() +
+  theme(
+        plot.title = element_text(size = 10),
+        axis.text.x = element_text(size = 7)
+        ) +
+  xlab("") + ylab("") +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  scale_y_continuous(breaks = c(-0.3, -0.2, -0.1, 0, 0.1)) +
+  coord_flip(ylim = c(-0.35, 0.15))
+
+vis1
+
+```
+
+- In the pooled model, respondents would rather vote for Independent candidates than either Democrats or Republicans. Such results are typical for conjoints with unobserved subgroups.
+- Let's now split the sample by respondent party ID and fit a model for each group. This is similar to what the cregg package does when you specify the grouping variable using `by=Party`
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+# Interaction: Democrats
+mcp_d <- filter(df_base, resp_pid_3_text == "Democrat")
+fit_2d <- amce(mcp_d,
+               frml,
+               id = ~ resp_mturkid,
+               level_order = "descending")
+fit_2d$resp_party <- "Democrat"
+
+# Interaction: Republican
+mcp_r <- filter(df_base, resp_pid_3_text == "Republican")
+fit_2r <- amce(mcp_r,
+               frml,
+               id = ~ resp_mturkid,
+               level_order = "descending")
+fit_2r$resp_party <- "Republican"
+
+# Interaction Model
+m1inter <- rbind(fit_2d, fit_2r) %>%
+  filter(feature == "Party") %>%
+  mutate(model = "Interaction") %>%
+  mutate(Respondent = resp_party) %>%
+  dplyr::select(model, level, estimate, std.error, lower, upper, Respondent)
+
+# Interaction Visualisation
+vis2 <- m1inter %>%
+  mutate(image = ifelse(Respondent == "Democrat",
+                        "http://clipart-library.com/images/BiaKRMaBT.gif",
+                        "https://i1.wp.com/gifgifs.com//animations/jobs-people/politicians/Republican_elephant.gif")) %>%
+  mutate(image = ifelse(level == "Independent",
+                        NA, image)) %>%
+  ggplot(aes(x = level, y = estimate,
+             group = Respondent,
+             color = Respondent,
+             shape = Respondent)) +
+  geom_hline(yintercept = 0, color = "grey30", linetype = "dashed",
+             alpha = 0.8) +
+  geom_point(aes(y = estimate), position = position_dodge(width = 0.6)) +
+  geom_linerange(aes(xmin = level, xmax = level,
+                     ymin = lower, ymax = upper),
+                 position = position_dodge(width = 0.6)) +
+  geom_image(aes(y = estimate + 0.003,
+                 image = image),
+             size= .07) +
+  theme_bw() +
+  xlab("") + ylab("") +
+  scale_y_continuous(breaks = c(-0.3, -0.2, -0.1, 0, 0.1)) +
+  coord_flip(ylim = c(-0.35, 0.15)) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.text.x = element_text(size = 7)
+  ) +
+  scale_colour_manual(
+    values = c("#1404BD", "#DE0100"),
+    aesthetics = c("colour", "fill")
+  )
+
+vis2
+
+```
+- Splitting the sample by respondent’s party identification, we see a clear pattern: 
+    - Democrats are unlikely to vote for Republicans and vice- versa.
+    - These sub-groups have an effect of different magnitude and direction.
+- Let's now see if we can reproduce these results **without** observing respondent’s party identification 
+
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+# tell flexmix that the task are nested within respondents
+f1_univ <- update(frml, ~ . | resp_mturkid)
+
+# Model without concomitant variables
+set.seed(1402)
+
+fmod0 <- flexmix(f1_univ, data = df_base, k = 2,
+                 model = FLXglm(family = "gaussian"),
+                 #concomitant = FLXPmultinom(~ democrat + republican)
+                 )
+
+parameters(fmod0)[2:3, ]
+# we need re-fit the model to obtain sd. errors 
+rfmod0 <- refit(fmod0)
+fit_3 <- summary(rfmod0)
+
+# extract estimates first component
+fit_3r <- fit_3@components[[1]]$Comp.1@.Data[2:3, ]
+
+fit_3r1 <- as.data.frame(fit_3r) %>%
+  mutate(model = "CFMM",
+         level = str_remove(row.names(fit_3r), "Party"),
+         component = "Component 1")
+
+# extract estimates second component 
+fit_3d <- fit_3@components[[1]]$Comp.2@.Data[2:3, ]
+fit_3d2 <- as.data.frame(fit_3d) %>%
+  mutate(model = "CFMM",
+         level = str_remove(row.names(fit_3d), "Party"),
+         component = "Component 2")
+
+# calculate CI
+m2mix <- rbind(fit_3r1, fit_3d2) %>%
+  mutate(estimate = Estimate,
+         std.error = `Std. Error`,
+         lower = estimate - 1.96 * std.error,
+         upper = estimate + 1.96 * std.error) %>%
+  dplyr::select(model, level, estimate, std.error, lower, upper, component)
+
+m2mix$component <- forcats::fct_relevel(m2mix$component, "Component 1", "Component 2")
+
+m2mix_vis <- m2mix %>%
+  add_row(model = "CFMM",
+          level = "Independent", 
+          estimate = 0,
+          std.error = NA,
+          lower = NA,
+          upper = NA,
+          component = "Component 1") %>%
+  add_row(model = "CFMM",
+          level = "Independent", 
+          estimate = 0,
+          std.error = NA,
+          lower = NA,
+          upper = NA,
+          component = "Component 2") %>%
+  mutate(image = ifelse(component == "Component 2",
+                        "http://clipart-library.com/images/BiaKRMaBT.gif",
+                        "https://i1.wp.com/gifgifs.com//animations/jobs-people/politicians/Republican_elephant.gif")) %>%
+  mutate(image = ifelse(level == "Independent",
+                        NA, image))
+
+m2mix_vis$level <- forcats::fct_relevel(m2mix_vis$level, rev(c("Independent", "Democrat", "Republican")))
+m2mix_vis$component <- forcats::fct_relevel(m2mix_vis$component, "Component 2", "Component 1")
+
+vis3 <- m2mix_vis %>%
+ggplot(aes(x = level, y = estimate,
+             group = component,
+             color = component,
+             shape = component)) +
+  geom_hline(yintercept = 0, color = "grey30", linetype = "dashed",
+             alpha = 0.8) +
+  geom_point(aes(y = estimate), position = position_dodge(width = 0.6)) +
+  geom_linerange(aes(xmin = level, xmax = level,
+                     ymin = lower, ymax = upper),
+                 position = position_dodge(width = 0.6)) +
+  geom_image(aes(y = estimate + 0.003,
+                 image = image),
+             size= .07) +
+  theme_bw() +
+  xlab("") + ylab("") +
+  coord_flip(ylim = c(-0.35, 0.15)) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 10),
+    axis.text.x = element_text(size = 7)
+  ) +
+  scale_colour_manual(
+    values = c("#1404BD", "#DE0100"),
+    aesthetics = c("colour", "fill")
+  )
+
+
+## Composite visualisation
+ggpubr::ggarrange(vis1 +
+                    ggtitle("Pooled model") +
+                    theme(
+                      axis.text.y = element_text(face = "bold",
+                                                 size = 9)
+                    ), 
+                  vis2 +
+                    ggtitle("Split by observed cov.") +
+                    theme(
+                      axis.text.y = element_blank()
+                    ), 
+                  vis3 +
+                    ggtitle("CFMM (no covariates)")+
+                    theme(
+                      axis.text.y = element_blank()
+                    ),
+                  ncol = 3, nrow = 1,
+                  widths = c(1.5, 1.5, 1.5),
+                  common.legend = F)
+
+
+
+```
+- Using CFMM with two classes, we successfully identify the existing subgroups. 
+- Standard errors capture the effect provided by Kirkland and Coppock (2018), **without** the need to incldue respondent’s party.
+
