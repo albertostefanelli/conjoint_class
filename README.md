@@ -53,3 +53,9 @@ Session|Day|Time|Link
 - [Session 5 - Exercise](https://albertostefanelli.github.io/conjoint_class/session_5/exercise/html/conjoint_exercise_5.html)
 - [Session 5 - Solution](https://albertostefanelli.github.io/conjoint_class/session_5/solutions/html/conjoint_solutions_5.html)
 
+
+## Info 
+
+Feel free to open an issue if you find errors or you want to propose some improvement to the material
+
+
