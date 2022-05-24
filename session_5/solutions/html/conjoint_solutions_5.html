@@ -1722,6 +1722,10 @@ pre:not([class]) {
 </ul></li>
 </ol>
 <table>
+<colgroup>
+<col width="27%" />
+<col width="72%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Attribute</th>
@@ -1743,11 +1747,11 @@ pre:not([class]) {
 </tr>
 <tr class="even">
 <td>Highest Elected Political Post</td>
-<td>None, Mayor, State Legislator</td>
+<td>None, 1, 3, 8</td>
 </tr>
 <tr class="odd">
 <td>Occupation</td>
-<td>Corporate Lawyer, Third Grade Teacher</td>
+<td>Corporate Lawyer, Mayor, State Legislator, Third Grade Teacher</td>
 </tr>
 <tr class="even">
 <td>Spouse’s Occupation</td>
@@ -1772,7 +1776,7 @@ pre:not([class]) {
 </li>
 <li>Candidate’s political Post= “orig_may”, “orig_leg”<br />
 </li>
-<li>Candidate’s occupation= “orig_law”, “orig_teach”<br />
+<li>Candidate’s occupation= “orig_law”, “orig_leg”, “orig_may”, “orig_teach”<br />
 </li>
 <li>Candidate’s spouse’s Occupation= “orig_UN_sp”, “orig_FM_sp”, “orig_MD_sp”<br />
 </li>
@@ -1806,7 +1810,7 @@ pre:not([class]) {
 </ul></li>
 <li>Try to replicate the sub-group analysis using a mixture model [OPTIONAL]
 <ul>
-<li>Include a concomitant variable in the estimation of the mixture components</li>
+<li>Include a concomitant variable (respondent-varying) in the estimation of the mixture components</li>
 </ul></li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data </span></span>
@@ -1892,7 +1896,8 @@ ACIE Baseline Levels:
 --------------------
                Attribute             Level
  c_childern:c_experience orig_0ch:orig_0ys</code></pre>
-<p>As hypothesised, there is an interaction effect between the number of children and political experience. This means that respondents evaluate the experience of the candidate differently depending on the number of children they have. For instance, having a candidate with 8 years of experience and 3 children VS a candidate without experience and without children decreases the probability of choosing that profile by 15 percentage point. We might want to select a different reference category to make our results more interpretable. For instance, I might be interested in keeping the number of children constant (3) and testing how political experience impact on the likelihood to select a profile.</p>
+<p>As hypothesised, there is an interaction effect between the number of children and political experience. This means that respondents evaluate the experience of the candidate differently depending on the number of children they have. For instance, having a candidate with 8 years of experience and 3 children VS a candidate without experience and without children decreases the probability of choosing that profile. We might want to select a different reference category to make our results more interpretable.</p>
+<p>Let’s now fit a model to understand which is the ‘least-liked’ profile</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>least_liked <span class="ot">&lt;-</span> cjoint<span class="sc">::</span><span class="fu">amce</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     winner <span class="sc">~</span> c_gender <span class="sc">*</span> c_experience <span class="sc">*</span> c_childern <span class="sc">*</span> c_occupation <span class="sc">*</span> c_age <span class="sc">*</span> c_spouse_occupation,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> teele_data, </span>
@@ -2863,7 +2868,7 @@ ACIE Baseline Levels:
 <ul>
 <li><strong>Expectation:</strong> Democratic respondents will be more less responsive to the gender of the candidate compared to Republican respondents</li>
 </ul>
-<p>Next we are going to see if Democrats VS Republicans and Male VS Female have different utility functions when it comes to candidate favourability. We refers to this phenomena as heterogeneity of the casual effect.</p>
+<p>Next we are going to see if Democrats VS Republicans have different “utility functions” when it comes to candidate favourability. We refers to this phenomena as heterogeneity of the casual effect.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>interaction_PID <span class="ot">&lt;-</span> cjoint<span class="sc">::</span><span class="fu">amce</span>(winner <span class="sc">~</span> </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>     c_gender <span class="sc">*</span> r_PID <span class="sc">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>     c_experience<span class="sc">+</span></span>
@@ -2938,9 +2943,9 @@ AMCE Baseline Levels:
 </div>
 <div id="non-uniform-marginal-distribution" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Non-uniform marginal distribution</h1>
-<p>Let’s now include a non-uniform distribution of candidates’ attributes</p>
+<p>Let’s now include a non-uniform distribution of the candidates’ attributes</p>
 <ul>
-<li>Marginal distribution
+<li>Marginal distribution (taken from LegislatorR)
 <ul>
 <li>Gender .4, .6</li>
 <li>Experience .2, .30, .3, .2</li>
@@ -2985,7 +2990,7 @@ AMCE Baseline Levels:
 <span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>     c_age<span class="sc">+</span></span>
 <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>     c_spouse_occupation,</span>
 <span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> subset_teele_wo_NA,</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">reg =</span><span class="cn">FALSE</span>,</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">reg =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster_id =</span> subset_teele_wo_NA<span class="sc">$</span>responseid,</span>
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">target_dist =</span> non_uniform_distribution, </span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">target_type =</span> <span class="st">&quot;marginal&quot;</span>,</span>
@@ -3036,21 +3041,19 @@ Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>formula  <span class="ot">&lt;-</span> winner <span class="sc">~</span> c_gender <span class="sc">+</span> c_experience<span class="sc">+</span> c_childern <span class="sc">+</span> c_occupation <span class="sc">+</span> c_age<span class="sc">+</span> c_spouse_occupation <span class="sc">|</span> responseid</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># for semplicy, let&#39;s write out the forumla and store it in a object</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>formula  <span class="ot">&lt;-</span> winner <span class="sc">~</span> c_gender <span class="sc">+</span> c_experience<span class="sc">+</span> c_childern <span class="sc">+</span> c_occupation <span class="sc">+</span> c_age<span class="sc">+</span> c_spouse_occupation <span class="sc">|</span> responseid</span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Model without concomitant variables</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1402</span>)</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>fmod0 <span class="ot">&lt;-</span> flexmix<span class="sc">::</span><span class="fu">flexmix</span>(formula, <span class="at">data =</span> subset_teele_wo_NA, <span class="at">k =</span> <span class="dv">2</span>,</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">model =</span> <span class="fu">FLXglm</span>(<span class="at">family =</span> <span class="st">&quot;gaussian&quot;</span>),</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>                 <span class="at">concomitant =</span> <span class="fu">FLXPmultinom</span>(<span class="sc">~</span> female_respondent)</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>                 )</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="co"># we need re-fit the model to obtain sd. errors </span></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>rfmod0 <span class="ot">&lt;-</span> <span class="fu">refit</span>(fmod0)</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">summary</span>(rfmod0)</span></code></pre></div>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Model with concomitant variables</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1402</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>fmod0 <span class="ot">&lt;-</span> flexmix<span class="sc">::</span><span class="fu">flexmix</span>(formula, <span class="at">data =</span> subset_teele_wo_NA, <span class="at">k =</span> <span class="dv">2</span>,</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>                 <span class="at">model =</span> <span class="fu">FLXglm</span>(<span class="at">family =</span> <span class="st">&quot;gaussian&quot;</span>),</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">concomitant =</span> <span class="fu">FLXPmultinom</span>(<span class="sc">~</span> female_respondent)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co"># we need re-fit the model to obtain std. errors </span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>rfmod0 <span class="ot">&lt;-</span> <span class="fu">refit</span>(fmod0)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">summary</span>(rfmod0)</span></code></pre></div>
 <pre><code>$Comp.1
                                Estimate Std. Error z value              Pr(&gt;|z|)    
 (Intercept)                    0.360523   0.029908 12.0544 &lt; 0.00000000000000022 ***
@@ -3088,13 +3091,7 @@ c_spouse_occupationorig_MD_sp  0.0164753  0.0297680  0.5535       0.5799502
 c_spouse_occupationorig_UN_sp -0.0197119  0.0339071 -0.5813       0.5610046    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fit_3</span></code></pre></div>
-<pre><code>
-Call:
-refit(fmod0)
-
-Number of components: 2 </code></pre>
-<p>The coefficient for gender is similar to the one obtained in the sub-group analysis model. In addition, we strong effect heterogeneity across the two classes. We might speculate that Component 1 resemble democratic voter while Component 2 Republican identifiers.</p>
+<p>The coefficient for gender is similar to the one obtained in the sub-group analysis model. In addition, we see strong effect heterogeneity across the two classes. We might speculate that Component 1 resembles democratic voter while Component 2 Republican identifiers. (Since we have PID, we can test this out)</p>
 </div>
 <div id="references" class="section level1 unnumbered allowframebreaks">
 <h1>References</h1>

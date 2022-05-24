@@ -1712,6 +1712,10 @@ pre:not([class]) {
 </ul></li>
 </ol>
 <table>
+<colgroup>
+<col width="27%" />
+<col width="72%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Attribute</th>
@@ -1733,11 +1737,11 @@ pre:not([class]) {
 </tr>
 <tr class="even">
 <td>Highest Elected Political Post</td>
-<td>None, Mayor, State Legislator</td>
+<td>None, 1, 3, 8</td>
 </tr>
 <tr class="odd">
 <td>Occupation</td>
-<td>Corporate Lawyer, Third Grade Teacher</td>
+<td>Corporate Lawyer, Mayor, State Legislator, Third Grade Teacher</td>
 </tr>
 <tr class="even">
 <td>Spouse’s Occupation</td>
@@ -1762,7 +1766,7 @@ pre:not([class]) {
 </li>
 <li>Candidate’s political Post= “orig_may”, “orig_leg”<br />
 </li>
-<li>Candidate’s occupation= “orig_law”, “orig_teach”<br />
+<li>Candidate’s occupation= “orig_law”, “orig_leg”, “orig_may”, “orig_teach”<br />
 </li>
 <li>Candidate’s spouse’s Occupation= “orig_UN_sp”, “orig_FM_sp”, “orig_MD_sp”<br />
 </li>
@@ -1773,13 +1777,13 @@ pre:not([class]) {
 <div id="task" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Task</h1>
 <ol style="list-style-type: decimal">
-<li>Attributes’ interactions for the legislators sample
+<li>Attributes’ interactions
 <ul>
 <li>Postulate Hypothesises/Expectation about attributes interactions</li>
 <li>Test your hypothesises</li>
 <li>Estimate the least-liked profile</li>
 </ul></li>
-<li>Sub-group analysis for the legislators sample
+<li>Sub-group analysis
 <ul>
 <li>Postulate Hypothesises/Expectation about subgroups</li>
 <li>Test your hypothesises</li>
@@ -1796,7 +1800,7 @@ pre:not([class]) {
 </ul></li>
 <li>Try replicate the sub-group analysis using a mixture model [OPTIONAL]
 <ul>
-<li>Include a concomitant variable in the estimation of the mixture components</li>
+<li>Include a concomitant variable (respondent-varying) in the estimation of the mixture components</li>
 </ul></li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data </span></span>

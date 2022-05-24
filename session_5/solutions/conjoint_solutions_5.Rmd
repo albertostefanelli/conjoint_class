@@ -120,8 +120,8 @@ Attribute | Values
 Gender | Female, Male
 Age | 29, 45, 65
 Number of Children | 0, 1, 3
-Highest Elected Political Post | None, Mayor, State Legislator
-Occupation | Corporate Lawyer, Third Grade Teacher
+Highest Elected Political Post | None, 1, 3, 8
+Occupation | Corporate Lawyer, Mayor, State Legislator, Third Grade Teacher
 Spouse's Occupation | Doctor, Farmer, Unmarried
 
 - Variables in the dataset
@@ -133,7 +133,7 @@ Spouse's Occupation | Doctor, Farmer, Unmarried
     - Candidate's political Experience= "orig_0ys", "orig_1ys", "orig_3ys", "orig_8ys"
     - Candidate's number of Children= "orig_0ch",  "orig_1ch",  "orig_3ch"  
     - Candidate's political Post= "orig_may", "orig_leg"                
-    - Candidate's occupation= "orig_law", "orig_teach"                                     
+    - Candidate's occupation= "orig_law", "orig_leg", "orig_may", "orig_teach"                                     
     - Candidate's spouse's Occupation= "orig_UN_sp", "orig_FM_sp", "orig_MD_sp"                   
     - Candidate's candidate's Age= "orig_29", "orig_45", orig_65"          
 
@@ -156,7 +156,7 @@ Spouse's Occupation | Doctor, Farmer, Unmarried
     - Spouse's Occupation .33, .33, .33
     - Age .20, .55, .25
 4. Try to replicate the sub-group analysis using a mixture model [OPTIONAL]
-    - Include a concomitant variable in the estimation of the mixture components
+    - Include a concomitant variable (respondent-varying) in the estimation of the mixture components
 
 ```{r, echo=T, message=FALSE, warning=FALSE,eval=TRUE}
 # load the data 
@@ -190,8 +190,9 @@ interaction_attributes <- cjoint::amce(winner ~
 summary(interaction_attributes)
 ```
 
-As hypothesised, there is an interaction effect between the number of children and political experience. This means that respondents evaluate the experience of the candidate differently depending on the number of children they have. For instance, having a candidate with 8 years of experience and 3 children VS a candidate without experience and without children decreases the probability of choosing that profile by 15 percentage point. We might want to select a different reference category to make our results more interpretable. For instance, I might be interested in keeping the number of children constant (3) and testing how political experience impact on the likelihood to select a profile.  
+As hypothesised, there is an interaction effect between the number of children and political experience. This means that respondents evaluate the experience of the candidate differently depending on the number of children they have. For instance, having a candidate with 8 years of experience and 3 children VS a candidate without experience and without children decreases the probability of choosing that profile. We might want to select a different reference category to make our results more interpretable. 
 
+Let's now fit a model to understand which is the 'least-liked' profile
 
 ```{r, echo=T, cache=TRUE, message=FALSE, warning=FALSE,eval=TRUE}
 
@@ -208,7 +209,7 @@ summary(least_liked)
 
 - **Expectation:** Democratic respondents will be more less responsive to the gender of the candidate compared to Republican respondents
 
-Next we are going to see if Democrats VS Republicans and Male VS Female have different utility functions when it comes to candidate favourability. We refers to this phenomena as heterogeneity of the casual effect. 
+Next we are going to see if Democrats VS Republicans have different "utility functions" when it comes to candidate favourability. We refers to this phenomena as heterogeneity of the casual effect. 
 
 ```{r, echo=T, message=FALSE, warning=FALSE,eval=TRUE}
 
@@ -233,9 +234,9 @@ As anticipated, the gender of the candidate really matters for Democrats while i
 
 # Non-uniform marginal distribution
 
-Let's now include a non-uniform distribution of candidates' attributes 
+Let's now include a non-uniform distribution of the candidates' attributes 
 
-- Marginal distribution 
+- Marginal distribution (taken from LegislatorR)
     - Gender .4, .6
     - Experience .2, .30, .3, .2
     - Children .33, .33, .33 
@@ -280,7 +281,7 @@ model_marginal <- model_pAMCE(
      c_age+
      c_spouse_occupation,
   data = subset_teele_wo_NA,
-  reg =FALSE,
+  reg = FALSE,
   cluster_id = subset_teele_wo_NA$responseid,
   target_dist = non_uniform_distribution, 
   target_type = "marginal",
@@ -315,28 +316,25 @@ subset_teele_wo_NA <- subset_teele %>%
   na.omit()
 
 
+# for semplicy, let's write out the forumla and store it in a object
 formula  <- winner ~ c_gender + c_experience+ c_childern + c_occupation + c_age+ c_spouse_occupation | responseid
 
-
-
-# Model without concomitant variables
+# Model with concomitant variables
 set.seed(1402)
-
 fmod0 <- flexmix::flexmix(formula, data = subset_teele_wo_NA, k = 2,
                  model = FLXglm(family = "gaussian"),
                  concomitant = FLXPmultinom(~ female_respondent)
                  )
 
-# we need re-fit the model to obtain sd. errors 
+# we need re-fit the model to obtain std. errors 
 rfmod0 <- refit(fmod0)
 fit_3 <- summary(rfmod0)
 
-fit_3
 
 
 ```
 
-The coefficient for gender is similar to the one obtained in the sub-group analysis model. In addition, we strong effect heterogeneity across the two classes. We might speculate that Component 1 resemble democratic voter while Component 2 Republican identifiers. 
+The coefficient for gender is similar to the one obtained in the sub-group analysis model. In addition, we see strong effect heterogeneity across the two classes. We might speculate that Component 1 resembles democratic voter while Component 2 Republican identifiers. (Since we have PID, we can test this out)
 
 
 # References {.allowframebreaks} 
