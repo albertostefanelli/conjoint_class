@@ -393,19 +393,6 @@ We can also introduce non-uniform marginal distribution to improuve the external
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
 
-fit_1 <- cjoint::amce(selected ~ 
-  Past.Political.Experience + 
-  Penal.proceedings + 
-  Policy.Proposal +
-  Penal.proceedings * Past.Political.Experience,
-  data=df_long_format,
-  cluster=TRUE, 
-  respondent.id="ResponseId"
-)
-
-summary(fit_1)
-
-
 # this function calculate the frequencies of our constrained design 
 freq_cj <- cregg::cj_freqs(df_long_format,
   selected ~ 
@@ -443,18 +430,6 @@ return(marginal_f)
 # call the function 
 non_uniform_distribution  <- function_marginal_distribution(freq_cregg=freq_cj)
 
-non_uniform_distribution$Past.Political.Experience <- c("None" = 0.01, 
-                                                        "Approximately 10 years" =  0.69, 
-                                                        "Approximately 20 years" = 0.3)
-
-
-non_uniform_distribution$Penal.proceedings <- c("No proceedings" = 0.9, 
-                                                        "The candidate has been convicted of corruption" =  0.05, 
-                                                        "The candidate is under investigation for corruption" = 0.05)
-
-# should sum to 1  
-sum(non_uniform_distribution$Past.Political.Experience)
-
 non_uniform_distribution
 
 ```
@@ -472,6 +447,9 @@ non_uniform_distribution$Past.Political.Experience <- c("None" = 0.01,
 non_uniform_distribution$Penal.proceedings <- c("No proceedings" = 0.9, 
                                                         "The candidate has been convicted of corruption" =  0.05, 
                                                         "The candidate is under investigation for corruption" = 0.05)
+
+
+non_uniform_distribution
 
 # should sum to 1  
 sum(non_uniform_distribution$Past.Political.Experience)
