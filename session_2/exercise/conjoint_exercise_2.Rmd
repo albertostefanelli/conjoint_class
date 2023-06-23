@@ -64,32 +64,30 @@ options(width = 300, scipen = 9999)
 ```
 
   
-# Build a CJ Design 
+# Design your own CJ experiment
 
-You will be divided in groups and asked to design an CJ experiment. We will implement the design in qualtrics in the next session. 
+Guidelines:
 
-Must be:
-
-1. Interesting RQ to a broader public 
-2. You should produce something that has empirical value (although not necessary academic)
-3. It should be in English and focus on the US so that we can collect responses from /r/samplesize 
-
-**Guidelines:**
-
-1. What is my RQ (and hypotheses) ? 
+1. Relevant and interesting RQ in your discipline [see exercise first lab]
     - Literature is relevant
     - Use previous knowledge and avoid 'shooting in the dark'
     - However, it can be exploratory 
+2. Justifiable design choices
+3. Pay attention to external and internal validity
+3. [if you want to pre-test it, it should be in English and focus on the US so that we can collect responses from Reddit (/r/samplesize) or a HIT platform]
+
+**Guidelines:**
+
 2. Basic design choices: 
-    - Select the attributes
-    - Select the levels 
-    - Framing/priming [we will implement this on Qualtrics]
+    - Attributes (realism vs. theory testing)
+    - Levels  
+    - Framing/priming [if RQ requires so]
 3. Other design choices: 
     - Uniform or non-uniform distribution?
     - Restrictions on combination of certain attributes/levels (please include if necessary)
     - Attribute order constrains?
-    - How many profiles per choice-sets? (let's stick to two unless specific needs)
-    - How many comparisons to include (sample size)?
+    - How many profiles per choice-sets? (usually 2 unless specific needs)
+    - How many tasks/sample size?
 
 
 

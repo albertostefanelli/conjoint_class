@@ -465,31 +465,31 @@ knitr::include_graphics("images/IMC bad.JPG")
 
 ```
 
-# Nonsensical Items
+<!-- # Nonsensical Items -->
 
-1. Use a scale response
-2. No prior knowledge should be required
-3. Participants should not be given a 'neutral' response option (i.e., no middle scale value)
-4. Correct responses should either be extreme agreement or extreme disagreement, however any response indicating disagreement or agreement should be accepted
-5. Participants who answer in the opposite manner to the objectively correct answer have failed
+<!-- 1. Use a scale response -->
+<!-- 2. No prior knowledge should be required -->
+<!-- 3. Participants should not be given a 'neutral' response option (i.e., no middle scale value) -->
+<!-- 4. Correct responses should either be extreme agreement or extreme disagreement, however any response indicating disagreement or agreement should be accepted -->
+<!-- 5. Participants who answer in the opposite manner to the objectively correct answer have failed -->
 
-## A good example of a nonsensical item
-
-
-```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'}
-knitr::include_graphics("images/NS good.JPG")
+<!-- ## A good example of a nonsensical item -->
 
 
-```
+<!-- ```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'} -->
+<!-- knitr::include_graphics("images/NS good.JPG") -->
 
 
-## A bad example of a nonsensical item
-
-```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'}
-knitr::include_graphics("images/NS bad.JPG")
+<!-- ``` -->
 
 
-```
+<!-- ## A bad example of a nonsensical item -->
+
+<!-- ```{r ,echo=FALSE, out.width="49%",fig.cap="",fig.show='hold',fig.align='centre'} -->
+<!-- knitr::include_graphics("images/NS bad.JPG") -->
+
+
+<!-- ``` -->
 
 # Comprehension checks 
 

@@ -109,11 +109,10 @@ options(width = 300, scipen = 9999)
 # ### Estimation ###
 # install.packages("cjoint")    # base amce package
 # install.packages("cregg")     # amce and mm 
-# install.packages("factorEx")  # amce with non-uniform distribution
 
 ## Custom build functions 
-# library(devtools)
-# devtools::install_github("albertostefanelli/cjoint") # fixes some problem with cjoint
+#library(devtools)
+#devtools::install_github("albertostefanelli/cjoint") # fixes some problem with cjoint
 
 ### Data import ###
 library("readr")     
@@ -125,8 +124,6 @@ library("ggplot2")
 ### Estimation ###
 library("cjoint")   
 library("cregg")     
-library("factorEx")  
-
 
 
 ```
@@ -293,6 +290,7 @@ plot(fit_3) +
 
 
 ```
+
 ## Tuning ggplot
 
 - Depending on the review where you are publishing they may ask you to change colours 
@@ -349,7 +347,7 @@ plot(cregg::cj_freqs(df_long_format, selected ~
 
 ```
 
-## Carryover and Left/Right Diagnostics
+## Left/Right Diagnostics
 
 - The distribution should be at random 
 - Meaning around .5 per each cell 
@@ -370,34 +368,18 @@ plot(cregg::cj(df_long_format, selected ~
 
 ```
 
-## Respondent's fatigue 
 
-Let's now take a look at the effect of task on selecting a profile. We might expect that people got tired with the progression of the experiment and as such, we would see an effect of task numbering on their response behaviour. Again, we want the coefficients to overlap to have no significant different between tasks.
+## Attributes' order
+
+Let'ssee if the attributes' order had an impact on the probability of selecting a profile. The attributes' order is randomized by design but it could be that seeing political experience as the first attribute in the conjoint table has an impact on how the decision making process of the respondent. 
 
 - We should not be able to detect any effect of the row position on our DV
-- Let's test Age
-- You should do it for all the attribute
+- Let's test Past political experience
+- You should do it for all the attributes
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
 
-df_long_format$Penal.proceedings.rowpos <-  as.factor(df_long_format$Penal.proceedings.rowpos)
-
-plot(cregg::cj(df_long_format, selected ~ 
-  Past.Political.Experience +
-  Penal.proceedings+
-  Policy.Proposal, 
-  id = ~ResponseId,
-  by = ~Penal.proceedings.rowpos,
-  estimate = "mm"), 
-    group = "Penal.proceedings.rowpos", 
-    vline = 0.5)+ 
-theme(text = element_text(size=21))
-
-```
-
-```{r, echo=T, message=FALSE, warning=FALSE}
-
-df_long_format$Past.Political.Experience.rowpos <-  as.factor(df_long_format$Past.Political.Experience.rowpos)
+df_long_format$Past.Political.Experience.rowpos <-  as.factor(df_long_format$Penal.proceedings.rowpos)
 
 plot(cregg::cj(df_long_format, selected ~ 
   Past.Political.Experience +
@@ -411,5 +393,28 @@ plot(cregg::cj(df_long_format, selected ~
 theme(text = element_text(size=21))
 
 ```
+
+## Respondent's fatigue 
+
+Let's now take a look at the effect of task on selecting a profile. We might expect that people got tired with the progression of the experiment and as such, we would see an effect of task numbering on their response behaviour. Again, we want the coefficients to overlap to have no significant different between tasks.
+
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+df_long_format$task <-  as.factor(df_long_format$task)
+
+plot(cregg::cj(df_long_format, selected ~ 
+  Past.Political.Experience +
+  Penal.proceedings+
+  Policy.Proposal, 
+  id = ~ResponseId,
+  by = ~task,
+  estimate = "mm"), 
+    group = "task", 
+    vline = 0.5)+ 
+theme(text = element_text(size=21))
+
+```
+
 
 # References {.allowframebreaks} 

@@ -38,31 +38,27 @@ header-includes:
 2. Technical skills 
     - Designing 
     - Deploying 
-    - Analysing
+    - Analyzing
     - Learning by doing (in R, in Qualtrics...)
 
-## Sessions {.allowframebreaks} 
+## Building blocks {.allowframebreaks} 
 
-1. Experimental design and causality
-    - Causal Inference
-    - Intro to CJ (if time)
+1. Experiments and causality
+    - Causal/Scientific model
+    - Potential outcome framework
 2. The basics of conjoint experiments 
     - Terminology
-    - Designing CJ 
-    - Conjointsdt (Py3) and design
-    - Different types of design  (if time)
-3. Deploying, Collecting, Analysis
     - Different types of design 
+    - Conjointsdt (Py3) and design
+3. Deploying, Collecting, Analysis
     - (Web) survey methodology
-    - Qualtrics implementations
+    - Qualtrics
     - Data Collection guidelines
-    - AMCEs (if time) 
 3. Analysing CJ data
     - AMCE 
     - Robustness checks
-    - Marginal means (if time)
-5. More advanced topics and conclusions
     - Marginal means 
+5. More advanced topics and conclusions
     - Modelling restricted randomization
     - Modelling non-uniform Distributions
     - Power Analysis 
@@ -73,27 +69,27 @@ header-includes:
 - FWO PhD Fellow at KU Leuven, Belgium
 - Previously…
     - MA at Central European University 
-- Next…
-    - Visiting NYU/Yale for the next year 
+- Currently…
+    - Visiting @ Yale/NYU
 - My research:
     - Radial Beliefs
     - Polarization
-    - Liberal Values
+    - Democracy/Liberal Values
     - Methods: Causality, experimental and semi-experimental design, SEM etc.
 - Contact: alberto.stefanelli@kuleuven.be
 - Website: www.albertostefanelli.com
 - Twitter: `@sergsagara`
 
 
-## Your turn 
+<!-- ## Your turn  -->
 
-- Name?
-- Affiliation/Position?
-- Research interests?
-- Previous experience with experimental designs?
-- Previous experience with R?
-- Previous experience with Qualtrics?
-- Why are you taking this workshop?
+<!-- - Name? -->
+<!-- - Affiliation/Position? -->
+<!-- - Research interests? -->
+<!-- - Previous experience with experimental designs? -->
+<!-- - Previous experience with R? -->
+<!-- - Previous experience with Qualtrics? -->
+<!-- - Why are you taking this workshop? -->
 
 
 ## Materials
@@ -120,10 +116,6 @@ Where to find the material:
 - Horiuchi, Yusaku, Daniel M Smith and Teppei Yamamoto. 2015. Measuring Voters’ Multidimensional Policy Preferences with Conjoint Analysis: Application to Japan’s 2014 Election. Available at SSRN 2627907
 - Leeper, T. J., Hobolt, S. B., & Tilley, J. (2018). Measuring Subgroup Preferences in Conjoint Experiments  Political Analysis 55
 
-## Before Starting
-
-- Make sure to have R and R Studio installed
-- **If something is unclear, ask : )**    
 
 ## Causal Inference (1)
 
@@ -257,8 +249,8 @@ knitr::include_graphics("images/po_chart.png")
 
 Social reality is complex. An outcome can be a cause of many other effects
 
-- This is called equifinality. 
-- It is what Hume (1772) summaries in the **billiard ball example.** 
+- This is called equifinality (Kurt Lewin). 
+- It is what Hume (1740) summaries in the **billiard ball example.** 
 - "Fail to ascertain how and why such causal effects arise" [@imai_unpacking_2011, p. 3]
 
 \centering
@@ -329,9 +321,9 @@ knitr::include_graphics("images/pool_break.jpg")
 2. Terminology (many terms that refer to same phenomena)
     - causality = causation = cause and effect = causal mechanism
     - treatment = cause = treatment and control groups = pre-treatment post-treatment
-    - outcomes/response = effect
+    - outcomes = response = effect
     
-## Next session 
+## Next block
 
 - Conjoint attributes, levels, choice-sets
 - Different CJ designs 

@@ -213,7 +213,7 @@ df_base |> dplyr::select(dplyr::starts_with("F-"))
 
 ```
 
-Let's drive deeper and try to figure out which ones are the attributes (i.e. experimental characteristics/manupulation) of the experiment
+Let's drive deeper and try to figure out which ones are the attributes (i.e. experimental characteristics/manipulation) of the experiment
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
 df_base |> dplyr::select("F-1-1") |> table() 

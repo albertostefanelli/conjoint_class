@@ -1,6 +1,6 @@
 # Repo Introduction to Conjoint Experiments
 
-The repo contains the material for *Introduction to Conjoint Experiments* at KUL, University of Innsbruck, and the [ECPR Method School](https://ecpr.eu/Events/Event/PanelDetails/9125). 
+This repo contains the material for *Introduction to Conjoint Experiments* taught at KUL, University of Innsbruck, and the [ECPR Method School](https://ecpr.eu/Events/Event/PanelDetails/12901). 
 
 ## Contact
 
@@ -56,6 +56,6 @@ Session|Day|Time|Link
 
 ## Info 
 
-Feel free to open an issue if you find errors or you want to propose some improvement to the material
+Feel free to open an issue if you find errors or you want to propose improvements to the material
 
 

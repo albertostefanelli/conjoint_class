@@ -74,15 +74,15 @@ Where to find the material:
 
 - On my [GitHub/conjoint_class](https://albertostefanelli.github.io/conjoint_class/)
 
-## Before starting
+<!-- ## Before starting -->
 
-- For credit purposes, you are required to send in a take-home task. 
-    - Option 1: Design a conjoint using the Conjointsdt tool and deploy it on Qualtrics 
-    - Option 2: If you have collected CJ data, analyse the data, interpret the results, and create a report  
-    - Grading: PASS/FAIL
-    - **Deadline:** 07/06 (in 2 weeks)
-- Make sure to install R and R Studio.
-- **If you have questions, shoot : )**    
+<!-- - For credit purposes, you are required to send in a take-home task.  -->
+<!--     - Option 1: Design a conjoint using the Conjointsdt tool and deploy it on Qualtrics  -->
+<!--     - Option 2: If you have collected CJ data, analyse the data, interpret the results, and create a report   -->
+<!--     - Grading: PASS/FAIL -->
+<!--     - **Deadline:** 07/06 (in 2 weeks) -->
+<!-- - Make sure to install R and R Studio. -->
+<!-- - **If you have questions, shoot : )**     -->
 
 ## Sub-group analysis 
 
@@ -140,7 +140,7 @@ knitr::include_graphics("images/marginal_means_vs_amce.png")
 ## Interactions between Attributes: an example 
 
 1. Voters might value the **programmatic coherence** of a candidate policy positions
-    2. A voter might be in favour of a reduction of governmental intervention in the economy and as such would support a candidate in favour of cutting health care spending 
+    2. A voter might be in favour of a reduction of governmental intervention in the economy and as such would support a candidate in favour of cutting social spending 
     3. What would happen if a candidate is in favour of increasing social spending but -- at the same time -- is pro Medicare?
     5. ACIE: the percentage point difference in the AMCEs of cutting social spending between a pro Medicare candidate and a candidate against it 
 4. Q: Can you came up with another example of attribute interaction? (**think theoretically**)

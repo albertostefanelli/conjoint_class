@@ -115,13 +115,18 @@ Where to find the material:
 1. Used in most applications of conjoint survey experiments that follow @hainmueller_causal_2014
 2. **Formally:** The effect of a particular attribute value of interest against another value of the same attribute while holding equal the joint distribution of the other attributes
 3. **Layman terms:** A measure of the overall effect of an attribute after taking into account the possible effects of the other attributes by averaging over effect variations caused by them
+    - The AMCE is is a weighted average of the treatments effects for each possible combination of the other attributes included in the design.
 4. **E.g.,** The average causal effect of being a female candidate as opposed to a male candidate on the respondents’ candidate ratings when they are also given information about the candidates’ age, race/ethnicity. 
 
 ## Advantages of the AMCE
 
 1. Fully non parametric (in most of its applications)
-2. Does not require a particular behavioural model for respondents’ decision-making processes 
-3. Respondents might be maximizing utility, be boundedly rational, they might use weighted adding, lexicographic, or satisficing decision strategies and the AMCE is still valid
+2. Explicitly control the target of the inference to be especially plausible
+    - In traditional experiments the are either fixed at a single condition so results are conditional on  those particular settings
+    - AMCE incorporates some of those aspects and makes it explicit that the effect is conditional on their distribution
+    - This especially important when using weighted distributions of the attributes
+2. Does not require a particular behavioral model for respondents’ decision-making processes
+    - Respondents might be maximizing utility, be boundedly rational, they might use weighted adding, l        exicographic, or satisficing decision strategies and the AMCE is still valid
 
 ## Boundedly rational ?
 
@@ -137,7 +142,7 @@ knitr::include_graphics("images/bounded_rational.png")
     2. Calculate the average rating (or probability to be chosen) for all the profile that have the same value on that particular level (e.g., all male candidates)
     3. Take the difference between the two averages 
 2. AMCE averages over both the sign and the magnitude of the individual-level causal effects
-3. All the attributes but the one of interest are treated as pre-treatment covariates and averaged over 
+    - All the attributes but the one of interest are treated as "pre-treatment" covariates and averaged over 
 
 
 ## A numerical Example 
@@ -150,14 +155,14 @@ knitr::include_graphics("images/bounded_rational.png")
 2. Attributes and Levels 
     1. Gender: Female, Male 
     2. Party: Republican, Democrat 
-2. Every possible pairwise comparison
-3. Votes a candidate would obtain in a head to head competition
 
 ## Calculations AMCE for Male Candidates
 
-1. Count how many times a candidate would have won in a head to head competition
-2. Per each competition, compare how male candidates perform against female 
-3. Calculate the fraction of vote for male VS female candidates 
+1. Per each comparison, compare how male candidates perform against female 
+2. Construct all the possible pairwise comparisons between the different profiles. 
+2. Calculate the fraction of vote for male for Comparison 1 and for female for Comparison 2 
+    - Intuitively this allows us to estimate a series of comparisons between female/male across different scenarios
+3. Subtract Male - Female fraction of vote
 3. Sum over all possible opponents (i.e. tasks)
 4. Normalize by (# of profiles - 1) X (# of features -1) X # of values of gender 
 
@@ -165,7 +170,7 @@ knitr::include_graphics("images/bounded_rational.png")
 
 1. Votes that each candidate would take for every possible pairwise comparison 
 2. Men win 3 out of 4 election when they face a woman and 4 out of 6 total contests
-3. For instance, for the comparison *Male Republican VS Female Republican*, male candidates win 3 times, female candidates win 2 times 
+    3. For instance, for the comparison *Male Republican VS Female Republican*, male candidates win 3 times, female candidates win 2 times 
 
 
 ```{r ,echo=FALSE,message=FALSE}
@@ -182,7 +187,7 @@ Voter_2=c("MR","MR","MR","FR","MD","FR"),
 Voter_3=c("MR","MR","MR","FR","MD","FR"),
 Voter_4=c("FR","FD","MD","FR","FD","FD"),
 Voter_5=c("FR","FR","FR","FR","FD","FD"),
-"Sum Tally"=c("3,2","3,2","3,2","0,5","3,2","0,5")
+"Sum Tally"=c("3,2","3,2","4,1","0,5","3,2","0,5")
 )
 
 names(df) <- c("Comparison", "Voter 1", "Voter 2", "Voter 3", "Voter 4", "Voter 5", "Sum Tally")
@@ -201,7 +206,7 @@ df <- data.frame(
 Profile_1=c("Y(MR,MD)","Y(MR,FD)","Y(MR,MR)","Y(MR,FR)","Y(MD,MD)","Y(MD,FD)","Y(MD,MR)", "Y(MD,FR)"),
 Profile_2=c("Y(FR,MD)","Y(FR,FD)","Y(FR,MR)","Y(FR,FR)","Y(FD,MD)","Y(FD,FD)","Y(FD,MR)", "Y(FD,FR)"))
 
-names(df) <-c("Profile 1", "Profile 2")
+names(df) <-c("Comparison 1", "Comparison 2")
 
 kable(df, "latex", booktabs=FALSE, escape=T,linesep="") %>%
      kable_styling(position = "center") %>%
@@ -217,17 +222,17 @@ kable(df, "latex", booktabs=FALSE, escape=T,linesep="") %>%
 df <- data.frame(
 Profile_1=c("Y(MR,MD)","Y(MR,FD)","Y(MR,MR)","Y(MR,FR)","Y(MD,MD)","Y(MD,FD)","Y(MD,MR)", "Y(MD,FR)"),
 Profile_2=c("Y(FR,MD)","Y(FR,FD)","Y(FR,MR)","Y(FR,FR)","Y(FD,MD)","Y(FD,FD)","Y(FD,MR)", "Y(FD,FR)"),
-Male=c("3/5","3/5","5/10","3/5","5/10","3/5","2/5","0/5"),
+Male=c("4/5","3/5","5/10","3/5","5/10","3/5","2/5","0/5"),
 Female=c("5/5","5/5","2/5","5/10","2/5","5/10","2/5","5/5"),
-"Subtraction (Male - Female)" =c("-2/5","-2/5","1/10","1/10","1/10","1/10","0","-5/5")
+"Subtraction (Male - Female)" =c("-1/5","-2/5","1/10","1/10","1/10","1/10","0","-5/5")
 )
 
 df[] <- lapply(df, as.character)
 
 df <- rbind(df,c("Sum","","","","-14/10"))
 
-names(df)[1] <- "Profile 1"
-names(df)[2] <- "Profile 2"
+names(df)[1] <- "Comparison 1"
+names(df)[2] <- "Comparison 2"
 names(df)[5] <- "Male - Female"
 
 
@@ -244,7 +249,7 @@ Let's calculate the normalization constant
 
 $$
 \begin{aligned}
-           &= (profile - 1) \cdot (features -1) \cdot gender \\
+           &= (profile - 1) \cdot (attributesXlevels -1) \cdot gender \\
            &= (2-1) \cdot (4-1) \cdot 2 \\
            &= 1 \cdot 3 \cdot 2 \\
            &= 6
@@ -268,7 +273,7 @@ $$
 ## What the AMCE really is
 
 1. **Interpretation:** The average effect of varying one attributes of a profile on the probability that that profile will be chosen by a respondent
-2. **e.g.,** Shifting a candidate's gender from Male to Female increase the favourability (or likelihood of choosing a candidate) by X percentage points  
+    - **e.g.,** Shifting a candidate's gender from Male to Female increase the favourability (or likelihood of choosing a candidate) by X percentage points  
 2. The range of value depends on the number of level of a feature and the probability of co-occurrence of the same attribute levels (Female Candidate VS Female Candidate)
     1. With 5 levels $(1/5)-1=0.8$ and thus the bound is -0.8 to 0.8
     2. Q: What about gender: Female and Male? 
@@ -295,9 +300,7 @@ $$
 
 ## Clustering structure 
 
-1. In the above example, each respondent perform 6 pairwise comparisons 
-2. So we have more observations than respondents  
-3. Q: What are the units of analysis in a CJ?  
+
 4. A: The units of analysis are the CJ tasks **NOT** the respondents  
 5. Recall that: 
     1. DV: Choice Profile A VS Profile B  
@@ -327,22 +330,24 @@ knitr::include_graphics("images/conjoint_multilevel.png")
 
 ## Marginal Means (1)
 
-1. Most published research use AMCEs for descriptive purposes
-    - i.e., to map variation in formability toward a multidimensional object across its various features.
-    - e.g., "support for Evangelical Protestants is also 0.04 percentage points lower (SE = 0.02) than the baseline"  [@hainmueller_causal_2014, p.19]
-3. AMCEs are relative, not absolute, statements about preferences
-4. Use of AMCEs when performing sub-group analysis is problematic (vedi next lecture)
-5. **Take home message**: use AMCEs when you are interested in description rather than casual inference. 
-
-## Marginal Means (2)
-
-1. MMs: describe the level of favorability toward profiles that have a particular feature level, marginalizing across all other features.
+1. MMs: describe the level of favorability toward profiles that have a particular feature level, marginalizing across all other features [@leeper_measuring_2019].
 2. IN forced-choice design with two alternatives, marginal means have a direct interpretation as probabilities
     - MM=0 indicates respondents select profiles with that feature level with probability $Pr(Y = 1|X = x) = 0$
-    - MM=1 indicates respondents select profiles with that feature level with probability $(P r(Y = 1|X = x) = 1$
+    - MM=1 indicates respondents select profiles with that feature level with probability $P r(Y = 1|X = x) = 1$
 3. With rating scale outcomes MM vary depending on the used scale 
 4. For fully randomized designs, the AMCE is equal to the MM
     - e.g. $AMCE=0.09$ (9-percentage point) = $MM_1= .46 - MM_2= 0.54$
+
+## Marginal Means (2)
+
+1. Most published research use AMCEs for descriptive purposes
+    - i.e., to map variation in favorability toward a multidimensional object across its various features.
+    - e.g., "support for Evangelical Protestants is also 0.04 percentage points lower (SE = 0.02) than the baseline"  [@hainmueller_causal_2014, p.19]
+3. AMCEs are relative, not absolute, statements about preferences
+4. Use of AMCEs when performing sub-group analysis is problematic (see next lecture)
+5. **Take home message**: use AMCEs when you are interested in description rather than casual inference. 
+
+
 
 ## Session 4: Recap   
 
