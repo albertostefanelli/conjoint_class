@@ -178,6 +178,7 @@ library(dplyr)
 library(kableExtra)
 ```
 
+**[FIX ME: 3rd row is wrong]**
 
 ```{r, echo=FALSE, out.width="80%",fig.cap="",fig.show='hold',fig.align='centre'}
 
@@ -300,7 +301,6 @@ $$
 
 ## Clustering structure 
 
-
 4. A: The units of analysis are the CJ tasks **NOT** the respondents  
 5. Recall that: 
     1. DV: Choice Profile A VS Profile B  
@@ -345,8 +345,9 @@ knitr::include_graphics("images/conjoint_multilevel.png")
     - e.g., "support for Evangelical Protestants is also 0.04 percentage points lower (SE = 0.02) than the baseline"  [@hainmueller_causal_2014, p.19]
 3. AMCEs are relative, not absolute, statements about preferences
 4. Use of AMCEs when performing sub-group analysis is problematic (see next lecture)
-5. **Take home message**: use AMCEs when you are interested in description rather than casual inference. 
-
+5. **Take home message**
+    - Use AMCEs when you are interested in the casual effect of switching a given attribute 
+    - Use MM when you are more interested in casual description 
 
 
 ## Session 4: Recap   

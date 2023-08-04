@@ -176,7 +176,8 @@ knitr::include_graphics("images/wide_to_long.png")
 
 ```
 
-- We are going to achieve this using the custom made function read.df.qualtRics()
+- We are going to achieve this using the *custom* made function read.df.qualtRics()
+- If the read.df.qualtRics() function does not work, install it from my github uncommenting the install_github() from the environment preparation section
 - Four arguments
   - data frame 
   - responses: the choice task variables 
@@ -244,9 +245,10 @@ In certain cases, the used baselines are not meaningful and, thus, should be cha
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
 
-# Change the baseline for "Education"
 baselines <- list()
+# Change the baseline for "Political Experience"
 baselines$Past.Political.Experience <- "None"
+# Change the baseline for "Policy Proposal"
 baselines$Policy.Proposal <- "Welcome immigrants and organise human corridor"
 
 fit_2 <- cjoint::amce(selected ~ Past.Political.Experience + Penal.proceedings + Policy.Proposal,
@@ -264,8 +266,9 @@ summary(fit_2)
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
 
-# Change the baseline for "Education"
+# Change the baseline for "Political Experience"
 df_long_format$Past.Political.Experience <- relevel(df_long_format$Past.Political.Experience, ref="None")
+# Change the baseline for "Policy Proposal"
 df_long_format$Policy.Proposal <- relevel(df_long_format$Policy.Proposal, ref="Welcome immigrants and organise human corridor")
 
 fit_3 <- cregg::cj(df_long_format, selected ~ 

@@ -1710,16 +1710,15 @@ color: black;
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_base)</span></code></pre></div>
 <pre><code># A tibble: 6 × 48
-   ...1 Duration (…¹ Finis…² Respo…³ Q578  Q579  Q580  Q271_1 Q271_2 Q271_3 Q271_4 Q271_5 Q271_6 Q78   Q77   Q76   Q75     Q74 Q581  `F-1-1` F-1-1…⁴ `F-1-2` F-1-1…⁵ `F-1-3` F-1-1…⁶ F-1-2…⁷ F-1-2…⁸ F-1-2…⁹ `F-2-1` F-2-1…˟ `F-2-2` F-2-1…˟ `F-2-3` F-2-1…˟ F-2-2…˟ F-2-2…˟ F-2-2…˟ `F-3-1` F-3-1…˟ `F-3-2`
-  &lt;dbl&gt;        &lt;dbl&gt; &lt;lgl&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
-1     1          295 TRUE    R_3QMq… Cand… Cand… Cand… 6      6      6      6      3      5      Stud… Cauc… Some… Male     22 Never Past P… None    Policy… Welcom… Penal … The ca… Approx… Accept… No pro… Past P… Approx… Policy… Accept… Penal … The ca… Approx… Welcom… No pro… Past P… Approx… Policy…
-2     2          358 TRUE    R_2ZWY… Cand… Cand… Cand… 6      3      3      6      1 - S… 7 - S… Unem… Cauc… Some… Male     32 Never Past P… Approx… Penal … No pro… Policy… Welcom… Approx… The ca… Accept… Past P… Approx… Penal … No pro… Policy… Accept… Approx… The ca… Welcom… Past P… Approx… Penal …
-3     3          310 TRUE    R_3GEe… Cand… Cand… Cand… 6      3      6      5      3      6      Stud… Asian Some… Male     21 Never Penal … The ca… Past P… None    Policy… Accept… No pro… None    Accept… Penal … The ca… Past P… Approx… Policy… Collec… The ca… Approx… Collec… Penal … The ca… Past P…
-4     4          365 TRUE    R_emv0… Cand… Cand… Cand… 6      5      5      4 - N… 5      5      Empl… Cauc… Some… Male     30 Regu… Past P… None    Policy… Accept… Penal … The ca… None    Collec… No pro… Past P… Approx… Policy… Accept… Penal … No pro… None    Collec… The ca… Past P… Approx… Policy…
-5     5          364 TRUE    R_1CIr… Cand… Cand… Cand… 5      4 - N… 5      5      6      5      Empl… Cauc… Bach… Male     30 Regu… Policy… Welcom… Past P… Approx… Penal … The ca… Welcom… Approx… The ca… Policy… Welcom… Past P… None    Penal … The ca… Accept… Approx… The ca… Policy… Accept… Past P…
-6     6          439 TRUE    R_2TMF… Cand… Cand… Cand… 5      4 - N… 4 - N… 4 - N… 3      5      Empl… Hisp… Bach… Male     41 Some… Policy… Collec… Penal … The ca… Past P… Approx… Welcom… The ca… None    Policy… Accept… Penal … No pro… Past P… None    Welcom… The ca… None    Policy… Collec… Penal …
-# … with 8 more variables: `F-3-1-2` &lt;chr&gt;, `F-3-3` &lt;chr&gt;, `F-3-1-3` &lt;chr&gt;, `F-3-2-1` &lt;chr&gt;, `F-3-2-2` &lt;chr&gt;, `F-3-2-3` &lt;chr&gt;, duration_mins &lt;dbl&gt;, scaled_duration_mins &lt;dbl&gt;, and abbreviated variable names ¹​`Duration (in seconds)`, ²​Finished, ³​ResponseId, ⁴​`F-1-1-1`, ⁵​`F-1-1-2`, ⁶​`F-1-1-3`,
-#   ⁷​`F-1-2-1`, ⁸​`F-1-2-2`, ⁹​`F-1-2-3`, ˟​`F-2-1-1`, ˟​`F-2-1-2`, ˟​`F-2-1-3`, ˟​`F-2-2-1`, ˟​`F-2-2-2`, ˟​`F-2-2-3`, ˟​`F-3-1-1`</code></pre>
+   ...1 `Duration (in seconds)` Finished ResponseId      Q578  Q579  Q580  Q271_1 Q271_2 Q271_3 Q271_4 Q271_5 Q271_6 Q78   Q77   Q76   Q75     Q74 Q581  `F-1-1` `F-1-1-1` `F-1-2` `F-1-1-2` `F-1-3` `F-1-1-3` `F-1-2-1` `F-1-2-2` `F-1-2-3` `F-2-1` `F-2-1-1` `F-2-2` `F-2-1-2` `F-2-3` `F-2-1-3` `F-2-2-1`
+  &lt;dbl&gt;                   &lt;dbl&gt; &lt;lgl&gt;    &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;    
+1     1                     295 TRUE     R_3QMq6EzoaEhT… Cand… Cand… Cand… 6      6      6      6      3      5      Stud… Cauc… Some… Male     22 Never Past P… None      Policy… Welcome … Penal … The cand… Approxim… Acceptan… No proce… Past P… Approxim… Policy… Acceptan… Penal … The cand… Approxim…
+2     2                     358 TRUE     R_2ZWYdunD4yrj… Cand… Cand… Cand… 6      3      3      6      1 - S… 7 - S… Unem… Cauc… Some… Male     32 Never Past P… Approxim… Penal … No proce… Policy… Welcome … Approxim… The cand… Acceptan… Past P… Approxim… Penal … No proce… Policy… Acceptan… Approxim…
+3     3                     310 TRUE     R_3GEedrAF3Om8… Cand… Cand… Cand… 6      3      6      5      3      6      Stud… Asian Some… Male     21 Never Penal … The cand… Past P… None      Policy… Acceptan… No proce… None      Acceptan… Penal … The cand… Past P… Approxim… Policy… Collecti… The cand…
+4     4                     365 TRUE     R_emv0H4GnLSxq… Cand… Cand… Cand… 6      5      5      4 - N… 5      5      Empl… Cauc… Some… Male     30 Regu… Past P… None      Policy… Acceptan… Penal … The cand… None      Collecti… No proce… Past P… Approxim… Policy… Acceptan… Penal … No proce… None     
+5     5                     364 TRUE     R_1CIruyJc7nV1… Cand… Cand… Cand… 5      4 - N… 5      5      6      5      Empl… Cauc… Bach… Male     30 Regu… Policy… Welcome … Past P… Approxim… Penal … The cand… Welcome … Approxim… The cand… Policy… Welcome … Past P… None      Penal … The cand… Acceptan…
+6     6                     439 TRUE     R_2TMFzzb17eua… Cand… Cand… Cand… 5      4 - N… 4 - N… 4 - N… 3      5      Empl… Hisp… Bach… Male     41 Some… Policy… Collecti… Penal … The cand… Past P… Approxim… Welcome … The cand… None      Policy… Acceptan… Penal … No proce… Past P… None      Welcome …
+# ℹ 13 more variables: `F-2-2-2` &lt;chr&gt;, `F-2-2-3` &lt;chr&gt;, `F-3-1` &lt;chr&gt;, `F-3-1-1` &lt;chr&gt;, `F-3-2` &lt;chr&gt;, `F-3-1-2` &lt;chr&gt;, `F-3-3` &lt;chr&gt;, `F-3-1-3` &lt;chr&gt;, `F-3-2-1` &lt;chr&gt;, `F-3-2-2` &lt;chr&gt;, `F-3-2-3` &lt;chr&gt;, duration_mins &lt;dbl&gt;, scaled_duration_mins &lt;dbl&gt;</code></pre>
 <div id="get-the-data-in-the-right-format" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Get the data in the right format</h2>
 <ul>
@@ -1763,7 +1762,8 @@ Figure 3.1: Conjointsdt Attributes and Levels
 </p>
 </div>
 <ul>
-<li>We are going to achieve this using the custom made function read.df.qualtRics()</li>
+<li>We are going to achieve this using the <em>custom</em> made function read.df.qualtRics()</li>
+<li>If the read.df.qualtRics() function does not work, install it from my github uncommenting the install_github() from the environment preparation section</li>
 <li>Four arguments
 <ul>
 <li>data frame</li>
@@ -1870,19 +1870,20 @@ AMCE Baseline Levels:
 <div id="amce-cjoint-changing-baseline" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> AMCE: cjoint Changing baseline</h2>
 <p>In certain cases, the used baselines are not meaningful and, thus, should be changed. For instance, in this case the baseline for political experiments is an average category (Approximately 10 years). However, i am more interested in understanding whether there is an linear effect of political experience on the probability of selecting a profile. The same goes for the attribute Policy Proposal. In this case, we want to estimate the effect of the other two attributes using as a baselien the level “Welcome immigrants and organise human corridor”.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the baseline for &quot;Education&quot;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>baselines <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>baselines <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the baseline for &quot;Political Experience&quot;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>baselines<span class="sc">$</span>Past.Political.Experience <span class="ot">&lt;-</span> <span class="st">&quot;None&quot;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>baselines<span class="sc">$</span>Policy.Proposal <span class="ot">&lt;-</span> <span class="st">&quot;Welcome immigrants and organise human corridor&quot;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>fit_2 <span class="ot">&lt;-</span> cjoint<span class="sc">::</span><span class="fu">amce</span>(selected <span class="sc">~</span> Past.Political.Experience <span class="sc">+</span> Penal.proceedings <span class="sc">+</span> Policy.Proposal,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>df_long_format,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster=</span><span class="cn">TRUE</span>, </span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">respondent.id=</span><span class="st">&quot;ResponseId&quot;</span>,</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">baselines=</span>baselines</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_2)</span></code></pre></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the baseline for &quot;Policy Proposal&quot;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>baselines<span class="sc">$</span>Policy.Proposal <span class="ot">&lt;-</span> <span class="st">&quot;Welcome immigrants and organise human corridor&quot;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>fit_2 <span class="ot">&lt;-</span> cjoint<span class="sc">::</span><span class="fu">amce</span>(selected <span class="sc">~</span> Past.Political.Experience <span class="sc">+</span> Penal.proceedings <span class="sc">+</span> Policy.Proposal,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>df_long_format,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster=</span><span class="cn">TRUE</span>, </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">respondent.id=</span><span class="st">&quot;ResponseId&quot;</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">baselines=</span>baselines</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_2)</span></code></pre></div>
 <pre><code>------------------------------------------
 Average Marginal Component Effects (AMCE):
 ------------------------------------------
@@ -1910,19 +1911,20 @@ AMCE Baseline Levels:
 </div>
 <div id="amce-cregg" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> AMCE: cregg</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the baseline for &quot;Education&quot;</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the baseline for &quot;Political Experience&quot;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df_long_format<span class="sc">$</span>Past.Political.Experience <span class="ot">&lt;-</span> <span class="fu">relevel</span>(df_long_format<span class="sc">$</span>Past.Political.Experience, <span class="at">ref=</span><span class="st">&quot;None&quot;</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>df_long_format<span class="sc">$</span>Policy.Proposal <span class="ot">&lt;-</span> <span class="fu">relevel</span>(df_long_format<span class="sc">$</span>Policy.Proposal, <span class="at">ref=</span><span class="st">&quot;Welcome immigrants and organise human corridor&quot;</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> cregg<span class="sc">::</span><span class="fu">cj</span>(df_long_format, selected <span class="sc">~</span> </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  Past.Political.Experience <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  Penal.proceedings<span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  Policy.Proposal, </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate =</span> <span class="st">&quot;amce&quot;</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="sc">~</span>ResponseId)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the baseline for &quot;Policy Proposal&quot;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df_long_format<span class="sc">$</span>Policy.Proposal <span class="ot">&lt;-</span> <span class="fu">relevel</span>(df_long_format<span class="sc">$</span>Policy.Proposal, <span class="at">ref=</span><span class="st">&quot;Welcome immigrants and organise human corridor&quot;</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> cregg<span class="sc">::</span><span class="fu">cj</span>(df_long_format, selected <span class="sc">~</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  Past.Political.Experience <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  Penal.proceedings<span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  Policy.Proposal, </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate =</span> <span class="st">&quot;amce&quot;</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="sc">~</span>ResponseId)</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>fit_3</span></code></pre></div>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>fit_3</span></code></pre></div>
 <pre><code>   outcome statistic                   feature                                                        level    estimate  std.error          z                                           p        lower      upper
 1 selected      amce Past.Political.Experience                                                         None  0.00000000         NA         NA                                          NA           NA         NA
 2 selected      amce Past.Political.Experience                                       Approximately 10 years  0.12622317 0.03020953   4.178257 0.00002937517925197088758306612765736076653  0.067013584  0.1854328

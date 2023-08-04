@@ -165,6 +165,7 @@ Combinations&=L^{M^{A}}
             &=729
 \end{aligned}
 $$
+
 5. The number of alternative is thus 729
 6. If we assign approximately 30 respondents per each combination 
 7. $729*30= 21870$

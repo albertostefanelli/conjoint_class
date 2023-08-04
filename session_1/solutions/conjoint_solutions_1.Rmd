@@ -97,7 +97,7 @@ library("ggplot2")
 ### Estimation ###
 library("cjoint")   
 library("cregg")     
-library("factorEx")  
+#library("factorEx")  
 
 
 
@@ -122,7 +122,6 @@ We are going to use the data from Kirkland, Patricia A; Coppock, Alexander, 2017
 kc_data <- readr::read_csv("https://github.com/albertostefanelli/conjoint_class/raw/master/data/Kirkland_Coppock_mturk_replication.csv")
 
 head(kc_data)
-
 ```
 
 

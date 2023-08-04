@@ -81,15 +81,15 @@ header-includes:
 - Twitter: `@sergsagara`
 
 
-<!-- ## Your turn  -->
+## Your turn
 
-<!-- - Name? -->
-<!-- - Affiliation/Position? -->
-<!-- - Research interests? -->
-<!-- - Previous experience with experimental designs? -->
-<!-- - Previous experience with R? -->
-<!-- - Previous experience with Qualtrics? -->
-<!-- - Why are you taking this workshop? -->
+- Name?
+- Affiliation/Position?
+- Research interests?
+- Previous experience with experimental designs?
+- Previous experience with R?
+- Previous experience with Qualtrics?
+- Why are you taking this workshop?
 
 
 ## Materials
