@@ -239,7 +239,7 @@ There seems to be differences. In the voter sample our estimate is still negativ
 
 ```{r, echo=T, message=FALSE, warning=FALSE,eval=TRUE}
 
-# let's test difference in AGE 45 VS AGE 29 with a semplified delta method
+# let's test difference in AGE 45 VS AGE 29 with a simplified delta method
 d<-amce_leg$estimates$cage["AMCE",][1] - amce_voters$estimates$cage["AMCE",][1]
 var_leg<-amce_leg$estimates$cage["Std. Error",][1]^2 
 var_voter<-amce_voters$estimates$cage["Std. Error",][1]^2 
