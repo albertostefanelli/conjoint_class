@@ -75,12 +75,6 @@ options(width = 300, scipen = 9999)
 # install.packages("here")      # absolute path management
 # ### Data manipulation ###
 # install.packages("dplyr")     # pipes and data manipulation
-# ### Visualization ###
-# install.packages("ggplot2")    # graphing capabilities
-# ### Estimation ###
-# install.packages("cjoint")    # base amce package
-# install.packages("cregg")     # amce and mm 
-# install.packages("factorEx")  # amce with non-uniform distribution
 
 ## Custom build functions 
 # library(devtools)
@@ -92,12 +86,8 @@ library("qualtRics")
 library("here")
 ### Data manipulation ###
 library("dplyr")     
-### Visualization ###
-library("ggplot2")    
-### Estimation ###
-library("cjoint")   
-library("cregg")     
-library("factorEx")  
+
+
 
 
 
