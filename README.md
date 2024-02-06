@@ -7,7 +7,7 @@ This repo contains the material for *Introduction to Conjoint Experiments* taugh
 - By [Email](mailto:alberto.stefanelli@kuleuven.be)
 - [Twitter @sergsagara](https://twitter.com/sergsagara)
 
-## Timetable (Innsbruck)
+## Timetable (ECPR)
 
 Session|Day|Time|Link 
 --|-----|--------|----
@@ -17,14 +17,17 @@ Session|Day|Time|Link
 4|08/02|13.30-16.30 CET| [Link](https://ecpr-eu.zoom.us/j/85236129289?pwd=T2E5NVd2UEJ0VHFPckNLYmtIRVhzQT09)
 5|09/02|13.30-16.30 CET| [Link](https://ecpr-eu.zoom.us/j/85236129289?pwd=T2E5NVd2UEJ0VHFPckNLYmtIRVhzQT09)
 
-failback if Zoom does not work: Microsoft Team [Link](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MTBkZjZiODMtMTAyMi00ZTMwLWIyZGMtY2Y1NTllZjg5MjEy%40thread.v2/0?context=%7b%22Tid%22%3a%223973589b-9e40-4eb5-800e-b0b6383d1621%22%2c%22Oid%22%3a%2288f1130c-ddb1-42b0-8de4-23a476b31309%22%7d)
+|                                                                                                                             **Failback**                                                                                                                             |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| If Zoom does not work: Microsoft Team [Link](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MTBkZjZiODMtMTAyMi00ZTMwLWIyZGMtY2Y1NTllZjg5MjEy%40thread.v2/0?context=%7b%22Tid%22%3a%223973589b-9e40-4eb5-800e-b0b6383d1621%22%2c%22Oid%22%3a%2288f1130c-ddb1-42b0-8de4-23a476b31309%22%7d) |
+
 
 ## Material
 
 - [Session 1 - Lecture (PDF)](https://albertostefanelli.github.io/conjoint_class/session_1/lecture/html/conjoint_lecture_01.pdf)
 - [Session 1 - Lab](https://albertostefanelli.github.io/conjoint_class/session_1/lab/html/conjoint_lab_1.html)
 - [Session 1 - Exercise](https://albertostefanelli.github.io/conjoint_class/session_1/exercise/html/conjoint_exercise_1.html)
-<!--- - [Session 1 - Solution](https://albertostefanelli.github.io/conjoint_class/session_1/solutions/html/conjoint_solutions_1.html)-->
+- [Session 1 - Solution](https://albertostefanelli.github.io/conjoint_class/session_1/solutions/html/conjoint_solutions_1.html)
 
 ---
 
