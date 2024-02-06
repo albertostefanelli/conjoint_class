@@ -63,16 +63,19 @@ header-includes:
     - Modelling non-uniform Distributions
     - Power Analysis 
     - Conjoint Mixture Model
+    - Adaptive conjoint design [if we have time]
+    - Average Marginal Individual Effect [if we have time]
 
 ## About me: Alberto 
 
 - FWO PhD Fellow at KU Leuven, Belgium
 - Previously…
     - MA at Central European University 
+    - Fulbright Visiting researcher @ Yale/NYU
 - Currently…
-    - Visiting @ Yale/NYU
+    - Affiliated with the MacMillan Center @ Yale
 - My research:
-    - Radial Beliefs
+    - Radial Beliefs/Populism
     - Polarization
     - Democracy/Liberal Values
     - Methods: Causality, experimental and semi-experimental design, SEM etc.
