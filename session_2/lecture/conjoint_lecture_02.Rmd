@@ -63,10 +63,10 @@ Where to find the material:
 
 - On my [GitHub/conjoint_class](https://albertostefanelli.github.io/conjoint_class/)
 
-<!-- ## Before starting -->
+## Before starting
 
-<!-- - Make sure to [ConjointSDT](https://github.com/astrezhnev/conjointsdt) is installed and working.  -->
-<!-- - **If you have questions, shoot : )**     -->
+- Make sure to [ConjointSDT](https://github.com/astrezhnev/conjointsdt) is installed and working.
+- **If you have questions, shoot : )**
 
 ## What is a conjoint experiment 
 
@@ -93,9 +93,7 @@ knitr::include_graphics("images/conjoint_teele.png")
 1. Respondent’s preferences are measured without putting them in a broader context
     1. Answers to survey questions can fluctuate considerably depending on how the questions are asked [@kahneman_judgment_1982].
     2. E.g. a voter may evaluate a particular policy position differently depending on the other policies bundled in a given party platform.
-2. Separation of priority ranking and preference intensity. In actual decisions, these two steps are inseparably connected in respondents’ minds. 
-    1. E.g., voting is both preference towards a party/candidate and intensity of such preference
-3. Causal identification and causal ordering is difficult (or almost impossible)
+2. Causal identification and causal ordering is difficult (or almost impossible)
     1. Q: Does ideological proximity cause vote choice or is the other way around? 
 
 ## Why CJ are relevant for causal analysis?
@@ -109,10 +107,9 @@ They go beyond the simple cause-and-effect relationship between a single binary 
 2. Display high(er) levels of validity 
     1. External validity: CJs effectively approximate real-world outcomes [@hainmueller_validating_2015; @auerbach_how_2018]
     2. Internal Validity: CJs enhance realism relative to the direct elicitation of preferences on a single dimension 
-    2. Measurement quality: respondents are found to be consistent even for quite complex tasks [e.g., @bansak_beyond_2019]
+    3. Measurement quality: respondents are found to be consistent even for quite complex tasks [e.g., @bansak_beyond_2019]
 3. Reduce social desirability biases such as vote for female (vs male) political candidates [e.g., @teele_ties_2018] or opposition to social housing in respondent’s neighborhood [e.g., @hankinson_when_2018].
 4. Good prediction device that can provide insights into practical problems such as policy design and implementation.
-
 
 # Different CJ designs  
 
@@ -195,7 +192,6 @@ knitr::include_graphics("images/cj_ranking.png")
     - Can be used to assess the choice decision in an hypothetical or future scenario (relevant for policy implementation)
     - However, what people say in surveys can diverge from what they would do in actual decisions
 
-
 ## Choice-based (2)
 
 \centering
@@ -231,7 +227,6 @@ knitr::include_graphics("images/eye_traking.png")
 
 ```
 
-
 ## Choice-based (4)
 
 1. PRO: High(er) external validity 
@@ -246,13 +241,13 @@ knitr::include_graphics("images/eye_traking.png")
 ## Other designs
 
 1. Point allocation
-2. Adaptive Conjoint
-    1. Adaptive choice-sets based on respondent's characteristics, preferences, or attitudes
-    2. E.g., in the choice of transport mode, the choice set of an individual without driving license and/or car should not include the alternative "car" 
-    3. More complex adaptive designs that involve algorithms to cluster individuals based on their underlying preferences 
 2. Combination of previous design 
   1. E.g., rating with choice based
   2. E.g., ranking conjoint with an adaptive design 
+4. Adaptive Conjoint
+    1. Adaptive choice-sets based on respondent's characteristics, preferences, or attitudes
+    2. E.g., in the choice of transport mode, the choice set of an individual without driving license and/or car should not include the alternative "car" 
+    3. More complex adaptive designs that involve algorithms to cluster individuals based on their underlying preferences 
 
 ## Terminology (1)
 
