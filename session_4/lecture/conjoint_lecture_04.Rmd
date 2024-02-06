@@ -284,12 +284,14 @@ $$
 
 ## What the AMCE is NOT 
 
-1. **NOT** a general measure of preference of certain attributes
-    - **NOT** interpretable as the majority of the respondents prefer a profile with feature A versus candidate with feature B
-    - **NOT** interpretable as that respondents prefers candidate with feature A versus candidate with feature B 
-    - **NOT** definable on the collapsed joint distribution (cross tab) of the preferences. It is defined on a collection of all two-way comparisons. 
-2. **NOT** that candidates with feature A beat candidates with feature B in most elections
-3. Example: 
+1. **Not** a general measure of preference of certain attributes
+    - **Not** interpretable as the majority of the respondents prefer a profile with feature A versus candidate with feature B
+    - **Not** interpretable as that respondents prefers candidate with feature A versus candidate with feature B 
+    - **Not** definable on the collapsed joint distribution (cross tab) of the preferences. It is defined on a collection of all two-way comparisons. 
+2. **Not** able to separate priority ranking and preference intensity. In actual decisions, these two steps are inseparably connected in respondents’ minds. 
+    1. E.g., voting is both preference towards a party/candidate and intensity of such preference
+3. **Not** that candidates with feature A beat candidates with feature B in most elections
+4. Example: 
     1. A large majority of the respondents can have a preference for female candidates but the AMCE is positive for male candidates 
     2. Q: Why?
 
@@ -345,6 +347,7 @@ knitr::include_graphics("images/conjoint_multilevel.png")
     - e.g., "support for Evangelical Protestants is also 0.04 percentage points lower (SE = 0.02) than the baseline"  [@hainmueller_causal_2014, p.19]
 3. AMCEs are relative, not absolute, statements about preferences
 4. Use of AMCEs when performing sub-group analysis is problematic (see next lecture)
+
 5. **Take home message**
     - Use AMCEs when you are interested in the casual effect of switching a given attribute 
     - Use MM when you are more interested in casual description 
