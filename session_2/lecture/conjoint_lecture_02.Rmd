@@ -86,28 +86,28 @@ knitr::include_graphics("images/conjoint_teele.png")
 ```
 
 1. Q: What the causal process involves?
-2. Q: What are we manipulating in this example? (**No Causation without manipulation.**)
+2. Q: What are we manipulating in this example?
 
 ## Limitations of traditional observational studies
 
 1. Respondent’s preferences are measured without putting them in a broader context
-    1. Answers to survey questions can fluctuate considerably depending on how the questions are asked [@kahneman_judgment_1982].
-    2. E.g. a voter may evaluate a particular policy position differently depending on the other policies bundled in a given party platform.
+    - Answers to survey questions can fluctuate considerably depending on which other questions are asked [@kahneman_judgment_1982].
+    - E.g. a voter may evaluate a particular policy position differently depending on the other policies bundled in a given party platform.
 2. Causal identification and causal ordering is difficult (or almost impossible)
-    1. Q: Does ideological proximity cause vote choice or is the other way around? 
+    - Q: Does ideological proximity cause vote choice or is the other way around? 
 
 ## Why CJ are relevant for causal analysis?
 
 They go beyond the simple cause-and-effect relationship between a single binary treatment and an outcome variable. 
 
 1. Evaluate the relative explanatory power of different theories, moving beyond tests of a single hypothesis
-    1. Analysis of more complex causal questions
-    2. E.g., is ideology or party identification that drive vote choice ?
-    3. Relatively cheap and fast to implement 
+    - Analysis of more complex causal questions
+        -  E.g., is ideology or party identification that drive vote choice ?
+    - Relatively cheap and fast to implement 
 2. Display high(er) levels of validity 
-    1. External validity: CJs effectively approximate real-world outcomes [@hainmueller_validating_2015; @auerbach_how_2018]
-    2. Internal Validity: CJs enhance realism relative to the direct elicitation of preferences on a single dimension 
-    3. Measurement quality: respondents are found to be consistent even for quite complex tasks [e.g., @bansak_beyond_2019]
+    - External validity: CJs effectively approximate real-world outcomes [@hainmueller_validating_2015; @auerbach_how_2018]
+    - Internal Validity: CJs enhance realism relative to the direct elicitation of preferences on a single dimension 
+    - Measurement quality: respondents are found to be consistent even for quite complex tasks [e.g., @bansak_beyond_2019]
 3. Reduce social desirability biases such as vote for female (vs male) political candidates [e.g., @teele_ties_2018] or opposition to social housing in respondent’s neighborhood [e.g., @hankinson_when_2018].
 4. Good prediction device that can provide insights into practical problems such as policy design and implementation.
 
@@ -144,8 +144,8 @@ knitr::include_graphics("images/cj_rating.jpg")
 2. CON: no trade-offs as it often occurs in real choice settings 
 3. CON: often no clear differentiation between profiles 
 4. CON: interpretation might be difficult in certain situation
-    1. what liking a candidate actually means?
-    2. does liking a candidate would imply that people would actually vote for that candidate? 
+    - what liking a candidate actually means?
+    - does liking a candidate would imply that people would actually vote for that candidate? 
 
 
 ## Ranking (1)
@@ -177,8 +177,8 @@ knitr::include_graphics("images/cj_ranking.png")
 
 1. PRO: easy to execute, implement, and model 
 2. CON: causal interpretation might be difficult due to mid ranks 
-    1. What is the difference between the 6th and the 5th candidate in a 15 candidates rank conjoint
-    2. Does the ranking a candidate first would imply that people would actually vote for that candidate? 
+    - What is the difference between the 6th and the 5th candidate in a 15 candidates rank conjoint
+    - Does the ranking a candidate first would imply that people would actually vote for that candidate? 
 3. CON: often increase measurement error since ranking is not an easy task [@boyle_comparison_2001]
 
 ## Choice-based (1)
@@ -207,7 +207,7 @@ knitr::include_graphics("images/conjoint_teele.png")
 2. Probability of selecting a profile formed in two complementary ways [@jenke_using_2020]
     - Within-attribute comparisons (i.e. attribute by attribute)
     - Within-profile decision-making (i.e. profile by profile)
-3. Assumption of utility maximising, omniscient (and tireless respondent) does not hold [@meisner_eye-tracking_2010]
+3. Assumption of utility maximizing, omniscient (and tireless respondent) does not hold [@meisner_eye-tracking_2010]
 
 \centering
 
@@ -230,36 +230,35 @@ knitr::include_graphics("images/eye_traking.png")
 ## Choice-based (4)
 
 1. PRO: High(er) external validity 
-    1. Trade-off between 2 or 3 profiles is more natural and close to real-life choice scenarios 
-    2. Having 
+    - Trade-off between 2 or 3 profiles is more natural and close to real-life choice scenarios 
 2. PRO: Quite easy modelling approaches 
 3. CON: Careful experimental design 
 4. CON: Can be difficult to set up 
 5. CON: It cognitively more demanding that simpler designs 
 
-
 ## Other designs
 
 1. Point allocation
 2. Combination of previous design 
-  1. E.g., rating with choice based
-  2. E.g., ranking conjoint with an adaptive design 
+   - E.g., rating with choice based
+   -  E.g., ranking conjoint with an adaptive design 
 4. Adaptive Conjoint
-    1. Adaptive choice-sets based on respondent's characteristics, preferences, or attitudes
-    2. E.g., in the choice of transport mode, the choice set of an individual without driving license and/or car should not include the alternative "car" 
-    3. More complex adaptive designs that involve algorithms to cluster individuals based on their underlying preferences 
+    - Adaptive choice-sets based on respondent's characteristics, preferences, or attitudes
+    - E.g., in the choice of transport mode, the choice set of an individual without driving license and/or car should not include the alternative "car" 
+    - More complex adaptive designs that involve algorithms to cluster individuals based on their underlying preferences 
+    - Recently used in combination with large language models [@velez_trade-offs_2023]
 
 ## Terminology (1)
 
 1. Alternatives
-    1. The two (or more) profiles that a respondent will have to choose from (e.g., Candidate A VS Candidate B)
+    - The two (or more) profiles that a respondent will have to choose from (e.g., Candidate A VS Candidate B)
 2. Attributes 
-    1. Independent variables, explanatory variables, treatments, features 
-    1. Characteristics of the different alternatives (e.g, age, gender of the proposed candidates)
+    - Independent variables, explanatory variables, treatments, features 
+    - Characteristics of the different alternatives (e.g, age, gender of the proposed candidates)
 3. Levels (of the attributes)
-    1. The discrete values that an attribute can take(e.g., Age: 20, 30, 40, 50) 
+    - The discrete values that an attribute can take(e.g., Age: 20, 30, 40, 50) 
 4. Choice-sets: a combination of two or more alternatives (e.g., only progressive candidates VS only conservative candidates)
-    1. Relevant if we want to analyse a subset of the profiles (e.g., only female candidates) 
+    - Relevant if we want to analyse a subset of the profiles (e.g., only female candidates) 
 
 ## Terminology (2)
 
@@ -275,33 +274,34 @@ Q: What the research is controlling (and manipulating) and what not?
 ## Why a challenge?
 
 - Why is it called design? 
-    1. Manipulation of the treatment conditions occurs **by design** 
-    2. That is, the researcher controls the specific treatment conditions
+    - Manipulation of the treatment conditions occurs **by design** 
+    - That is, the researcher controls the specific treatment conditions
 - Design is one the greater barriers in answering your research question(s) 
 - It allow us to understand the decision rules used to select a profile instead of another 
 
-## Design charateristics in a CJ
+## Design characteristics in a CJ
 
 1. **Feature Design**
-    1. Attributes
-    2. Levels 
+    - Attributes
+    - Levels 
 2. **Choice-Set Design**
-    1. Conjoint profiles
+    - Conjoint profiles
 3. **Information/Context Design**
-    1. Priming, framing .... 
-    2. E.g. information acceleration processes, elaboration tasks, information sources
+    - Priming, framing .... 
+    - E.g. information acceleration processes, elaboration tasks, information sources
 
 ## Feature Design: attributes 
 
 1. Identify and define the **attributes**   
     1. Which attributes should be included in order to answer my RQ?
     2. Define a universal but finite list of attributes that are theoretically relevant
-        1. Usually 10-15 attributes 
+        - Usually 10-15 attributes 
     3. Reduce the attributes
-        1. Less then 10 attributes is considered acceptable [@bansak_beyond_2019]
+        - Less then 10 attributes is considered acceptable [@bansak_beyond_2019]
+        - To ease the cognitive burden of the respondent no more than 5-6 attitudes are recommended 
     4. Avoid double-barrel attributes 
-        1. E.g., "Expertise" of a candidate
-        2. Q: can you think of another example?
+        - E.g., "Expertise" of a candidate
+        - Q: can you think of another example?
 
 ## Feature Design: levels
 
@@ -309,47 +309,48 @@ Q: What the research is controlling (and manipulating) and what not?
     1. Which levels are suitable for the decision task?
     2. Are the levels ordinal, nominal or continuous?
     3. Select theoretically relevant start- and end-points for each attributes
-        1. Q: What is a sensible range for the age of a candidate?
+        - Q: What is a sensible range for the age of a candidate?
     2. Define a finite list of levels that have discriminant power.
-        1. From 2 to maximum 8 [@bansak_beyond_2019]
-        1. Q: What age levels should we include for a candidate?
-        1. Q: Does a year difference make any difference in accuracy? 
+        - From 2 to maximum 8 [@bansak_beyond_2019]
+        - Q: What age levels should we include for a candidate?
+        - Q: Does a year difference make any difference in accuracy? 
     3. If the design is too big and you assume linearity, use only start- and end-point designs 
-        1. e.g., Instead of ordinal age use "Young" and "Old"
+        - E.g., Instead of ordinal age use "Young" and "Old"
     4. Avoid attributes ambiguity 
-        1. E.g., "High level of integrity" of a candidate VS "Never indicted for corruption"  
+        - E.g., "High level of integrity" of a candidate VS "Never indicted for corruption"  
 
 ## Attributes Design: treath to validity {.allowframebreaks} 
 
-1. Internal Validity: **garbage in, garbage out"**
+1. Internal Validity:
     1. **Masking** or inter-attributes correlation [@verlegh_range_2002]
-        1. Perceived association between an attribute included in the design and an omitted one
-        1. E.g. Including policy positions but excluding PID 
+        - Perceived association between an attribute included in the design and an omitted one
+        - E.g. Including policy positions but excluding PID 
     2. **Satisficing** [@bansak_beyond_2019]
-        1. Disregard substantive information due to high cognitive complexity. 
-        2. E.g., inferring from PID policy positions and attributes 
+        - Disregard substantive information due to high cognitive complexity. 
+        - E.g., inferring from PID policy positions and attributes 
     3. **Unrealistic trade-off(s)** between attributes
         1. A doctor (Attribute: Profession) without an academic degree (Attribute: Education)
     4. **“Range effect”** [@verlegh_range_2002]
-        1. Using specific level combinations could lead to implicit associations 
-        2. E.g., a white Democratic candidate of age 78 from Vermont
+        - Using specific level combinations could lead to implicit associations 
+        - E.g., a white Democratic candidate of age 78 from Vermont
 2. External Validity: **“Number-of-levels effect”**
-        1. Too many levels could make the interpretation difficult 
-        2. Statistical power might be insufficient 
+    - Too many levels could make the interpretation difficult 
+    - Statistical power might be insufficient 
 
 ## Choice-Set Design: Profiles, Tasks, Outcome
 
 1. Number of Alternative **Profiles**
-    1. Single Profiles (1)
-    2. Paired Profiles (2) 
-    4. Multi Profiles (up to 4)
+    - Single Profiles (1)
+    - Paired Profiles (2) 
+    - Multi Profiles (up to 4)
 2. Number of conjoint choice **tasks** per respondent 
-    1. From 2 to no more than 20 
+    - From 2 to no more than 20 
+    - If more than 8, it is recommended to have breaks between conjoint sets
 3. **Outcome** measures 
-    1. Discrete choice (better for trade-offs)
-    2. Individual ratings (better for detecting extreme response style)
+    - Discrete choice (better for trade-offs)
+    - Individual ratings (better for detecting extreme response style)
 4. **Randomization**
-    1. Position of the attributes in our CJ 
+    - Position of the attributes in our CJ 
     
 ## Choice-Set Design: Sample size and complexity 
 
@@ -366,18 +367,18 @@ Q: What the research is controlling (and manipulating) and what not?
 2. Advantages
     - Analysis of more complex causal questions
     - Good external and internal validity 
-3. Different designs
+3. Different designs 
     - Rating 
     - Ranking 
     - Choice (most used)
-4. Terminology
-    - Attributes: characteristics of the profile
-    - Levels: characteristics of the different attributes
+4. Design characteristics in a CJ
+    - Feature
+    - Choice-set
+    - Information
 5. Garbage in Garbage out
     - Clarity in the attributes/levels
     - Design Complexity
-    - Fatigue
-    - Cognitive Burden
+    - Fatigue/Cognitive Burden
     
 ## References {.allowframebreaks} 
 
