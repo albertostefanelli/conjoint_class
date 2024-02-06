@@ -286,10 +286,11 @@ $$
 
 1. **Not** a general measure of preference of certain attributes
     - **Not** interpretable as the majority of the respondents prefer a profile with feature A versus candidate with feature B
+    -  **Not** the probability of a female candidate being chosen against a randomly generated male candidate.
     - **Not** interpretable as that respondents prefers candidate with feature A versus candidate with feature B 
     - **Not** definable on the collapsed joint distribution (cross tab) of the preferences. It is defined on a collection of all two-way comparisons. 
 2. **Not** able to separate priority ranking and preference intensity. In actual decisions, these two steps are inseparably connected in respondents’ minds. 
-    1. E.g., voting is both preference towards a party/candidate and intensity of such preference
+    - the AMCE represents both preference towards a particular profile and intensity of such preference [@bansak_using_2023].
 3. **Not** that candidates with feature A beat candidates with feature B in most elections
 4. Example: 
     1. A large majority of the respondents can have a preference for female candidates but the AMCE is positive for male candidates 
