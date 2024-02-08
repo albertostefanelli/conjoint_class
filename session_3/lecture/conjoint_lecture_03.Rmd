@@ -312,7 +312,7 @@ knitr::include_graphics("images/matrix.png")
 
 1. Relatively cheap
     - Face-to-face paper-and-pencil: ~160 euro
-    - On-line probability panel: ~40 euro
+    - On-line probability panel: ~15-20 euro
 2. Relatively fast.
 3. Very flexible.
 2. Far more control over experimental design.
