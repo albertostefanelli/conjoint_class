@@ -121,12 +121,12 @@ Where to find the material:
 ## Advantages of the AMCE
 
 1. Fully non parametric (in most of its applications)
-2. Explicitly control the target of the inference to be especially plausible
+2. Explicitly control the target of the inference to be especially plausible (i.e., a set of background or "control" variables)
     - In traditional experiments the are either fixed at a single condition so results are conditional on  those particular settings
     - AMCE incorporates some of those aspects and makes it explicit that the effect is conditional on their distribution
     - This especially important when using weighted distributions of the attributes
 2. Does not require a particular behavioral model for respondents’ decision-making processes
-    - Respondents might be maximizing utility, be boundedly rational, they might use weighted adding, l        exicographic, or satisficing decision strategies and the AMCE is still valid
+    - Respondents might be maximizing utility, be boundedly rational, they might use weighted adding or satisficing decision strategies and the AMCE is still valid
 
 ## Boundedly rational ?
 
@@ -138,12 +138,11 @@ knitr::include_graphics("images/bounded_rational.png")
 ## How does this work ?
 
 1. Simple Mean difference 
-    1. Calculate the average rating (or probability to be chosen) for all the profile that have the same value on that particular level (e.g., all female candidates)
-    2. Calculate the average rating (or probability to be chosen) for all the profile that have the same value on that particular level (e.g., all male candidates)
-    3. Take the difference between the two averages 
+    - Calculate the average rating (or probability to be chosen) for all the profile that have the same value on that particular level (e.g., all female candidates)
+    - Calculate the average rating (or probability to be chosen) for all the profile that have the same value on that particular level (e.g., all male candidates)
+    - Take the difference between the two averages 
 2. AMCE averages over both the sign and the magnitude of the individual-level causal effects
     - All the attributes but the one of interest are treated as "pre-treatment" covariates and averaged over 
-
 
 ## A numerical Example 
 
@@ -178,14 +177,12 @@ library(dplyr)
 library(kableExtra)
 ```
 
-**[FIX ME: 3rd row is wrong]**
-
 ```{r, echo=FALSE, out.width="80%",fig.cap="",fig.show='hold',fig.align='centre'}
 
 df <- data.frame(Comparison=c("MR,FR","MR,FD","MR,MD","MD,FR", "MD,FD","FR,FD"),
 Voter_1=c("MR","MR","MR","FR","MD","FR"),
 Voter_2=c("MR","MR","MR","FR","MD","FR"),
-Voter_3=c("MR","MR","MR","FR","MD","FR"),
+Voter_3=c("MR","MR","MR","MR","MD","FR"),
 Voter_4=c("FR","FD","MD","FR","FD","FD"),
 Voter_5=c("FR","FR","FR","FR","FD","FD"),
 "Sum Tally"=c("3,2","3,2","4,1","0,5","3,2","0,5")
@@ -200,6 +197,9 @@ kable(df, "latex", booktabs=FALSE, escape=T,linesep="") %>%
 ```
 
 ## Calculation table (1)
+
+@bansak_using_2023: "The AMCE compares the probability of a female candidate profile chosen against another randomly generated profile (whether male or female) to the probability of a male profile chosen against a similarly generated profile."
+
 
 ```{r ,echo=FALSE, out.width="80%",fig.cap="Conjointsdt Attributes and Levels",fig.show='hold',fig.align='centre'}
 
@@ -244,6 +244,7 @@ kable(df, "latex", booktabs=FALSE, escape=T, linesep="") %>%
 
 ```
 
+
 ## Calculation AMCE (1)
 
 Let's calculate the normalization constant 
@@ -282,19 +283,18 @@ $$
     1. **CAUTION in comparing the relative size of features with different levels !!!**
     2. As in any regression, the AMCE is a relative quantity. Favourability is higher or lower **relative to the attribute baseline**. 
 
-## What the AMCE is NOT 
+## What the AMCE is NOT {.allowframebreaks} 
 
-1. **Not** a general measure of preference of certain attributes
-    - **Not** interpretable as the majority of the respondents prefer a profile with feature A versus candidate with feature B
-    -  **Not** the probability of a female candidate being chosen against a randomly generated male candidate.
-    - **Not** interpretable as that respondents prefers candidate with feature A versus candidate with feature B 
-    - **Not** definable on the collapsed joint distribution (cross tab) of the preferences. It is defined on a collection of all two-way comparisons. 
+1. **Not** definable on the collapsed joint distribution (cross tab) of the preferences. It is defined on a collection of all two-way comparisons.
 2. **Not** able to separate priority ranking and preference intensity. In actual decisions, these two steps are inseparably connected in respondents’ minds. 
-    - the AMCE represents both preference towards a particular profile and intensity of such preference [@bansak_using_2023].
-3. **Not** that candidates with feature A beat candidates with feature B in most elections
-4. Example: 
-    1. A large majority of the respondents can have a preference for female candidates but the AMCE is positive for male candidates 
-    2. Q: Why?
+    - The AMCE represents both preference towards a particular profile and intensity of such preferences. 
+    - It is agnostic towards the type of decision making mechanisms that are used by respondents.
+3. **Not** a general measure of preference of certain attributes [@bansak_using_2023]
+    - **Not** interpretable as the majority of the respondents prefer a profile with feature A versus candidate with feature B
+    - **Not** interpretable as that respondents prefers candidate with feature A versus candidate with feature B 
+4. The AMCE does **not** reflect a simple majority preference [@abramson_what_2022] 
+    - A large majority of the respondents can have a preference for female candidates but the AMCE is positive for male candidates 
+    - Q: Why?
 
 ## Clustering structure 
 
@@ -334,7 +334,7 @@ knitr::include_graphics("images/conjoint_multilevel.png")
 ## Marginal Means (1)
 
 1. MMs: describe the level of favorability toward profiles that have a particular feature level, marginalizing across all other features [@leeper_measuring_2019].
-2. IN forced-choice design with two alternatives, marginal means have a direct interpretation as probabilities
+2. In forced-choice design with two alternatives, marginal means have a direct interpretation as probabilities
     - MM=0 indicates respondents select profiles with that feature level with probability $Pr(Y = 1|X = x) = 0$
     - MM=1 indicates respondents select profiles with that feature level with probability $P r(Y = 1|X = x) = 1$
 3. With rating scale outcomes MM vary depending on the used scale 
@@ -348,11 +348,9 @@ knitr::include_graphics("images/conjoint_multilevel.png")
     - e.g., "support for Evangelical Protestants is also 0.04 percentage points lower (SE = 0.02) than the baseline"  [@hainmueller_causal_2014, p.19]
 3. AMCEs are relative, not absolute, statements about preferences
 4. Use of AMCEs when performing sub-group analysis is problematic (see next lecture)
-
 5. **Take home message**
     - Use AMCEs when you are interested in the casual effect of switching a given attribute 
     - Use MM when you are more interested in casual description 
-
 
 ## Session 4: Recap   
 
