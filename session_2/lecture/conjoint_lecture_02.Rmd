@@ -68,6 +68,22 @@ Where to find the material:
 - Make sure to [ConjointSDT](https://github.com/astrezhnev/conjointsdt) is installed and working.
 - **If you have questions, shoot : )**
 
+## Assignment 
+
+To earn 4 credits, you additionally need to prepare a paper assignment. For the paper, you can analyze the dataset of choice to answer a research question of choice. 
+
+Assignments should have the following structure:
+
+- Short theoretical background and research question
+- Description of the dataset used
+- Modelling strategy
+- Results
+- Conclusions
+
+The paper should not be longer than 10 pages.
+
+The deadline is 2 months after the course after the end of the course. 
+
 ## What is a conjoint experiment 
 
 1. **Substantively:** An instrument to understand peoples' choices
