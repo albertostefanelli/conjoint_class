@@ -167,7 +167,6 @@ knitr::include_graphics("images/marginal_means_vs_amce.png")
 
 ## Assumptions design with non-uniform distribution 
 
-
 ```{r ,echo=FALSE, out.width="100%",fig.cap="",fig.show='hold',fig.align='centre'}
 knitr::include_graphics("images/summary_assumption_marginal_dist.png")
 
