@@ -68,11 +68,13 @@ options(width = 300, scipen = 9999)
 
 1. Interactive models
     - Between Attributes 
-    - Subgroups Analysis
-2. Other designs
-    - Design-based approaches and constraines
-    - Model-based approaches 
-3. Mixture models 
+    - Subgroups Analysis (AMCE and MM)
+2. Constrained design 
+3. Non-uniform marginal distribution 
+    - Design-based approaches 
+    - Model-based approaches
+3. Power Analysis using simulations
+5. Mixture models 
     - Treatment heterogeneity 
     
 
@@ -113,6 +115,9 @@ options(width = 300, scipen = 9999)
 ## Custom build functions 
 # library(devtools)
 # devtools::install_github("albertostefanelli/cjoint") # fixes some problem with cjoint
+# devtools::install_github("naoki-egami/factorEx", dependencies=TRUE) # amce with non-uniform distribution
+# devtools::install_github("albertostefanelli/cjsimPWR") # power analysis using simulation
+
 
 ### Data import ###
 library("readr")     
@@ -128,8 +133,7 @@ library("cjoint")
 library("cregg")     
 library("factorEx") 
 library("flexmix")
-
-
+library("cjsimPWR")
 
 ```
 
@@ -161,7 +165,7 @@ df_long_format <- read.df.qualtRics(df_base,
 
 ```
 
-# Interaction between attributes (ACIE)
+# Interaction between attributes (ACIE) and trade-offs
 
 Our expectation is that the effect of being accused of corruption is conditional on the time a politician has spent in politics. 
 
@@ -344,7 +348,7 @@ cregg::cj_anova(df_long_format, selected ~
 ```
 
 
-# Design-based approaches: constrains and non-uniform marginal distribution 
+# Constrained Designs 
 
 - Immigration experiment from @hainmueller_causal_2014
   - Load the data
@@ -387,7 +391,7 @@ cbind(amce_unconstrained,amce_constrained, round((amce_unconstrained-amce_constr
 
 ```
 
-# Model-based approaches: constrains and non-uniform marginal distribution 
+# Non-uniform marginal distribution 
 
 We can also introduce non-uniform marginal distribution to improuve the external validity of our experiment. Let's first fit a baseline model that uses an uniform distribution
 
@@ -456,7 +460,6 @@ sum(non_uniform_distribution$Past.Political.Experience)
 
 ```  
   
-  
 - Integrate the new marginal distribution in the estimation 
 - We are using the function design_pAMCE() from the package factorEx [@de_la_cuesta_improving_2022]
 - model_pAMCE() arguments  
@@ -494,6 +497,82 @@ cbind(adjusted_marginal, unadjusted_marginal, (adjusted_marginal-unadjusted_marg
 
 ```
   
+# Power Analysis
+
+The power analysis R-package cjsimPWR is not yet on CRAN and so you have to install the package directly for my GitHub. To do so, uncomment the following lines 
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+# if(!require(devtools)) install.packages("devtools")
+# library(devtools)
+# devtools::install_github("albertostefanelli/cjsimPWR")
+
+```
+
+The current version of the power_sim() function can be utilized to calculate a priori power, Type S, and Type M error rates based on conjoint designs typically used in political science and neighboring disciplines. It can be used when the treatment effect (i.e., AMCE) is either (1) considered to be homogeneous across all respondents or (2) expected to differ substantially across different segments of the population.
+
+Let's start with an experiment with the following attributes with no subgroups (i.e., homogeneous treatment effects)
+
+- Number of attributes (n_attributes): 3
+    - Number of levels Attribute 1 (n_levels): 2
+    - Number of levels Attribute 2 (n_levels): 3
+    - Number of levels Attribute 3 (n_levels): 5
+- Number of respondents (units): 500
+- Number of tasks per respondent (n_tasks): 5
+- Hypothesized AMCE compared to reference level (true_coef): 
+    - Attribute 1 - Level 1 (ref: 0): 0.20 
+    - Attribute 2 - Level 1 (ref: 0): -0.1 
+    - Attribute 2 - Level 2 (ref: 0): 0.10 
+    - Attribute 3 - Level 1 (ref: 0): -0.03 
+    - Attribute 3 - Level 2 (ref: 0) -0.1 
+    - Attribute 3 - Level 3 (ref: 0): -0.1 
+    - Attribute 3 - Level 4 (ref: 0): 0.1
+- Individual level heterogeneity (sigma.u_k): 0.05 
+- Number of simulations (sim_runs): 100
+- Seed for reproducibility of the simulation results (seed) : 2114
+
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+df_power <- power_sim(
+  n_attributes = 3,
+  n_levels = c(2, 3, 5),
+  units = 600,
+  n_tasks = 5,
+  true_coef = list(0.2, c(-0.1, 0.1), c(-0.03, -0.1, -0.1, 0.1)),
+  sigma.u_k = 0.05,
+  sim_runs = 100,
+  seed = 2114
+)
+
+df_power |> print(n=40)
+
+```
+
+Next, let's calculate power for an experiment with a similar design but 3 subgroups of respondents (Democrat, Independent, Republican) with hypothesized differences in conditional AMCEs (i.e., heterogeneous treatment effects). 
+
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+
+df_power_interaction <- power_sim(
+          n_attributes = 3,
+          n_levels = c(2, 3, 6),
+          n_tasks = 4,
+          group_name = c("Democrat", "Independent", "Republican"),
+          units = c(500, 200, 500),
+          true_coef = list("Democrat" = list(0.2, c(-0.1, 0.1), c(-0.1, -0.1, -0.1, 0.1, -0.03)),
+                           "Independent" = list(0.1, c(-0.2, 0.05),  c(-0.1, 0.1, 0.1, 0.3, 0.01)),
+                           "Republican" = list(0.1, c(-0.1, -0.0005),  c(-0.1, 0.2, -0.1, 0.1, -0.01))
+                           ),
+          sigma.u_k = 0.05,
+          sim_runs = 100,
+          seed = 12
+)
+
+df_power_interaction |> print(n=40)
+
+```
+
 # Conjoint Mixture Model 
 
 - We are going to use the @kirkland_candidate_2018 conjoint experiment on partisan labels
