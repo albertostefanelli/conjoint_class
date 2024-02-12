@@ -70,19 +70,19 @@ header-includes:
 - Exercise
 - Solutions
 
-Where to find the material:
+- Make sure to install R and R Studio.
+- **If you have questions, shoot : )**
 
-- On my [GitHub/conjoint_class](https://albertostefanelli.github.io/conjoint_class/)
+## Before starting
 
-<!-- ## Before starting -->
-
-<!-- - For credit purposes, you are required to send in a take-home task.  -->
-<!--     - Option 1: Design a conjoint using the Conjointsdt tool and deploy it on Qualtrics  -->
-<!--     - Option 2: If you have collected CJ data, analyse the data, interpret the results, and create a report   -->
-<!--     - Grading: PASS/FAIL -->
-<!--     - **Deadline:** 07/06 (in 2 weeks) -->
-<!-- - Make sure to install R and R Studio. -->
-<!-- - **If you have questions, shoot : )**     -->
+- ECPR Questionnaire [LINK](https://www.surveymonkey.com/r/WS24CourseQuestionnaire)
+- All participants will gain access to Moodle until 5 April but always available on my [GitHub/conjoint_class](https://albertostefanelli.github.io/conjoint_class/)
+- For credit purposes, you are required to send in a take-home task.
+    - Option 1: Design a conjoint using the ConjointSDT tool, deploy it on Qualtrics, write a Pre-Analysis plan. 
+    - Option 2: If you have collected CJ data, analyse the data, interpret the results, and create a brief report
+    - Grading: PASS/FAIL
+    - Page limit: 10-pages, single-spaced including references. 
+    - **Deadline:**  25th of Feb  (in 2 weeks)
 
 ## Sub-group analysis 
 
